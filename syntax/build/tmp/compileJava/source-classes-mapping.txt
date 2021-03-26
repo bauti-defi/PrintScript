@@ -1,0 +1,11 @@
+edu/austral/ingsis/tokens/Token.java
+ edu.austral.ingsis.tokens.Token
+edu/austral/ingsis/SyntaxTable.java
+ edu.austral.ingsis.SyntaxTable
+ edu.austral.ingsis.SyntaxTable$1
+edu/austral/ingsis/tokens/SyntaxToken.java
+ edu.austral.ingsis.tokens.SyntaxToken
+edu/austral/ingsis/tokens/TokenType.java
+ edu.austral.ingsis.tokens.TokenType
+edu/austral/ingsis/Syntax.java
+ edu.austral.ingsis.Syntax
