@@ -1,11 +1,40 @@
-edu/austral/ingsis/tokens/Token.java
- edu.austral.ingsis.tokens.Token
+edu/austral/ingsis/ast/NodeBlock.java
+ edu.austral.ingsis.ast.NodeBlock
+edu/austral/ingsis/ast/Joint.java
+ edu.austral.ingsis.ast.Joint
+edu/austral/ingsis/ast/Node.java
+ edu.austral.ingsis.ast.Node
 edu/austral/ingsis/SyntaxTable.java
  edu.austral.ingsis.SyntaxTable
- edu.austral.ingsis.SyntaxTable$1
-edu/austral/ingsis/tokens/SyntaxToken.java
- edu.austral.ingsis.tokens.SyntaxToken
+edu/austral/ingsis/ast/nodes/BinaryOpNode.java
+ edu.austral.ingsis.ast.nodes.BinaryOpNode
+edu/austral/ingsis/ast/ASTFactory.java
+ edu.austral.ingsis.ast.ASTFactory
+edu/austral/ingsis/tokens/Token.java
+ edu.austral.ingsis.tokens.Token
+edu/austral/ingsis/exceptions/SyntaxTokenExpectedException.java
+ edu.austral.ingsis.exceptions.SyntaxTokenExpectedException
+edu/austral/ingsis/ast/AST.java
+ edu.austral.ingsis.ast.AST
+edu/austral/ingsis/ast/Leaf.java
+ edu.austral.ingsis.ast.Leaf
+edu/austral/ingsis/ast/nodes/ValueLiteralNode.java
+ edu.austral.ingsis.ast.nodes.ValueLiteralNode
+edu/austral/ingsis/ast/nodes/DeclarationNode.java
+ edu.austral.ingsis.ast.nodes.DeclarationNode
+edu/austral/ingsis/exceptions/SyntaxException.java
+ edu.austral.ingsis.exceptions.SyntaxException
+edu/austral/ingsis/ast/nodes/AssignationNode.java
+ edu.austral.ingsis.ast.nodes.AssignationNode
+edu/austral/ingsis/ast/nodes/IdentifierNode.java
+ edu.austral.ingsis.ast.nodes.IdentifierNode
+edu/austral/ingsis/ast/nodes/TypeNode.java
+ edu.austral.ingsis.ast.nodes.TypeNode
 edu/austral/ingsis/tokens/TokenType.java
  edu.austral.ingsis.tokens.TokenType
-edu/austral/ingsis/Syntax.java
- edu.austral.ingsis.Syntax
+edu/austral/ingsis/exceptions/SemicolonAbsentException.java
+ edu.austral.ingsis.exceptions.SemicolonAbsentException
+edu/austral/ingsis/ast/nodes/AbstractNode.java
+ edu.austral.ingsis.ast.nodes.AbstractNode
+edu/austral/ingsis/ast/ShuntingYard.java
+ edu.austral.ingsis.ast.ShuntingYard
