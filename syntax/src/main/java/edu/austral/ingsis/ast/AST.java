@@ -1,8 +1,5 @@
 package edu.austral.ingsis.ast;
 
-import edu.austral.ingsis.SyntaxTable;
-import edu.austral.ingsis.tokens.SyntaxToken;
-
 import java.util.List;
 
 public class AST {

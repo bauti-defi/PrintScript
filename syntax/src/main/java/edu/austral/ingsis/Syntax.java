@@ -1,23 +1,21 @@
 package edu.austral.ingsis;
 
-import edu.austral.ingsis.tokens.SyntaxToken;
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Syntax {
 
     private final SyntaxTable table = new SyntaxTable();
 
-    public List<SyntaxToken> categorize(List<Token> tokens){
-        final List<SyntaxToken> syntaxTokens = new ArrayList<>();
+    public List<Token> categorize(List<Token> tokens){
+        final List<Token> syntaxTokens = new ArrayList<>();
 
         for(int i = 0; i < tokens.size(); i++){
             if(!table.contains(tokens.get(i))){
-                final SyntaxToken previous = syntaxTokens.get(i - 1);
+                final Token previous = syntaxTokens.get(i - 1);
                 if(previous.getType() == TokenType.LET){
                     syntaxTokens.add(table.truncate(tokens.get(i), TokenType.IDENTIFIER));
                 }else if(previous.getType() == TokenType.DOUBLE_QUOTATION || previous.getType() == TokenType.SINGLE_QUOTATION){

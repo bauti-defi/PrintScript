@@ -1,6 +1,5 @@
 package edu.austral.ingsis;
 
-import edu.austral.ingsis.tokens.SyntaxToken;
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
 
@@ -32,14 +31,14 @@ public class SyntaxTable {
         return table.containsKey(token.getValue());
     }
 
-    public SyntaxToken truncate(Token token, TokenType type){
+    public Token truncate(Token token, TokenType type){
         table.put(token.getValue(), type);
 
         return classify(token);
     }
 
-    public SyntaxToken classify(Token token){
-        return new SyntaxToken() {
+    public Token classify(Token token){
+        return new Token() {
             @Override
             public TokenType getType() {
                 return table.get(token.getValue());

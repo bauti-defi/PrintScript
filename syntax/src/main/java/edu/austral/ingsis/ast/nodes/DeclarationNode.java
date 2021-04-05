@@ -1,14 +1,14 @@
 package edu.austral.ingsis.ast.nodes;
 
 import edu.austral.ingsis.ast.Joint;
-import edu.austral.ingsis.tokens.SyntaxToken;
+import edu.austral.ingsis.tokens.Token;
 
 public class DeclarationNode extends AbstractNode implements Joint<IdentifierNode, TypeNode> {
 
     private IdentifierNode identifier;
     private TypeNode type;
 
-    public DeclarationNode(SyntaxToken token) {
+    public DeclarationNode(Token token) {
         super(token);
     }
 

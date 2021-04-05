@@ -1,14 +1,14 @@
 package edu.austral.ingsis.ast.nodes;
 
 import edu.austral.ingsis.ast.Joint;
-import edu.austral.ingsis.tokens.SyntaxToken;
+import edu.austral.ingsis.tokens.Token;
 
 public class AssignationNode extends AbstractNode implements Joint<DeclarationNode, ValueLiteralNode> {
 
     private DeclarationNode declaration;
     private ValueLiteralNode value;
 
-    public AssignationNode(SyntaxToken token) {
+    public AssignationNode(Token token) {
         super(token);
     }
 

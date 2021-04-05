@@ -1,5 +1,4 @@
 import edu.austral.ingsis.Syntax;
-import edu.austral.ingsis.tokens.SyntaxToken;
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
 import org.junit.jupiter.api.Test;
@@ -183,14 +182,14 @@ public class SyntaxTest {
     @Test
     public void testCategorize1(){
         Syntax syntax = new Syntax();
-        List<SyntaxToken> syntaxTokens = syntax.categorize(tokens);
+        List<Token> tokens = syntax.categorize(SyntaxTest.tokens);
 
         final List<TokenType> expected = Arrays.asList(
                 TokenType.LET, TokenType.IDENTIFIER, TokenType.COLON,
                 TokenType.STRING_TYPE, TokenType.EQUALS,TokenType.SINGLE_QUOTATION,
                 TokenType.STRING_LITERAL, TokenType.SINGLE_QUOTATION, TokenType.SEMICOLON);
 
-        final List<TokenType> result = syntaxTokens.stream().map(SyntaxToken::getType).collect(Collectors.toList());
+        final List<TokenType> result = tokens.stream().map(Token::getType).collect(Collectors.toList());
         assertEquals(expected, result);
     }
 }

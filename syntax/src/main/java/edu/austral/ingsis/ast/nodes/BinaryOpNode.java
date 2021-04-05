@@ -1,13 +1,13 @@
 package edu.austral.ingsis.ast.nodes;
 
 import edu.austral.ingsis.ast.Joint;
-import edu.austral.ingsis.tokens.SyntaxToken;
+import edu.austral.ingsis.tokens.Token;
 
 public class BinaryOpNode extends AbstractNode implements Joint<ValueLiteralNode, ValueLiteralNode> {
 
     private ValueLiteralNode left, right;
 
-    public BinaryOpNode(SyntaxToken token) {
+    public BinaryOpNode(Token token) {
         super(token);
     }
 
