@@ -16,6 +16,8 @@ edu/austral/ingsis/exceptions/SyntaxTokenExpectedException.java
  edu.austral.ingsis.exceptions.SyntaxTokenExpectedException
 edu/austral/ingsis/ast/AST.java
  edu.austral.ingsis.ast.AST
+edu/austral/ingsis/ast/DeclarationTable.java
+ edu.austral.ingsis.ast.DeclarationTable
 edu/austral/ingsis/ast/Leaf.java
  edu.austral.ingsis.ast.Leaf
 edu/austral/ingsis/ast/nodes/ValueLiteralNode.java
@@ -30,11 +32,13 @@ edu/austral/ingsis/ast/nodes/IdentifierNode.java
  edu.austral.ingsis.ast.nodes.IdentifierNode
 edu/austral/ingsis/ast/nodes/TypeNode.java
  edu.austral.ingsis.ast.nodes.TypeNode
-edu/austral/ingsis/tokens/TokenType.java
- edu.austral.ingsis.tokens.TokenType
+edu/austral/ingsis/ast/ShuntingYard.java
+ edu.austral.ingsis.ast.ShuntingYard
 edu/austral/ingsis/exceptions/SemicolonAbsentException.java
  edu.austral.ingsis.exceptions.SemicolonAbsentException
 edu/austral/ingsis/ast/nodes/AbstractNode.java
  edu.austral.ingsis.ast.nodes.AbstractNode
-edu/austral/ingsis/ast/ShuntingYard.java
- edu.austral.ingsis.ast.ShuntingYard
+edu/austral/ingsis/tokens/TokenType.java
+ edu.austral.ingsis.tokens.TokenType
+edu/austral/ingsis/exceptions/VariableUndefinedException.java
+ edu.austral.ingsis.exceptions.VariableUndefinedException

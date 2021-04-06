@@ -1,12 +1,13 @@
 package edu.austral.ingsis.ast.nodes;
 
 import edu.austral.ingsis.ast.Joint;
+import edu.austral.ingsis.ast.Node;
 import edu.austral.ingsis.tokens.Token;
 
-public class AssignationNode extends AbstractNode implements Joint<DeclarationNode, ValueLiteralNode> {
+public class AssignationNode extends AbstractNode implements Joint<DeclarationNode, Node> {
 
     private DeclarationNode declaration;
-    private ValueLiteralNode value;
+    private Node value;
 
     public AssignationNode(Token token) {
         super(token);
@@ -23,12 +24,12 @@ public class AssignationNode extends AbstractNode implements Joint<DeclarationNo
     }
 
     @Override
-    public void setRight(ValueLiteralNode node) {
+    public void setRight(Node node) {
         this.value = node;
     }
 
     @Override
-    public ValueLiteralNode getRight() {
+    public Node getRight() {
         return this.value;
     }
 }

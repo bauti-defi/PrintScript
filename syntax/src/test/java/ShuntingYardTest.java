@@ -1,9 +1,11 @@
 
+import edu.austral.ingsis.ast.Node;
 import edu.austral.ingsis.ast.ShuntingYard;
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
@@ -38,7 +40,7 @@ public class ShuntingYardTest {
     }
 
     @Test
-    public void testProcessSimpleShuntingYard(){
+    public void testProcessShuntingYard01(){
         //(5*4+3*2)-1
         List<Token> tokens = Arrays.asList(
                 createMockToken("(", TokenType.L_PARENTHESES),
@@ -62,7 +64,7 @@ public class ShuntingYardTest {
     }
 
     @Test
-    public void testProcessComplexShuntingYard(){
+    public void testProcessShuntingYard02(){
         //(5*4+3*x)-size
         List<Token> tokens = Arrays.asList(
                 createMockToken("(", TokenType.L_PARENTHESES),
@@ -83,6 +85,48 @@ public class ShuntingYardTest {
         List<String> expected = Arrays.asList("5", "4", "*", "3", "x", "*", "+", "size", "-");
 
         assertEquals(expected, result);
+    }
+
+    @Test
+    public void testProcessShuntingYard03(){
+        //5
+        List<Token> tokens = Arrays.asList(
+                createMockToken("5", TokenType.NUMBER_LITERAL)
+        );
+
+        List<String> result = ShuntingYard.process(tokens).stream().map(Token::getValue).collect(Collectors.toList());
+
+        List<String> expected = Arrays.asList("5");
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testProcessShuntingYard04(){
+        //(5)-size
+        List<Token> tokens = Arrays.asList(
+                createMockToken("(", TokenType.L_PARENTHESES),
+                createMockToken("5", TokenType.NUMBER_LITERAL),
+                createMockToken(")", TokenType.R_PARANTHESES),
+                createMockToken("-", TokenType.MINUS_SYMBOL),
+                createMockToken("size", TokenType.IDENTIFIER)
+        );
+
+        List<String> result = ShuntingYard.process(tokens).stream().map(Token::getValue).collect(Collectors.toList());
+
+        List<String> expected = Arrays.asList("5", "size", "-");
+
+        assertEquals(expected, result);
+    }
+
+    private void treeToInOrderList(Node root){
+        final List<String> nodes = new ArrayList<>();
+
+
+    }
+
+    private void doWalk(List<String> aggregate, Node root){
+
     }
 
     @Test

@@ -12,4 +12,5 @@ public class SyntaxTokenExpectedException extends RuntimeException{
     public SyntaxTokenExpectedException(int line, TokenType expected){
         super("Error: " + expected.toString() + " expected on line " + line);
     }
+
 }
