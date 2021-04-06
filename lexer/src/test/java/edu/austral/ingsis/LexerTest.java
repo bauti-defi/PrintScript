@@ -15,18 +15,18 @@ class LexerTest {
     static void setUp(){
         Map<String, TokenType > keywords = new HashMap<>();
         keywords.put("let", TokenType.LET);
-        keywords.put(":", TokenType.DOUBLE_DOT);
-        keywords.put("=", TokenType.EQUAL);
-        keywords.put(";", TokenType.SEMI_COLON);
-        keywords.put("number", TokenType.NUMBER);
-        keywords.put("string", TokenType.STRING);
-        keywords.put("+", TokenType.MATH_OPERATOR);
-        keywords.put("-", TokenType.MATH_OPERATOR);
-        keywords.put("*", TokenType.MATH_OPERATOR);
-        keywords.put("/", TokenType.MATH_OPERATOR);
+        keywords.put(":", TokenType.COLON);
+        keywords.put("=", TokenType.EQUALS);
+        keywords.put(";", TokenType.SEMICOLON);
+        keywords.put("number", TokenType.NUMBER_TYPE);
+        keywords.put("string", TokenType.STRING_TYPE);
+        keywords.put("+", TokenType.PLUS_SYMBOL);
+        keywords.put("-", TokenType.MINUS_SYMBOL);
+        keywords.put("*", TokenType.STAR_SYMBOL);
+        keywords.put("/", TokenType.SLASH_SYMBOL);
         keywords.put("println", TokenType.PRINTLN);
-        keywords.put("(", TokenType.L_PARENTHESIS);
-        keywords.put(")", TokenType.R_PARENTHESIS);
+        keywords.put("(", TokenType.L_PARENTHESES);
+        keywords.put(")", TokenType.R_PARANTHESES);
 
         lexer = new Lexer(keywords);
     }
@@ -38,13 +38,12 @@ class LexerTest {
         List<Token> tokens = lexer.tokenize(str);
         List<Token> expectedToken = Arrays.asList(
                 Token.builder().tokenType(TokenType.LET).value("let").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.ID).value("x").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.DOUBLE_DOT).value(":").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.NUMBER).value("number").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.EQUAL).value("=").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.NUMBER_VALUE).value("5").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.SEMI_COLON).value(";").index(1).line(1).build());
-
+                Token.builder().tokenType(TokenType.IDENTIFIER).value("x").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.COLON).value(":").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.NUMBER_TYPE).value("number").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.EQUALS).value("=").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.NUMBER_LITERAL).value("5").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.SEMICOLON).value(";").index(1).line(1).build());
 
         assertEquals(expectedToken, tokens);
     }
@@ -57,19 +56,19 @@ class LexerTest {
         List<Token> tokens = lexer.tokenize(str);
         List<Token> expectedToken = Arrays.asList(
                 Token.builder().tokenType(TokenType.LET).value("let").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.ID).value("x").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.DOUBLE_DOT).value(":").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.NUMBER).value("number").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.EQUAL).value("=").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.NUMBER_VALUE).value("5").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.SEMI_COLON).value(";").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.IDENTIFIER).value("x").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.COLON).value(":").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.NUMBER_TYPE).value("number").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.EQUALS).value("=").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.NUMBER_LITERAL).value("5").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.SEMICOLON).value(";").index(1).line(1).build(),
                 Token.builder().tokenType(TokenType.LET).value("let").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.ID).value("a").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.DOUBLE_DOT).value(":").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.STRING).value("string").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.EQUAL).value("=").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.NUMBER_VALUE).value("6").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.SEMI_COLON).value(";").index(1).line(1).build());
+                Token.builder().tokenType(TokenType.IDENTIFIER).value("a").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.COLON).value(":").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.STRING_TYPE).value("string").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.EQUALS).value("=").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.NUMBER_LITERAL).value("6").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.SEMICOLON).value(";").index(1).line(1).build());
         assertEquals(expectedToken, tokens);
     }
 
@@ -81,16 +80,16 @@ class LexerTest {
         List<Token> tokens = lexer.tokenize(str);
         List<Token> expectedToken = Arrays.asList(
                 Token.builder().tokenType(TokenType.LET).value("let").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.ID).value("x").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.DOUBLE_DOT).value(":").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.NUMBER).value("number").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.EQUAL).value("=").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.NUMBER_VALUE).value("5").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.SEMI_COLON).value(";").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.ID).value("a").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.MATH_OPERATOR).value("+").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.NUMBER_VALUE).value("6").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.SEMI_COLON).value(";").index(1).line(1).build());
+                Token.builder().tokenType(TokenType.IDENTIFIER).value("x").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.COLON).value(":").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.NUMBER_TYPE).value("number").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.EQUALS).value("=").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.NUMBER_LITERAL).value("5").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.SEMICOLON).value(";").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.IDENTIFIER).value("a").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.PLUS_SYMBOL).value("+").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.NUMBER_LITERAL).value("6").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.SEMICOLON).value(";").index(1).line(1).build());
         assertEquals(expectedToken, tokens);
     }
 
@@ -101,10 +100,10 @@ class LexerTest {
         List<Token> tokens = lexer.tokenize(str);
         List<Token> expectedToken = Arrays.asList(
                 Token.builder().tokenType(TokenType.PRINTLN).value("println").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.L_PARENTHESIS).value("(").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.ID).value("a").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.R_PARENTHESIS).value(")").index(1).line(1).build(),
-                Token.builder().tokenType(TokenType.SEMI_COLON).value(";").index(1).line(1).build());
+                Token.builder().tokenType(TokenType.L_PARENTHESES).value("(").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.IDENTIFIER).value("a").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.R_PARANTHESES).value(")").index(1).line(1).build(),
+                Token.builder().tokenType(TokenType.SEMICOLON).value(";").index(1).line(1).build());
 
         assertEquals(expectedToken, tokens);
     }
