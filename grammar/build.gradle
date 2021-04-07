@@ -1,19 +1,7 @@
 plugins {
-    id 'java'
+    id 'java-library'
+    id 'my-library.java-common-conventions'
 }
 
-group 'org.example'
+group 'edu.austral.ingsis'
 version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-}
-
-test {
-    useJUnitPlatform()
-}
