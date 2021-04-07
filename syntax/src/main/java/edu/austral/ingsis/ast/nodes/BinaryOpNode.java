@@ -1,34 +1,28 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.ast.Joint;
-import edu.austral.ingsis.ast.Node;
 import edu.austral.ingsis.tokens.Token;
 
-public class BinaryOpNode extends AbstractNode implements Joint<Node, Node> {
+public class BinaryOpNode extends AbstractNode{
 
-    private Node left, right;
+    private AbstractNode left, right;
 
     public BinaryOpNode(Token token) {
         super(token);
     }
 
-    @Override
-    public void setLeft(Node node) {
+    public void setLeft(AbstractNode node) {
         this.left = node;
     }
 
-    @Override
-    public Node getLeft() {
+    public AbstractNode getLeft() {
         return this.left;
     }
 
-    @Override
-    public void setRight(Node node) {
+    public void setRight(AbstractNode node) {
         this.right = node;
     }
 
-    @Override
-    public Node getRight() {
+    public AbstractNode getRight() {
         return this.right;
     }
 

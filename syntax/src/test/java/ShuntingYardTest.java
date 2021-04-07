@@ -1,5 +1,4 @@
 
-import edu.austral.ingsis.ast.Node;
 import edu.austral.ingsis.ast.ShuntingYard;
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
@@ -8,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -117,16 +115,6 @@ public class ShuntingYardTest {
         List<String> expected = Arrays.asList("5", "size", "-");
 
         assertEquals(expected, result);
-    }
-
-    private void treeToInOrderList(Node root){
-        final List<String> nodes = new ArrayList<>();
-
-
-    }
-
-    private void doWalk(List<String> aggregate, Node root){
-
     }
 
     @Test

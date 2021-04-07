@@ -1,9 +1,8 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.ast.Node;
 import edu.austral.ingsis.tokens.Token;
 
-public abstract class AbstractNode implements Node {
+public abstract class AbstractNode  {
 
     protected final Token token;
 
@@ -11,8 +10,8 @@ public abstract class AbstractNode implements Node {
         this.token = token;
     }
 
-    @Override
     public Token getToken() {
         return this.token;
     }
+
 }

@@ -1,6 +1,5 @@
 package edu.austral.ingsis.ast;
 
-import edu.austral.ingsis.SyntaxTable;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.exceptions.SemicolonAbsentException;
 import edu.austral.ingsis.exceptions.SyntaxException;
@@ -8,7 +7,6 @@ import edu.austral.ingsis.exceptions.SyntaxTokenExpectedException;
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
@@ -19,19 +17,17 @@ public class ASTFactory {
     private final DeclarationTable declarations = new DeclarationTable();
 
     public void create(List<Token> tokens){
-        final SyntaxTable table = new SyntaxTable(tokens);
-
         int lineCount = tokens.get(tokens.size() - 1).getLineNumber();
         final Map<Integer, List<Token>> lines = tokens.stream().collect(Collectors.groupingBy(Token::getLineNumber));
 
-        for(int i = 0;i < lineCount;i++){
+        for(int i = 0; i < lineCount; i++){
             final List<Token> line = lines.get(i);
             if(!endsWithSemicolon(line)){
                 throw new SemicolonAbsentException(line.get(line.size() - 1));
             }
 
             //process without semicolon
-            processLine(line.subList(0, line.size() - 1), table);
+            processStatement(line.subList(0, line.size() - 1));
         }
     }
 
@@ -55,9 +51,9 @@ public class ASTFactory {
         return endsWith(tokens, TokenType.SEMICOLON);
     }
 
-    public Node processLine(List<Token> line, SyntaxTable table){
+    private AbstractNode processStatement(List<Token> line){
         if(containsToken(line, TokenType.EQUALS)){
-            return processAssignation(line, table);
+            return processAssignation(line);
         }
 
         return null;
@@ -73,7 +69,7 @@ public class ASTFactory {
         return -1;
     }
 
-    private AssignationNode processAssignation(List<Token> line, SyntaxTable table){
+    private AssignationNode processAssignation(List<Token> line){
         int index = getIndexOfToken(line, TokenType.EQUALS);
 
         final List<Token> declaration = line.subList(0, index);
@@ -97,8 +93,9 @@ public class ASTFactory {
         return assignationNode;
     }
 
-    public Node processShuntingYard(Stack<Token> postFix) {
-        final Stack<Node> nodes = new Stack<>();
+    //can return binary-op, declaration, or value-literal
+    private AbstractNode processShuntingYard(Stack<Token> postFix) {
+        final Stack<AbstractNode> nodes = new Stack<>();
 
 
         for (Token token : postFix) {
@@ -154,11 +151,9 @@ public class ASTFactory {
         return node;
     }
 
-    private Node processValue(List<Token> tokens){
+    private AbstractNode processValue(List<Token> tokens){
         final Stack<Token> postFix = ShuntingYard.process(tokens);
-        return null;
+        return processShuntingYard(postFix);
     }
-
-
 
 }

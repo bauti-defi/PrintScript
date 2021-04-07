@@ -1,11 +1,3 @@
-edu/austral/ingsis/ast/NodeBlock.java
- edu.austral.ingsis.ast.NodeBlock
-edu/austral/ingsis/ast/Joint.java
- edu.austral.ingsis.ast.Joint
-edu/austral/ingsis/ast/Node.java
- edu.austral.ingsis.ast.Node
-edu/austral/ingsis/SyntaxTable.java
- edu.austral.ingsis.SyntaxTable
 edu/austral/ingsis/ast/nodes/BinaryOpNode.java
  edu.austral.ingsis.ast.nodes.BinaryOpNode
 edu/austral/ingsis/ast/ASTFactory.java
@@ -14,12 +6,8 @@ edu/austral/ingsis/tokens/Token.java
  edu.austral.ingsis.tokens.Token
 edu/austral/ingsis/exceptions/SyntaxTokenExpectedException.java
  edu.austral.ingsis.exceptions.SyntaxTokenExpectedException
-edu/austral/ingsis/ast/AST.java
- edu.austral.ingsis.ast.AST
 edu/austral/ingsis/ast/DeclarationTable.java
  edu.austral.ingsis.ast.DeclarationTable
-edu/austral/ingsis/ast/Leaf.java
- edu.austral.ingsis.ast.Leaf
 edu/austral/ingsis/ast/nodes/ValueLiteralNode.java
  edu.austral.ingsis.ast.nodes.ValueLiteralNode
 edu/austral/ingsis/ast/nodes/DeclarationNode.java
