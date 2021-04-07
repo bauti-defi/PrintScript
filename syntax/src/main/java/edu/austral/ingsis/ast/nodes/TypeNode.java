@@ -1,11 +1,10 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.ast.Leaf;
-import edu.austral.ingsis.tokens.SyntaxToken;
+import edu.austral.ingsis.tokens.Token;
 
-public class TypeNode extends AbstractNode implements Leaf {
+public class TypeNode extends AbstractNode {
 
-    public TypeNode(SyntaxToken token) {
+    public TypeNode(Token token) {
         super(token);
     }
 }

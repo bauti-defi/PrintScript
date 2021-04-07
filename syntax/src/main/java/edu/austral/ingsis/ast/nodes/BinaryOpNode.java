@@ -1,33 +1,28 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.ast.Joint;
-import edu.austral.ingsis.tokens.SyntaxToken;
+import edu.austral.ingsis.tokens.Token;
 
-public class BinaryOpNode extends AbstractNode implements Joint<ValueLiteralNode, ValueLiteralNode> {
+public class BinaryOpNode extends AbstractNode{
 
-    private ValueLiteralNode left, right;
+    private AbstractNode left, right;
 
-    public BinaryOpNode(SyntaxToken token) {
+    public BinaryOpNode(Token token) {
         super(token);
     }
 
-    @Override
-    public void setLeft(ValueLiteralNode node) {
+    public void setLeft(AbstractNode node) {
         this.left = node;
     }
 
-    @Override
-    public ValueLiteralNode getLeft() {
+    public AbstractNode getLeft() {
         return this.left;
     }
 
-    @Override
-    public void setRight(ValueLiteralNode node) {
+    public void setRight(AbstractNode node) {
         this.right = node;
     }
 
-    @Override
-    public ValueLiteralNode getRight() {
+    public AbstractNode getRight() {
         return this.right;
     }
 
