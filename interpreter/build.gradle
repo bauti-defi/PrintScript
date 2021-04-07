@@ -1,0 +1,27 @@
+plugins {
+    id 'application'
+    id 'my-library.java-common-conventions'
+
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':lexer')
+    implementation project(':syntax')
+    implementation project(':grammar')
+}
+
+application {
+    mainClass = 'App'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect{it.getName()}.join(' '),
+                'Main-Class': 'App'
+        )
+    }
+}

@@ -1,0 +1,4 @@
+src/main/java/edu/austral/ingsis/Lexer.java,1617830418736762472,2157,FORMATTED
+src/test/java/edu/austral/ingsis/LexerTest.java,1617830391938880161,6048,FORMATTED
+src/main/java/edu/austral/ingsis/TokenType.java,1617830391945184376,321,FORMATTED
+src/main/java/edu/austral/ingsis/Token.java,1617830391968724394,322,FORMATTED
