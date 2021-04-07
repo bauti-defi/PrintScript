@@ -2,8 +2,11 @@ edu/austral/ingsis/ast/nodes/BinaryOpNode.java
  edu.austral.ingsis.ast.nodes.BinaryOpNode
 edu/austral/ingsis/ast/ASTFactory.java
  edu.austral.ingsis.ast.ASTFactory
-edu/austral/ingsis/tokens/Token.java
- edu.austral.ingsis.tokens.Token
+edu/austral/ingsis/Token.java
+ edu.austral.ingsis.Token
+ edu.austral.ingsis.Token$TokenBuilder
+edu/austral/ingsis/TokenType.java
+ edu.austral.ingsis.TokenType
 edu/austral/ingsis/exceptions/SyntaxTokenExpectedException.java
  edu.austral.ingsis.exceptions.SyntaxTokenExpectedException
 edu/austral/ingsis/ast/DeclarationTable.java
@@ -26,7 +29,5 @@ edu/austral/ingsis/exceptions/SemicolonAbsentException.java
  edu.austral.ingsis.exceptions.SemicolonAbsentException
 edu/austral/ingsis/ast/nodes/AbstractNode.java
  edu.austral.ingsis.ast.nodes.AbstractNode
-edu/austral/ingsis/tokens/TokenType.java
- edu.austral.ingsis.tokens.TokenType
 edu/austral/ingsis/exceptions/VariableUndefinedException.java
  edu.austral.ingsis.exceptions.VariableUndefinedException

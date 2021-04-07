@@ -1,10 +1,9 @@
 
+import edu.austral.ingsis.ast.Token;
+import edu.austral.ingsis.ast.TokenType;
 import edu.austral.ingsis.ast.ShuntingYard;
-import edu.austral.ingsis.tokens.Token;
-import edu.austral.ingsis.tokens.TokenType;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,27 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ShuntingYardTest {
 
     private Token createMockToken(String value, TokenType type){
-        return new Token() {
-            @Override
-            public String getValue() {
-                return value;
-            }
-
-            @Override
-            public Integer getLineNumber() {
-                return 0;
-            }
-
-            @Override
-            public Integer getLineIndex() {
-                return 0;
-            }
-
-            @Override
-            public TokenType getType() {
-                return type;
-            }
-        };
+        return Token.builder().index(0).line(0).type(type).value(value).build();
     }
 
     @Test

@@ -1,8 +1,7 @@
 package edu.austral.ingsis.ast;
 
 import edu.austral.ingsis.ast.nodes.DeclarationNode;
-import edu.austral.ingsis.exceptions.SyntaxException;
-import edu.austral.ingsis.exceptions.VariableUndefinedException;
+import edu.austral.ingsis.ast.exceptions.VariableUndefinedException;
 
 import java.util.HashMap;
 

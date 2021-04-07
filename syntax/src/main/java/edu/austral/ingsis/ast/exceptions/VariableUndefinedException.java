@@ -1,4 +1,4 @@
-package edu.austral.ingsis.exceptions;
+package edu.austral.ingsis.ast.exceptions;
 
 public class VariableUndefinedException extends RuntimeException{
 

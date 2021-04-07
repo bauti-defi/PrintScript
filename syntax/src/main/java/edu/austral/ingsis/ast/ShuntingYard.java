@@ -1,11 +1,6 @@
 package edu.austral.ingsis.ast;
 
-import edu.austral.ingsis.ast.nodes.BinaryOpNode;
-import edu.austral.ingsis.ast.nodes.IdentifierNode;
-import edu.austral.ingsis.ast.nodes.ValueLiteralNode;
-import edu.austral.ingsis.exceptions.SyntaxException;
-import edu.austral.ingsis.tokens.Token;
-import edu.austral.ingsis.tokens.TokenType;
+import edu.austral.ingsis.ast.exceptions.SyntaxException;
 
 import java.util.List;
 import java.util.Stack;

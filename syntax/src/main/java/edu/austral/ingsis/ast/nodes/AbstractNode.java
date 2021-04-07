@@ -1,8 +1,9 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.tokens.Token;
 
-public abstract class AbstractNode  {
+import edu.austral.ingsis.ast.Token;
+
+public abstract class AbstractNode {
 
     protected final Token token;
 

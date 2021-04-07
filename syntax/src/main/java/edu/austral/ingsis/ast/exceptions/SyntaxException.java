@@ -1,6 +1,7 @@
-package edu.austral.ingsis.exceptions;
+package edu.austral.ingsis.ast.exceptions;
 
-import edu.austral.ingsis.tokens.Token;
+
+import edu.austral.ingsis.ast.Token;
 
 public class SyntaxException extends RuntimeException{
 

@@ -1,24 +1,24 @@
 package edu.austral.ingsis.ast;
 
 import edu.austral.ingsis.ast.nodes.*;
-import edu.austral.ingsis.exceptions.SemicolonAbsentException;
-import edu.austral.ingsis.exceptions.SyntaxException;
-import edu.austral.ingsis.exceptions.SyntaxTokenExpectedException;
-import edu.austral.ingsis.tokens.Token;
-import edu.austral.ingsis.tokens.TokenType;
+import edu.austral.ingsis.ast.exceptions.SemicolonAbsentException;
+import edu.austral.ingsis.ast.exceptions.SyntaxException;
+import edu.austral.ingsis.ast.exceptions.SyntaxTokenExpectedException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-public class ASTFactory {
+public class ASTBuilder implements TokenHelper{
 
-    private final DeclarationTable declarations = new DeclarationTable();
+    final DeclarationTable declarations = new DeclarationTable();
+    final List<AbstractNode> nodes = new ArrayList<>();
 
-    public void create(List<Token> tokens){
-        int lineCount = tokens.get(tokens.size() - 1).getLineNumber();
-        final Map<Integer, List<Token>> lines = tokens.stream().collect(Collectors.groupingBy(Token::getLineNumber));
+    public void process(List<Token> tokens){
+        int lineCount = tokens.get(tokens.size() - 1).getLine();
+        final Map<Integer, List<Token>> lines = tokens.stream().collect(Collectors.groupingBy(Token::getLine));
 
         for(int i = 0; i < lineCount; i++){
             final List<Token> line = lines.get(i);
@@ -27,27 +27,11 @@ public class ASTFactory {
             }
 
             //process without semicolon
-            processStatement(line.subList(0, line.size() - 1));
+            nodes.add(processStatement(line.subList(0, line.size() - 1)));
         }
     }
 
-    private boolean isTokenType(Token token, TokenType type){
-        return token.getType() == type;
-    }
-
-    private boolean containsToken(List<Token> token, TokenType condition){
-        return token.stream().anyMatch(t -> t.getType() == condition);
-    }
-
-    private boolean startsWith(List<Token> tokens, TokenType type){
-        return tokens.get(0).getType() == type;
-    }
-
-    private boolean endsWith(List<Token> tokens, TokenType type){
-        return tokens.get(tokens.size() - 1).getType() == type;
-    }
-
-    private boolean endsWithSemicolon(List<Token> tokens){
+   private boolean endsWithSemicolon(List<Token> tokens){
         return endsWith(tokens, TokenType.SEMICOLON);
     }
 
@@ -57,16 +41,6 @@ public class ASTFactory {
         }
 
         return null;
-    }
-
-    private int getIndexOfToken(List<Token> line, TokenType type){
-        int index;
-        for(index = 0; index < line.size(); index++){
-            if(line.get(index).getType() == type){
-                return index;
-            }
-        }
-        return -1;
     }
 
     private AssignationNode processAssignation(List<Token> line){
@@ -102,7 +76,7 @@ public class ASTFactory {
             if (isTokenType(token, TokenType.NUMBER_LITERAL) || isTokenType(token, TokenType.STRING_LITERAL)) {
                 nodes.push(new ValueLiteralNode(token));
             } else if(isTokenType(token, TokenType.IDENTIFIER)){
-                nodes.push(new IdentifierNode(token));
+                nodes.push(declarations.get(token.getValue()));
             } else if (isTokenType(token, TokenType.STAR_SYMBOL) || isTokenType(token, TokenType.SLASH_SYMBOL) || isTokenType(token, TokenType.PLUS_SYMBOL) || isTokenType(token, TokenType.MINUS_SYMBOL)) {
                 final BinaryOpNode operator = new BinaryOpNode(token);
                 operator.setRight(nodes.pop());
@@ -131,7 +105,7 @@ public class ASTFactory {
 
         //Check that there is a colon
         if(colonIndex == -1){
-            throw new SyntaxTokenExpectedException(tokens.get(0).getLineNumber(), TokenType.COLON);
+            throw new SyntaxTokenExpectedException(tokens.get(0).getLine(), TokenType.COLON);
         }
 
         //check that we have an identifier

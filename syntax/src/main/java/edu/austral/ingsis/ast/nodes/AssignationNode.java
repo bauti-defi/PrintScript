@@ -1,8 +1,11 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.tokens.Token;
 
-public class AssignationNode extends AbstractNode {
+import edu.austral.ingsis.ast.Token;
+import edu.austral.ingsis.ast.visitor.Visitable;
+import edu.austral.ingsis.ast.visitor.Visitor;
+
+public class AssignationNode extends AbstractNode implements Visitable {
 
     private DeclarationNode declaration;
     private AbstractNode value;
@@ -25,5 +28,10 @@ public class AssignationNode extends AbstractNode {
 
     public AbstractNode getRight() {
         return this.value;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

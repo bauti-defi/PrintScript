@@ -52,13 +52,13 @@ public class Lexer {
 
     private Token getToken(String s, Integer index, Integer line){
 
-        if (keyWords.containsKey(s)) return Token.builder().value(s).tokenType(keyWords.get(s)).index(index).line(line).build();
+        if (keyWords.containsKey(s)) return Token.builder().value(s).type(keyWords.get(s)).index(index).line(line).build();
 
-        if (s.charAt(0) == s.charAt(s.length() - 1) && (s.charAt(0) == 34 || s.charAt(0) == 39) ) return Token.builder().value(s).tokenType(TokenType.STRING_LITERAL).index(index).line(line).build();
+        if (s.charAt(0) == s.charAt(s.length() - 1) && (s.charAt(0) == 34 || s.charAt(0) == 39) ) return Token.builder().value(s).type(TokenType.STRING_LITERAL).index(index).line(line).build();
 
-        if (isNumber(s)) return Token.builder().value(s).tokenType(TokenType.NUMBER_LITERAL).index(index).line(line).build();
+        if (isNumber(s)) return Token.builder().value(s).type(TokenType.NUMBER_LITERAL).index(index).line(line).build();
 
-        return Token.builder().value(s).tokenType(TokenType.IDENTIFIER).index(index).line(line).build();
+        return Token.builder().value(s).type(TokenType.IDENTIFIER).index(index).line(line).build();
     }
 
     private Boolean isNumber(String s){

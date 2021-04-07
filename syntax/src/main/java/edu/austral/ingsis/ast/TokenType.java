@@ -1,7 +1,6 @@
-package edu.austral.ingsis.tokens;
+package edu.austral.ingsis.ast;
 
 public enum TokenType {
-
     LET,
     IDENTIFIER,
     SEMICOLON,
@@ -20,5 +19,4 @@ public enum TokenType {
     STRING_LITERAL,
     NUMBER_LITERAL,
     PRINTLN;
-
 }
