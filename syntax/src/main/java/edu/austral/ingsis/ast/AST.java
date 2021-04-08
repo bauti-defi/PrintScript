@@ -23,7 +23,7 @@ public class AST {
     }
 
     public static AST create(List<Token> tokens){
-        final ASTBuilder builder = new ASTBuilder();
+        final ASTBuilder builder = new ASTBuilder(GlobalConfig.NODE_BUILDERS);
         builder.process(tokens);
         return new AST(builder);
     }

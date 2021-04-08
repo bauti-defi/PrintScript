@@ -7,7 +7,6 @@ import java.util.Stack;
 
 public class ShuntingYard {
 
-
     private static boolean isTokenType(Token token, TokenType type){
         return token.getType() == type;
     }
