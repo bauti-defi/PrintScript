@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AssignationBuilderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-09T01:05:57" hostname="bautistas-MacBook-Pro.local" time="0.033">
+  <properties/>
+  <testcase name="testBuild()" classname="AssignationBuilderTest" time="0.033"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,6 +1,8 @@
 package edu.austral.ingsis.ast.builders;
 
 import edu.austral.ingsis.ast.*;
+import edu.austral.ingsis.ast.exceptions.SyntaxTokenExpectedException;
+import edu.austral.ingsis.ast.exceptions.VariableUndefinedException;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
 import edu.austral.ingsis.ast.nodes.BinaryOpNode;
 import edu.austral.ingsis.ast.nodes.ValueLiteralNode;
@@ -11,6 +13,12 @@ import java.util.Stack;
 public class ExpressionBuilder implements NodeBuilder<AbstractNode> {
 
     public boolean predicate(List<Token> tokens, DeclarationTable declarations){
+        final Token unknownIdentifier = tokens.stream().filter(token -> isTokenType(token, TokenType.IDENTIFIER)).filter(token -> !declarations.contains(token.getValue())).findFirst().get();
+
+        if(unknownIdentifier != null){
+            throw new VariableUndefinedException(unknownIdentifier);
+        }
+
         return true;
     }
 

@@ -10,11 +10,9 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ShuntingYardTest {
+public class ShuntingYardTest implements TokenHelper{
 
-    private Token createMockToken(String value, TokenType type){
-        return Token.builder().index(0).line(0).type(type).value(value).build();
-    }
+
 
     @Test
     public void testProcessShuntingYard01(){
@@ -97,7 +95,17 @@ public class ShuntingYardTest {
     }
 
     @Test
-    public void testEvaluateSimpleShuntingYard(){
+    public void testProcessShuntingYard05(){
+        //5
+        List<Token> tokens = Arrays.asList(
+                createMockToken("5", TokenType.NUMBER_LITERAL)
+        );
 
+        List<String> result = ShuntingYard.process(tokens).stream().map(Token::getValue).collect(Collectors.toList());
+
+        List<String> expected = Arrays.asList("5");
+
+        assertEquals(expected, result);
     }
+
 }

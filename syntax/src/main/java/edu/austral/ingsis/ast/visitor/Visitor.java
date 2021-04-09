@@ -15,4 +15,6 @@ public interface Visitor {
     void visit(TypeNode node);
 
     void visit(ValueLiteralNode node);
+
+    void visit(AbstractNode node);
 }

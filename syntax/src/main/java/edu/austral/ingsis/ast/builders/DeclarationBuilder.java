@@ -15,10 +15,6 @@ import java.util.List;
 public class DeclarationBuilder implements NodeBuilder<DeclarationNode> {
 
     public boolean predicate(List<Token> tokens, DeclarationTable declarations){
-        return startsWith(tokens, TokenType.LET);
-    }
-
-    public DeclarationNode build(List<Token> tokens, DeclarationTable table){
         int colonIndex = getIndexOfToken(tokens, TokenType.COLON);
 
         //Check that there is a colon
@@ -36,7 +32,13 @@ public class DeclarationBuilder implements NodeBuilder<DeclarationNode> {
             throw new SyntaxException(tokens.get(colonIndex + 1));
         }
 
-        final DeclarationNode node = new DeclarationNode(tokens.get(0));
+        return startsWith(tokens, TokenType.LET);
+    }
+
+    public DeclarationNode build(List<Token> tokens, DeclarationTable table){
+        int colonIndex = getIndexOfToken(tokens, TokenType.COLON);
+
+        final DeclarationNode node = new DeclarationNode(tokens.get(colonIndex));
         final IdentifierNode identifier = new IdentifierNode(tokens.get(colonIndex - 1));
         final TypeNode type = new TypeNode(tokens.get(colonIndex + 1));
 

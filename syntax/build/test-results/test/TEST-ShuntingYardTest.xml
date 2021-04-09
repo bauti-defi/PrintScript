@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ShuntingYardTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-07T17:12:37" hostname="bautistas-MacBook-Pro.local" time="0.03">
-  <properties/>
-  <testcase name="testProcessShuntingYard03()" classname="ShuntingYardTest" time="0.03"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

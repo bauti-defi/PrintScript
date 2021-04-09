@@ -20,15 +20,15 @@ public class AssignationBuilder implements NodeBuilder<AssignationNode> {
         int index = getIndexOfToken(tokens, TokenType.EQUALS);
 
         final List<Token> declaration = tokens.subList(0, index);
-        final List<Token> value = tokens.subList(index + 1, tokens.size() - 1);
+        final List<Token> value = tokens.subList(index + 1, tokens.size());
 
         final AssignationNode assignationNode = new AssignationNode(tokens.get(index));
 
-        if(startsWith(declaration, TokenType.LET)){
+        if(declarationBuilder.predicate(declaration, declarations)){
             //Declare brand new variable
             final DeclarationNode node = declarationBuilder.build(declaration, declarations);
             assignationNode.setLeft(node);
-        }else{
+        }else if(referenceBuilder.predicate(declaration, declarations)){
             //using previous variable
             assignationNode.setLeft(referenceBuilder.build(declaration, declarations));
         }
