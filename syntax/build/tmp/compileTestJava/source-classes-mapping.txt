@@ -2,12 +2,14 @@ ShuntingYardTest.java
  ShuntingYardTest
 TokenHelper.java
  TokenHelper
-AssignationBuilderTest.java
- AssignationBuilderTest
-DeclartionBuilderTest.java
- DeclartionBuilderTest
 NodeTest.java
  NodeTest
  NodeTest$1
+DeclartionBuilderTest.java
+ DeclartionBuilderTest
+AssignationBuilderTest.java
+ AssignationBuilderTest
 ExpressionBuilderTest.java
  ExpressionBuilderTest
+ReferenceBuilderTest.java
+ ReferenceBuilderTest

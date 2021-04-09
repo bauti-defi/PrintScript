@@ -7,18 +7,15 @@ import edu.austral.ingsis.ast.nodes.AbstractNode;
 import edu.austral.ingsis.ast.nodes.BinaryOpNode;
 import edu.austral.ingsis.ast.nodes.ValueLiteralNode;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
 public class ExpressionBuilder implements NodeBuilder<AbstractNode> {
 
+    private final ReferenceBuilder referenceBuilder = new ReferenceBuilder();
+
     public boolean predicate(List<Token> tokens, DeclarationTable declarations){
-        final Token unknownIdentifier = tokens.stream().filter(token -> isTokenType(token, TokenType.IDENTIFIER)).filter(token -> !declarations.contains(token.getValue())).findFirst().get();
-
-        if(unknownIdentifier != null){
-            throw new VariableUndefinedException(unknownIdentifier);
-        }
-
         return true;
     }
 
@@ -35,7 +32,7 @@ public class ExpressionBuilder implements NodeBuilder<AbstractNode> {
             if (isTokenType(token, TokenType.NUMBER_LITERAL) || isTokenType(token, TokenType.STRING_LITERAL)) {
                 nodes.push(new ValueLiteralNode(token));
             } else if(isTokenType(token, TokenType.IDENTIFIER)){
-                nodes.push(declarations.get(token.getValue()));
+                nodes.push(referenceBuilder.build(Arrays.asList(token), declarations));
             } else if (isTokenType(token, TokenType.STAR_SYMBOL) || isTokenType(token, TokenType.SLASH_SYMBOL) || isTokenType(token, TokenType.PLUS_SYMBOL) || isTokenType(token, TokenType.MINUS_SYMBOL)) {
                 final BinaryOpNode operator = new BinaryOpNode(token);
                 operator.setRight(nodes.pop());

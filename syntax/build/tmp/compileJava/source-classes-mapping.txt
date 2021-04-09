@@ -19,8 +19,8 @@ edu/austral/ingsis/ast/exceptions/SemicolonAbsentException.java
  edu.austral.ingsis.ast.exceptions.SemicolonAbsentException
 edu/austral/ingsis/ast/nodes/BinaryOpNode.java
  edu.austral.ingsis.ast.nodes.BinaryOpNode
-edu/austral/ingsis/ast/builders/ReferenceBuilder.java
- edu.austral.ingsis.ast.builders.ReferenceBuilder
+edu/austral/ingsis/ast/DeclarationTable.java
+ edu.austral.ingsis.ast.DeclarationTable
 edu/austral/ingsis/ast/AST.java
  edu.austral.ingsis.ast.AST
 edu/austral/ingsis/ast/visitor/Visitable.java
@@ -47,7 +47,7 @@ edu/austral/ingsis/ast/exceptions/VariableUndefinedException.java
  edu.austral.ingsis.ast.exceptions.VariableUndefinedException
 edu/austral/ingsis/ast/builders/AssignationBuilder.java
  edu.austral.ingsis.ast.builders.AssignationBuilder
-edu/austral/ingsis/ast/DeclarationTable.java
- edu.austral.ingsis.ast.DeclarationTable
+edu/austral/ingsis/ast/builders/ReferenceBuilder.java
+ edu.austral.ingsis.ast.builders.ReferenceBuilder
 edu/austral/ingsis/ast/builders/ExpressionBuilder.java
  edu.austral.ingsis.ast.builders.ExpressionBuilder

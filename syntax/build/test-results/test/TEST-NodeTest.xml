@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="NodeTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-04-09T14:19:37" hostname="bautistas-MacBook-Pro.local" time="0.013">
+  <properties/>
+  <testcase name="testEndsWith()" classname="NodeTest" time="0.001"/>
+  <testcase name="testContainsToken()" classname="NodeTest" time="0.0"/>
+  <testcase name="testGetIndexOfToken()" classname="NodeTest" time="0.001"/>
+  <testcase name="testIsTokenType()" classname="NodeTest" time="0.001"/>
+  <testcase name="testStartsWith()" classname="NodeTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
