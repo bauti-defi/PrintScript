@@ -1,7 +1,5 @@
 package edu.austral.ingsis;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,29 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Lexer {
 
-  Map<String, TokenType> keyWords;
-
-  public List<Token> manager(String filename) {
-
-    List<String> document = readFile(filename);
-    return tokenize(document);
-  }
-
-  private List<String> readFile(String filename) {
-    List<String> document = new ArrayList<>();
-    try {
-      File statements = new File(filename);
-      Scanner reader = new Scanner(statements);
-      while (reader.hasNextLine()) {
-        document.add(reader.nextLine());
-      }
-      reader.close();
-    } catch (FileNotFoundException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    }
-    return document;
-  }
+  Map<String, TokenType> keyWords = Keywords.getKeyword();
 
   public List<Token> tokenize(List<String> document) {
     List<String> strings;
@@ -53,7 +29,7 @@ public class Lexer {
     if (keyWords.containsKey(s))
       return Token.builder().value(s).tokenType(keyWords.get(s)).index(index).line(line).build();
 
-    if (s.charAt(0) == s.charAt(s.length() - 1) && (s.charAt(0) == 34 || s.charAt(0) == 39))
+    if (isString(s))
       return Token.builder()
           .value(s)
           .tokenType(TokenType.STRING_LITERAL)
@@ -79,5 +55,9 @@ public class Lexer {
     } catch (Exception e) {
       return false;
     }
+  }
+
+  private Boolean isString(String s){
+      return s.charAt(0) == s.charAt(s.length() - 1) && (s.charAt(0) == 34 || s.charAt(0) == 39);
   }
 }
