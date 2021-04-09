@@ -23,8 +23,8 @@ public class ASTBuilder implements TokenHelper{
     }
 
     public void process(List<Token> tokens){
-        int lineCount = tokens.get(tokens.size() - 1).getLine();
         final Map<Integer, List<Token>> lines = tokens.stream().collect(Collectors.groupingBy(Token::getLine));
+        int lineCount = lines.size();
 
         for(int i = 0; i < lineCount; i++){
             final List<Token> line = lines.get(i);
@@ -32,11 +32,11 @@ public class ASTBuilder implements TokenHelper{
                 throw new SemicolonAbsentException(line.get(line.size() - 1));
             }
 
+            //process without semicolon
             final AbstractNode node = builders.stream().filter(builder -> builder.predicate(line, declarations))
                     .findFirst().map(builder -> builder.build(trimSemicolon(line), declarations))
                     .orElseThrow(() -> new SyntaxException());
 
-            //process without semicolon
             nodes.add(node);
         }
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ReferenceBuilderTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-04-09T14:19:37" hostname="bautistas-MacBook-Pro.local" time="0.013">
+<testsuite name="ReferenceBuilderTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-04-09T14:38:42" hostname="bautistas-MacBook-Pro.local" time="0.013">
   <properties/>
   <testcase name="testBuildFails()" classname="ReferenceBuilderTest" time="0.01"/>
   <testcase name="testBuild1()" classname="ReferenceBuilderTest" time="0.002"/>
