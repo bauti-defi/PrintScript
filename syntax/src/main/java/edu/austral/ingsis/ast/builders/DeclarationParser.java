@@ -11,13 +11,13 @@ import edu.austral.ingsis.ast.nodes.TypeNode;
 
 import java.util.List;
 
-public class DeclarationBuilder implements NodeBuilder<DeclarationNode> {
+public class DeclarationParser implements NodeParser<DeclarationNode> {
 
     public boolean predicate(List<Token> tokens){
-        return startsWith(tokens, TokenType.LET) || startsWith(tokens, TokenType.CONST);
+        return TokenPattern.Builder.of(TokenType.LET).end().startWith(tokens) || TokenPattern.Builder.of(TokenType.CONST).end().startWith(tokens);
     }
 
-    public DeclarationNode build(List<Token> tokens){
+    public DeclarationNode parse(List<Token> tokens){
         int colonIndex = getIndexOfToken(tokens, TokenType.COLON);
 
         //check that we have an identifier

@@ -1,6 +1,6 @@
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenType;
-import edu.austral.ingsis.ast.builders.NodeBuilder;
+import edu.austral.ingsis.ast.builders.NodeParser;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
 import org.junit.jupiter.api.Test;
 
@@ -12,14 +12,14 @@ import java.util.List;
 
 public class NodeTest implements TokenHelper{
 
-    final NodeBuilder<?> builder = new NodeBuilder<AbstractNode>() {
+    final NodeParser<?> builder = new NodeParser<AbstractNode>() {
         @Override
         public boolean predicate(List<Token> tokens) {
             return false;
         }
 
         @Override
-        public AbstractNode build(List<Token> tokens) {
+        public AbstractNode parse(List<Token> tokens) {
             return null;
         }
     };

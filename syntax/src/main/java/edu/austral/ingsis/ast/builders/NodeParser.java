@@ -6,11 +6,11 @@ import edu.austral.ingsis.ast.nodes.AbstractNode;
 
 import java.util.List;
 
-public interface NodeBuilder<T extends AbstractNode> {
+public interface NodeParser<T extends AbstractNode> {
 
     boolean predicate(List<Token> tokens);
 
-    T build(List<Token> tokens);
+    T parse(List<Token> tokens);
 
     default boolean isTokenType(Token token, TokenType type){
         return token.getType() == type;

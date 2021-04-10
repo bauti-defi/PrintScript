@@ -1,19 +1,19 @@
 TokenPatternTest.java
  TokenPatternTest
+TokenHelper.java
+ TokenHelper
+ShuntingYardTest.java
+ ShuntingYardTest
 ASTTest.java
  ASTTest
 DeclartionBuilderTest.java
  DeclartionBuilderTest
-ShuntingYardTest.java
- ShuntingYardTest
-TokenHelper.java
- TokenHelper
-DelcarationAssignationBuilderTest.java
- DelcarationAssignationBuilderTest
+ExpressionParserTest.java
+ ExpressionParserTest
 NodeTest.java
  NodeTest
  NodeTest$1
-ExpressionBuilderTest.java
- ExpressionBuilderTest
+DelcarationAssignationParserTest.java
+ DelcarationAssignationParserTest
 ReferenceBuilderTest.java
  ReferenceBuilderTest

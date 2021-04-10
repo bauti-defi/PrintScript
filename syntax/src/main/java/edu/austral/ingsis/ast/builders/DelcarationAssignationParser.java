@@ -6,16 +6,16 @@ import edu.austral.ingsis.ast.nodes.DeclarationNode;
 
 import java.util.List;
 
-public class DelcarationAssignationBuilder implements NodeBuilder<DeclarationAssignationNode> {
+public class DelcarationAssignationParser implements NodeParser<DeclarationAssignationNode> {
 
-    private final DeclarationBuilder declarationBuilder = new DeclarationBuilder();
-    private final ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+    private final DeclarationParser declarationParser = new DeclarationParser();
+    private final ExpressionParser expressionParser = new ExpressionParser();
 
     public boolean predicate(List<Token> tokens){
         return containsToken(tokens, TokenType.EQUALS) && (startsWith(tokens, TokenType.LET) || startsWith(tokens, TokenType.CONST));
     }
 
-    public DeclarationAssignationNode build(List<Token> tokens){
+    public DeclarationAssignationNode parse(List<Token> tokens){
         int index = getIndexOfToken(tokens, TokenType.EQUALS);
 
         final List<Token> declaration = tokens.subList(0, index);
@@ -23,14 +23,14 @@ public class DelcarationAssignationBuilder implements NodeBuilder<DeclarationAss
 
         final DeclarationAssignationNode declarationAssignationNode = new DeclarationAssignationNode(tokens.get(index));
 
-        if(declarationBuilder.predicate(declaration)){
+        if(declarationParser.predicate(declaration)){
             //Declare brand new variable
-            final DeclarationNode node = declarationBuilder.build(declaration);
+            final DeclarationNode node = declarationParser.parse(declaration);
             declarationAssignationNode.setLeft(node);
         }
 
         //Get value of assignation
-        declarationAssignationNode.setRight(expressionBuilder.build(value));
+        declarationAssignationNode.setRight(expressionParser.parse(value));
 
         return declarationAssignationNode;
     }

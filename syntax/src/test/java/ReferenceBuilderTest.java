@@ -1,10 +1,6 @@
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenType;
-import edu.austral.ingsis.ast.builders.DeclarationBuilder;
-import edu.austral.ingsis.ast.builders.ReferenceBuilder;
-import edu.austral.ingsis.ast.exceptions.VariableUndefinedException;
-import edu.austral.ingsis.ast.nodes.DeclarationNode;
-import org.junit.jupiter.api.Assertions;
+import edu.austral.ingsis.ast.builders.ReferenceParser;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -22,10 +18,10 @@ public class ReferenceBuilderTest implements TokenHelper{
                 createMockToken("x", TokenType.IDENTIFIER)
         );
 
-        final ReferenceBuilder builder = new ReferenceBuilder();
+        final ReferenceParser builder = new ReferenceParser();
 
         if(builder.predicate(tokens)){
-            assertEquals(TokenType.IDENTIFIER, builder.build(tokens).getToken().getType());
+            assertEquals(TokenType.IDENTIFIER, builder.parse(tokens).getToken().getType());
         }else{
             throw new Error();
         }

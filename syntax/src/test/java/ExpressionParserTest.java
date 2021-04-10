@@ -1,21 +1,16 @@
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenType;
-import edu.austral.ingsis.ast.builders.DeclarationBuilder;
-import edu.austral.ingsis.ast.builders.ExpressionBuilder;
-import edu.austral.ingsis.ast.builders.ReferenceBuilder;
+import edu.austral.ingsis.ast.builders.ExpressionParser;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
 import edu.austral.ingsis.ast.nodes.BinaryOpNode;
-import edu.austral.ingsis.ast.nodes.DeclarationNode;
-import edu.austral.ingsis.ast.nodes.ReferenceNode;
 import org.junit.jupiter.api.Test;
 
-import java.net.IDN;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionBuilderTest implements TokenHelper{
+public class ExpressionParserTest implements TokenHelper{
 
     @Test
     public void testBuild1(){
@@ -26,10 +21,10 @@ public class ExpressionBuilderTest implements TokenHelper{
                 createMockToken(")", TokenType.R_PARANTHESES)
         );
 
-        final ExpressionBuilder builder = new ExpressionBuilder();
+        final ExpressionParser builder = new ExpressionParser();
 
         if(builder.predicate(tokens)){
-            final AbstractNode node = builder.build(tokens);
+            final AbstractNode node = builder.parse(tokens);
             assertEquals(TokenType.LITERAL, node.getToken().getType());
         }else{
             throw new Error();
@@ -48,10 +43,10 @@ public class ExpressionBuilderTest implements TokenHelper{
         );
 
 
-        final ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+        final ExpressionParser expressionParser = new ExpressionParser();
 
-        if(expressionBuilder.predicate(tokens)){
-            final BinaryOpNode binaryOpNode = (BinaryOpNode) expressionBuilder.build(tokens);
+        if(expressionParser.predicate(tokens)){
+            final BinaryOpNode binaryOpNode = (BinaryOpNode) expressionParser.parse(tokens);
             assertEquals(TokenType.MINUS_SYMBOL, binaryOpNode.getToken().getType());
             assertEquals(TokenType.LITERAL, binaryOpNode.getLeft().getToken().getType());
             assertEquals(TokenType.IDENTIFIER, binaryOpNode.getRight().getToken().getType());

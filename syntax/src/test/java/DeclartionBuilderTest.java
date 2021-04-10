@@ -1,6 +1,6 @@
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenType;
-import edu.austral.ingsis.ast.builders.DeclarationBuilder;
+import edu.austral.ingsis.ast.builders.DeclarationParser;
 import edu.austral.ingsis.ast.nodes.*;
 import org.junit.jupiter.api.Test;
 
@@ -22,10 +22,10 @@ public class DeclartionBuilderTest implements TokenHelper {
                 createMockToken("number", TokenType.TYPE)
         );
 
-        final DeclarationBuilder builder = new DeclarationBuilder();
+        final DeclarationParser builder = new DeclarationParser();
 
         if(builder.predicate(tokens)){
-            final DeclarationNode node  = builder.build(tokens);
+            final DeclarationNode node  = builder.parse(tokens);
             assertEquals(TokenType.COLON, node.getToken().getType());
             assertEquals(TokenType.IDENTIFIER, node.getLeft().getToken().getType());
             assertEquals(TokenType.TYPE, node.getRight().getToken().getType());

@@ -1,23 +1,21 @@
 package edu.austral.ingsis.ast;
 
-import edu.austral.ingsis.ast.builders.NodeBuilder;
+import edu.austral.ingsis.ast.builders.NodeParser;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.ast.exceptions.SemicolonAbsentException;
 import edu.austral.ingsis.ast.exceptions.SyntaxException;
-import edu.austral.ingsis.ast.exceptions.SyntaxTokenExpectedException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class ASTBuilder implements TokenHelper{
 
-    private final List<NodeBuilder<?>> builders;
+    private final List<NodeParser<?>> builders;
     final List<AbstractNode> nodes = new ArrayList<>();
 
-    public ASTBuilder(List<NodeBuilder<?>> builders) {
+    public ASTBuilder(List<NodeParser<?>> builders) {
         this.builders = builders;
     }
 
@@ -33,7 +31,7 @@ public class ASTBuilder implements TokenHelper{
 
             //process without semicolon
             final AbstractNode node = builders.stream().filter(builder -> builder.predicate(line))
-                    .findFirst().map(builder -> builder.build(trimSemicolon(line)))
+                    .findFirst().map(builder -> builder.parse(trimSemicolon(line)))
                     .orElseThrow(() -> new SyntaxException());
 
             nodes.add(node);
