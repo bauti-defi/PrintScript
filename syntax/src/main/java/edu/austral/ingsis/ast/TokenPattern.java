@@ -12,7 +12,7 @@ public class TokenPattern {
     }
 
     public boolean matches(List<Token> tokens){
-        final Stack<Node> nodes = asStack(tail);
+        final Stack<Node> nodes = asStack(tail, false);
 
         if(tokens.size() != nodes.size()){
             return false;
@@ -27,8 +27,22 @@ public class TokenPattern {
         return true;
     }
 
+    public boolean endsWith(List<Token> tokens){
+        final Stack<Node> nodes = asStack(tail, true);
+
+        for(int i = tokens.size() - 1; i > 0; i--){
+            if(nodes.isEmpty()){
+                break;
+            }else if(tokens.get(i).getType() != nodes.pop().token()){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public boolean startWith(List<Token> tokens){
-        final Stack<Node> nodes = asStack(tail);
+        final Stack<Node> nodes = asStack(tail, false);
 
         for(int i = 0; i < tokens.size(); i++){
             if(nodes.isEmpty()){
@@ -41,12 +55,16 @@ public class TokenPattern {
         return true;
     }
 
-    private final Stack<Node> asStack(Node tail){
+    private final Stack<Node> asStack(Node tail, boolean reverse){
         final Stack<Node> nodes = new Stack<>();
         Node node = tail;
         nodes.push(node);
         while((node = node.next) != null){
-            nodes.push(node);
+           if(reverse){
+               nodes.add(0, node);
+           }else{
+               nodes.push(node);
+           }
         }
 
         return nodes;

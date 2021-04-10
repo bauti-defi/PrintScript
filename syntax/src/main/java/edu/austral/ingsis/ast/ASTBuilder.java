@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ASTBuilder implements TokenHelper{
+public class ASTBuilder {
 
     private final List<NodeParser<?>> builders;
     final List<AbstractNode> nodes = new ArrayList<>();
@@ -43,7 +43,7 @@ public class ASTBuilder implements TokenHelper{
     }
 
     private boolean endsWithSemicolon(List<Token> tokens){
-        return endsWith(tokens, TokenType.SEMICOLON);
+        return TokenPattern.Builder.of(TokenType.SEMICOLON).end().endsWith(tokens);
     }
 
 
