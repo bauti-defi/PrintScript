@@ -1,18 +1,16 @@
 package edu.austral.ingsis.ast.builders;
 
-import edu.austral.ingsis.ast.DeclarationTable;
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenType;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
-import edu.austral.ingsis.ast.nodes.DeclarationNode;
 
 import java.util.List;
 
 public interface NodeBuilder<T extends AbstractNode> {
 
-    boolean predicate(List<Token> tokens, DeclarationTable declarations);
+    boolean predicate(List<Token> tokens);
 
-    T build(List<Token> tokens, DeclarationTable declarations);
+    T build(List<Token> tokens);
 
     default boolean isTokenType(Token token, TokenType type){
         return token.getType() == type;

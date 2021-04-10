@@ -1,7 +1,7 @@
 import edu.austral.ingsis.ast.AST;
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenType;
-import edu.austral.ingsis.ast.nodes.AssignationNode;
+import edu.austral.ingsis.ast.nodes.DeclarationAssignationNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -18,22 +18,20 @@ public class ASTTest implements TokenHelper{
                 createMockToken("let", TokenType.LET),
                 createMockToken("x", TokenType.IDENTIFIER),
                 createMockToken(":", TokenType.COLON),
-                createMockToken("number", TokenType.NUMBER_TYPE),
+                createMockToken("number", TokenType.TYPE),
                 createMockToken("=", TokenType.EQUALS),
-                createMockToken("5", TokenType.NUMBER_LITERAL),
+                createMockToken("5", TokenType.LITERAL),
                 createMockToken(";", TokenType.SEMICOLON)
         );
 
         final AST ast = AST.create(tokens);
 
         assertEquals(1, ast.getNodes().size());
-        boolean isRootAssignationNode = ast.getNodes().get(0) instanceof AssignationNode;
+        boolean isRootAssignationNode = ast.getNodes().get(0) instanceof DeclarationAssignationNode;
         assertEquals(true, isRootAssignationNode);
-        final AssignationNode assignationNode = (AssignationNode) ast.getNodes().get(0);
-        assertEquals(TokenType.EQUALS, assignationNode.getToken().getType());
-        assertEquals(TokenType.COLON, assignationNode.getLeft().getToken().getType());
-        assertEquals(TokenType.NUMBER_LITERAL, assignationNode.getRight().getToken().getType());
-
-        assertEquals(assignationNode.getLeft(), ast.getDeclarations().get("x"));
+        final DeclarationAssignationNode declarationAssignationNode = (DeclarationAssignationNode) ast.getNodes().get(0);
+        assertEquals(TokenType.EQUALS, declarationAssignationNode.getToken().getType());
+        assertEquals(TokenType.COLON, declarationAssignationNode.getLeft().getToken().getType());
+        assertEquals(TokenType.LITERAL, declarationAssignationNode.getRight().getToken().getType());
     }
 }

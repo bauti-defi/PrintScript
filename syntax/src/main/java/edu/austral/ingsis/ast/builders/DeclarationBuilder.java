@@ -1,8 +1,7 @@
 package edu.austral.ingsis.ast.builders;
 
-import edu.austral.ingsis.ast.DeclarationTable;
 import edu.austral.ingsis.ast.Token;
-import edu.austral.ingsis.ast.TokenHelper;
+import edu.austral.ingsis.ast.TokenPattern;
 import edu.austral.ingsis.ast.TokenType;
 import edu.austral.ingsis.ast.exceptions.SyntaxException;
 import edu.austral.ingsis.ast.exceptions.SyntaxTokenExpectedException;
@@ -14,29 +13,27 @@ import java.util.List;
 
 public class DeclarationBuilder implements NodeBuilder<DeclarationNode> {
 
-    public boolean predicate(List<Token> tokens, DeclarationTable declarations){
+    public boolean predicate(List<Token> tokens){
+        return startsWith(tokens, TokenType.LET) || startsWith(tokens, TokenType.CONST);
+    }
+
+    public DeclarationNode build(List<Token> tokens){
         int colonIndex = getIndexOfToken(tokens, TokenType.COLON);
 
-        //Check that there is a colon
-        if(colonIndex == -1){
-            throw new SyntaxTokenExpectedException(tokens.get(0).getLine(), TokenType.COLON);
-        }
-
         //check that we have an identifier
-        if(tokens.get(colonIndex - 1).getType() != TokenType.IDENTIFIER){
+        if(!TokenPattern.Builder.of(TokenType.LET).identifier().end().startWith(tokens)){
             throw new SyntaxTokenExpectedException(tokens.get(colonIndex - 1), TokenType.IDENTIFIER);
         }
 
-        //Check we have a type
-        if(tokens.get(colonIndex + 1).getType() != TokenType.STRING_TYPE && tokens.get(colonIndex + 1).getType() != TokenType.NUMBER_TYPE) {
-            throw new SyntaxException(tokens.get(colonIndex + 1));
+        //Check that there is a colon
+        if(!TokenPattern.Builder.of(TokenType.LET).identifier().colon().end().startWith(tokens)){
+            throw new SyntaxTokenExpectedException(tokens.get(0).getLine(), TokenType.COLON);
         }
 
-        return startsWith(tokens, TokenType.LET);
-    }
-
-    public DeclarationNode build(List<Token> tokens, DeclarationTable table){
-        int colonIndex = getIndexOfToken(tokens, TokenType.COLON);
+        //Check we have a type
+        if(!TokenPattern.Builder.of(TokenType.LET).identifier().colon().type().end().matches(tokens)) {
+            throw new SyntaxException(tokens.get(colonIndex + 1));
+        }
 
         final DeclarationNode node = new DeclarationNode(tokens.get(colonIndex));
         final IdentifierNode identifier = new IdentifierNode(tokens.get(colonIndex - 1));
@@ -45,7 +42,6 @@ public class DeclarationBuilder implements NodeBuilder<DeclarationNode> {
         node.setLeft(identifier);
         node.setRight(type);
 
-        table.put(identifier.getToken().getValue(), node);
         return node;
     }
 

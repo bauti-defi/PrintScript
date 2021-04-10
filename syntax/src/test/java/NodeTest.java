@@ -1,4 +1,3 @@
-import edu.austral.ingsis.ast.DeclarationTable;
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenType;
 import edu.austral.ingsis.ast.builders.NodeBuilder;
@@ -15,12 +14,12 @@ public class NodeTest implements TokenHelper{
 
     final NodeBuilder<?> builder = new NodeBuilder<AbstractNode>() {
         @Override
-        public boolean predicate(List<Token> tokens, DeclarationTable declarations) {
+        public boolean predicate(List<Token> tokens) {
             return false;
         }
 
         @Override
-        public AbstractNode build(List<Token> tokens, DeclarationTable declarations) {
+        public AbstractNode build(List<Token> tokens) {
             return null;
         }
     };
@@ -32,7 +31,7 @@ public class NodeTest implements TokenHelper{
                 createMockToken("let", TokenType.LET),
                 createMockToken("x", TokenType.IDENTIFIER),
                 createMockToken(":", TokenType.COLON),
-                createMockToken("number", TokenType.NUMBER_TYPE)
+                createMockToken("number", TokenType.TYPE)
         );
 
         assertEquals(true, builder.containsToken(tokens, TokenType.COLON));
@@ -45,7 +44,7 @@ public class NodeTest implements TokenHelper{
                 createMockToken("let", TokenType.LET),
                 createMockToken("x", TokenType.IDENTIFIER),
                 createMockToken(":", TokenType.COLON),
-                createMockToken("number", TokenType.NUMBER_TYPE)
+                createMockToken("number", TokenType.TYPE)
         );
 
         assertEquals(2, builder.getIndexOfToken(tokens, TokenType.COLON));
@@ -64,7 +63,7 @@ public class NodeTest implements TokenHelper{
                 createMockToken("let", TokenType.LET),
                 createMockToken("x", TokenType.IDENTIFIER),
                 createMockToken(":", TokenType.COLON),
-                createMockToken("number", TokenType.NUMBER_TYPE)
+                createMockToken("number", TokenType.TYPE)
         );
 
         assertEquals(true, builder.startsWith(tokens, TokenType.LET));
@@ -77,10 +76,10 @@ public class NodeTest implements TokenHelper{
                 createMockToken("let", TokenType.LET),
                 createMockToken("x", TokenType.IDENTIFIER),
                 createMockToken(":", TokenType.COLON),
-                createMockToken("number", TokenType.NUMBER_TYPE)
+                createMockToken("number", TokenType.TYPE)
         );
 
-        assertEquals(true, builder.endsWith(tokens, TokenType.NUMBER_TYPE));
+        assertEquals(true, builder.endsWith(tokens, TokenType.TYPE));
     }
 
 

@@ -1,4 +1,3 @@
-import edu.austral.ingsis.ast.DeclarationTable;
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenType;
 import edu.austral.ingsis.ast.builders.DeclarationBuilder;
@@ -19,39 +18,17 @@ public class ReferenceBuilderTest implements TokenHelper{
     public void testBuild1(){
 
         // let x:number
-        List<Token> declarationTokens = Arrays.asList(
-                createMockToken("let", TokenType.LET),
-                createMockToken("x", TokenType.IDENTIFIER),
-                createMockToken(":", TokenType.COLON),
-                createMockToken("number", TokenType.NUMBER_TYPE)
+        List<Token> tokens = Arrays.asList(
+                createMockToken("x", TokenType.IDENTIFIER)
         );
 
-        final DeclarationTable declarations = new DeclarationTable();
+        final ReferenceBuilder builder = new ReferenceBuilder();
 
-        final DeclarationBuilder builder = new DeclarationBuilder();
-
-        if(builder.predicate(declarationTokens, declarations)){
-            final DeclarationNode declarationNode  = builder.build(declarationTokens, declarations);
-
-            final ReferenceBuilder referenceBuilder = new ReferenceBuilder();
-            List<Token> identifier = Arrays.asList(createMockToken("x", TokenType.IDENTIFIER));
-            if(referenceBuilder.predicate(identifier, declarations)){
-                assertEquals(declarationNode, referenceBuilder.build(identifier, declarations));
-            }
+        if(builder.predicate(tokens)){
+            assertEquals(TokenType.IDENTIFIER, builder.build(tokens).getToken().getType());
         }else{
             throw new Error();
         }
     }
-
-    @Test
-    public void testBuildFails(){
-        final DeclarationTable declarations = new DeclarationTable();
-
-        final ReferenceBuilder referenceBuilder = new ReferenceBuilder();
-        List<Token> identifier = Arrays.asList(createMockToken("x", TokenType.IDENTIFIER));
-        Assertions.assertThrows(VariableUndefinedException.class, () -> referenceBuilder.build(identifier, declarations));
-
-    }
-
 
 }

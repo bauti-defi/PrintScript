@@ -15,24 +15,24 @@ public class ExpressionBuilder implements NodeBuilder<AbstractNode> {
 
     private final ReferenceBuilder referenceBuilder = new ReferenceBuilder();
 
-    public boolean predicate(List<Token> tokens, DeclarationTable declarations){
+    public boolean predicate(List<Token> tokens){
         return true;
     }
 
-    public AbstractNode build(List<Token> tokens, DeclarationTable declarations){
+    public AbstractNode build(List<Token> tokens){
         final Stack<Token> postFix = ShuntingYard.process(tokens);
-        return processShuntingYard(postFix, declarations);
+        return processShuntingYard(postFix);
     }
 
     //can return binary-op, declaration, or value-literal
-    private AbstractNode processShuntingYard(Stack<Token> postFix, DeclarationTable declarations) {
+    private AbstractNode processShuntingYard(Stack<Token> postFix) {
         final Stack<AbstractNode> nodes = new Stack<>();
 
         for (Token token : postFix) {
-            if (isTokenType(token, TokenType.NUMBER_LITERAL) || isTokenType(token, TokenType.STRING_LITERAL)) {
+            if (isTokenType(token, TokenType.LITERAL)) {
                 nodes.push(new ValueLiteralNode(token));
             } else if(isTokenType(token, TokenType.IDENTIFIER)){
-                nodes.push(referenceBuilder.build(Arrays.asList(token), declarations));
+                nodes.push(referenceBuilder.build(Arrays.asList(token)));
             } else if (isTokenType(token, TokenType.STAR_SYMBOL) || isTokenType(token, TokenType.SLASH_SYMBOL) || isTokenType(token, TokenType.PLUS_SYMBOL) || isTokenType(token, TokenType.MINUS_SYMBOL)) {
                 final BinaryOpNode operator = new BinaryOpNode(token);
                 operator.setRight(nodes.pop());

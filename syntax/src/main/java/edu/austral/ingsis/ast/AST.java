@@ -6,16 +6,10 @@ import java.util.List;
 
 public class AST {
 
-    private final DeclarationTable declarations;
     private final List<AbstractNode> nodes;
 
     private AST(ASTBuilder builder) {
         this.nodes = builder.nodes;
-        this.declarations = builder.declarations;
-    }
-
-    public DeclarationTable getDeclarations() {
-        return declarations;
     }
 
     public List<AbstractNode> getNodes() {

@@ -18,7 +18,7 @@ public class ShuntingYard {
         for(Token token: tokens){
             if(isTokenType(token, TokenType.L_PARENTHESES)){
                 operatorStack.push(token);
-            }else if(isTokenType(token, TokenType.NUMBER_LITERAL) || isTokenType(token, TokenType.STRING_LITERAL) || isTokenType(token, TokenType.IDENTIFIER)){
+            }else if(isTokenType(token, TokenType.LITERAL) || isTokenType(token, TokenType.IDENTIFIER)){
                 expStack.push(token);
             }else if(isTokenType(token, TokenType.STAR_SYMBOL) || isTokenType(token, TokenType.SLASH_SYMBOL)){
                 operatorStack.push(token);

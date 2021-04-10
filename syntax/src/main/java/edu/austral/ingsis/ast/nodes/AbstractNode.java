@@ -5,7 +5,7 @@ import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.visitor.Visitable;
 import edu.austral.ingsis.ast.visitor.Visitor;
 
-public abstract class AbstractNode implements Visitable {
+public abstract class AbstractNode {
 
     protected final Token token;
 
@@ -17,8 +17,4 @@ public abstract class AbstractNode implements Visitable {
         return this.token;
     }
 
-    @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
-    }
 }

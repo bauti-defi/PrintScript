@@ -5,12 +5,12 @@ import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.visitor.Visitable;
 import edu.austral.ingsis.ast.visitor.Visitor;
 
-public class AssignationNode extends AbstractNode implements Visitable {
+public class DeclarationAssignationNode extends AbstractNode implements Visitable {
 
     private DeclarationNode declaration;
     private AbstractNode value;
 
-    public AssignationNode(Token token) {
+    public DeclarationAssignationNode(Token token) {
         super(token);
     }
 

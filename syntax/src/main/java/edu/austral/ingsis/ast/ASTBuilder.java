@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public class ASTBuilder implements TokenHelper{
 
     private final List<NodeBuilder<?>> builders;
-    final DeclarationTable declarations = new DeclarationTable();
     final List<AbstractNode> nodes = new ArrayList<>();
 
     public ASTBuilder(List<NodeBuilder<?>> builders) {
@@ -33,8 +32,8 @@ public class ASTBuilder implements TokenHelper{
             }
 
             //process without semicolon
-            final AbstractNode node = builders.stream().filter(builder -> builder.predicate(line, declarations))
-                    .findFirst().map(builder -> builder.build(trimSemicolon(line), declarations))
+            final AbstractNode node = builders.stream().filter(builder -> builder.predicate(line))
+                    .findFirst().map(builder -> builder.build(trimSemicolon(line)))
                     .orElseThrow(() -> new SyntaxException());
 
             nodes.add(node);
@@ -45,7 +44,7 @@ public class ASTBuilder implements TokenHelper{
         return line.subList(0, line.size() - 1);
     }
 
-   private boolean endsWithSemicolon(List<Token> tokens){
+    private boolean endsWithSemicolon(List<Token> tokens){
         return endsWith(tokens, TokenType.SEMICOLON);
     }
 

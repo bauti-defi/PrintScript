@@ -4,7 +4,9 @@ import edu.austral.ingsis.ast.nodes.*;
 
 public interface Visitor {
 
-    void visit(AssignationNode node);
+    void visit(ReferenceAssignationNode node);
+
+    void visit(DeclarationAssignationNode node);
 
     void visit(BinaryOpNode node);
 
@@ -16,5 +18,4 @@ public interface Visitor {
 
     void visit(ValueLiteralNode node);
 
-    void visit(AbstractNode node);
 }
