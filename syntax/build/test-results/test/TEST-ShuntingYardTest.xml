@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ShuntingYardTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-04-10T03:14:49" hostname="bautistas-MBP.fibertel.com.ar" time="0.006">
+<testsuite name="ShuntingYardTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-04-12T22:27:32" hostname="bautistas-MBP.fibertel.com.ar" time="0.007">
   <properties/>
-  <testcase name="testProcessShuntingYard01()" classname="ShuntingYardTest" time="0.001"/>
+  <testcase name="testProcessShuntingYard01()" classname="ShuntingYardTest" time="0.002"/>
   <testcase name="testProcessShuntingYard02()" classname="ShuntingYardTest" time="0.001"/>
-  <testcase name="testProcessShuntingYard03()" classname="ShuntingYardTest" time="0.0"/>
+  <testcase name="testProcessShuntingYard03()" classname="ShuntingYardTest" time="0.001"/>
   <testcase name="testProcessShuntingYard04()" classname="ShuntingYardTest" time="0.001"/>
-  <testcase name="testProcessShuntingYard05()" classname="ShuntingYardTest" time="0.001"/>
+  <testcase name="testProcessShuntingYard05()" classname="ShuntingYardTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

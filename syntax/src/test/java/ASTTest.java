@@ -31,7 +31,7 @@ public class ASTTest implements TokenHelper{
         assertEquals(true, isRootAssignationNode);
         final DeclarationAssignationNode declarationAssignationNode = (DeclarationAssignationNode) ast.getNodes().get(0);
         assertEquals(TokenType.EQUALS, declarationAssignationNode.getToken().getType());
-        assertEquals(TokenType.COLON, declarationAssignationNode.getLeft().getToken().getType());
+        assertEquals(TokenType.LET, declarationAssignationNode.getLeft().getToken().getType());
         assertEquals(TokenType.LITERAL, declarationAssignationNode.getRight().getToken().getType());
     }
 }

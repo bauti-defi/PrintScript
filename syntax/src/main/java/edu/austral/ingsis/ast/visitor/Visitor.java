@@ -18,4 +18,8 @@ public interface Visitor {
 
     void visit(ValueLiteralNode node);
 
+    void visit(ExpressionNode node);
+
+    void visit(CompoundExpressionNode node);
+
 }

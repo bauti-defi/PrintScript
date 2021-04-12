@@ -3,13 +3,14 @@ package edu.austral.ingsis.ast.builders;
 import edu.austral.ingsis.ast.*;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
 import edu.austral.ingsis.ast.nodes.BinaryOpNode;
+import edu.austral.ingsis.ast.nodes.ExpressionNode;
 import edu.austral.ingsis.ast.nodes.ValueLiteralNode;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
-public class ExpressionParser implements NodeParser<AbstractNode> {
+public class ExpressionParser implements NodeParser<ExpressionNode> {
 
     private final ReferenceParser referenceBuilder = new ReferenceParser();
 
@@ -17,14 +18,14 @@ public class ExpressionParser implements NodeParser<AbstractNode> {
         return true;
     }
 
-    public AbstractNode parse(List<Token> tokens){
+    public ExpressionNode parse(List<Token> tokens){
         final Stack<Token> postFix = ShuntingYard.process(tokens);
         return processShuntingYard(postFix);
     }
 
     //can return binary-op, declaration, or value-literal
-    private AbstractNode processShuntingYard(Stack<Token> postFix) {
-        final Stack<AbstractNode> nodes = new Stack<>();
+    private ExpressionNode processShuntingYard(Stack<Token> postFix) {
+        final Stack<ExpressionNode> nodes = new Stack<>();
 
         for (Token token : postFix) {
             if (isTokenType(token, TokenType.LITERAL)) {

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TokenPatternTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-04-10T03:14:49" hostname="bautistas-MBP.fibertel.com.ar" time="0.003">
+<testsuite name="TokenPatternTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-04-12T22:27:32" hostname="bautistas-MBP.fibertel.com.ar" time="0.005">
   <properties/>
-  <testcase name="testEndsWith()" classname="TokenPatternTest" time="0.001"/>
-  <testcase name="testMatches()" classname="TokenPatternTest" time="0.001"/>
-  <testcase name="testStartsWith()" classname="TokenPatternTest" time="0.001"/>
+  <testcase name="testEndsWith()" classname="TokenPatternTest" time="0.0"/>
+  <testcase name="testMatches()" classname="TokenPatternTest" time="0.002"/>
+  <testcase name="testContain()" classname="TokenPatternTest" time="0.0"/>
+  <testcase name="testStartsWith()" classname="TokenPatternTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

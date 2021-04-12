@@ -11,6 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TokenPatternTest implements TokenHelper {
 
     @Test
+    public void testContain(){
+
+    }
+
+    @Test
     public void testEndsWith(){
         // let x:number
         List<Token> tokens = Arrays.asList(
@@ -21,7 +26,7 @@ public class TokenPatternTest implements TokenHelper {
         );
 
         //let x:
-        final TokenPattern pattern = TokenPattern.Builder.of(TokenType.IDENTIFIER).colon().type().end();
+        final TokenPattern pattern = TokenPattern.Builder.of(TokenType.IDENTIFIER).colon().type().build();
 
         assertEquals(true, pattern.endsWith(tokens));
     }
@@ -37,7 +42,7 @@ public class TokenPatternTest implements TokenHelper {
         );
 
         //let x:
-        final TokenPattern pattern = TokenPattern.Builder.of(TokenType.LET).identifier().colon().end();
+        final TokenPattern pattern = TokenPattern.Builder.of(TokenType.LET).identifier().colon().build();
 
         assertEquals(true, pattern.startWith(tokens));
     }
@@ -52,7 +57,7 @@ public class TokenPatternTest implements TokenHelper {
                 createMockToken("number", TokenType.TYPE)
         );
 
-        final TokenPattern pattern = TokenPattern.Builder.of(TokenType.LET).identifier().colon().type().end();
+        final TokenPattern pattern = TokenPattern.Builder.of(TokenType.LET).identifier().colon().type().build();
 
         assertEquals(true, pattern.matches(tokens));
     }
