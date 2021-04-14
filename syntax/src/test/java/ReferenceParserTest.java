@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ReferenceBuilderTest implements TokenHelper{
+public class ReferenceParserTest implements TokenHelper{
 
     @Test
     public void testBuild1(){
@@ -18,10 +18,10 @@ public class ReferenceBuilderTest implements TokenHelper{
                 createMockToken("x", TokenType.IDENTIFIER)
         );
 
-        final ReferenceParser builder = new ReferenceParser();
+        final ReferenceParser parser = new ReferenceParser();
 
-        if(builder.predicate(tokens)){
-            assertEquals(TokenType.IDENTIFIER, builder.parse(tokens).getToken().getType());
+        if(parser.predicate(tokens)){
+            assertEquals(TokenType.IDENTIFIER, parser.parse(tokens).getToken().getType());
         }else{
             throw new Error();
         }

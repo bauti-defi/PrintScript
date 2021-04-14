@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
-public class DeclartionBuilderTest implements TokenHelper {
+public class DeclartionParserTest implements TokenHelper {
 
     @Test
     public void testBuild(){
@@ -22,10 +22,10 @@ public class DeclartionBuilderTest implements TokenHelper {
                 createMockToken("number", TokenType.TYPE)
         );
 
-        final DeclarationParser builder = new DeclarationParser();
+        final DeclarationParser parser = new DeclarationParser();
 
-        if(builder.predicate(tokens)){
-            final DeclarationNode node  = builder.parse(tokens);
+        if(parser.predicate(tokens)){
+            final DeclarationNode node  = parser.parse(tokens);
             assertEquals(TokenType.LET, node.getToken().getType());
             assertEquals(TokenType.IDENTIFIER, node.getLeft().getToken().getType());
             assertEquals(TokenType.TYPE, node.getRight().getToken().getType());
