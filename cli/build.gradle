@@ -1,7 +1,6 @@
 plugins {
     id 'application'
     id 'my-library.java-common-conventions'
-    id 'com.palantir.graal' version '0.6.0'
 }
 
 group 'org.example'
@@ -18,7 +17,6 @@ dependencies {
     implementation project(":lexer")
     implementation project(":grammar")
     implementation project(":syntax")
-//    implementation project(":interpreter")
     implementation project(":fileReader")
 }
 
@@ -49,9 +47,3 @@ jacocoTestCoverageVerification {
         }
     }
 }
-
-graal {
-    mainClass 'edu.austral.ingsis.App'
-    outputName 'printscript'
-}
-

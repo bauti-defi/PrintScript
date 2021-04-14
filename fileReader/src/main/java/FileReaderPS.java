@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FileReader {
+public class FileReaderPS {
     public static List<String> read(String filename) {
         List<String> document = new ArrayList<>();
         try {
