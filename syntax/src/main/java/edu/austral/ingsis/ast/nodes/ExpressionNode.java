@@ -1,13 +1,13 @@
 package edu.austral.ingsis.ast.nodes;
 
-
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.visitor.Visitable;
 import edu.austral.ingsis.ast.visitor.Visitor;
 
-public class ValueLiteralNode extends ExpressionNode implements Visitable {
+public class ExpressionNode extends AbstractNode implements Visitable {
 
-    public ValueLiteralNode(Token token) {
+
+    public ExpressionNode(Token token) {
         super(token);
     }
 

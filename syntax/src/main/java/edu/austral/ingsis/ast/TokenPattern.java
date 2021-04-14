@@ -27,6 +27,7 @@ public class TokenPattern {
         return true;
     }
 
+
     public boolean endsWith(List<Token> tokens){
         final Stack<Node> nodes = asStack(tail, true);
 
@@ -104,7 +105,7 @@ public class TokenPattern {
             this.next = new Node(type);
         }
 
-        public TokenPattern end(){
+        public TokenPattern build(){
             return new TokenPattern(next);
         }
 

@@ -26,7 +26,7 @@ public class DeclartionBuilderTest implements TokenHelper {
 
         if(builder.predicate(tokens)){
             final DeclarationNode node  = builder.parse(tokens);
-            assertEquals(TokenType.COLON, node.getToken().getType());
+            assertEquals(TokenType.LET, node.getToken().getType());
             assertEquals(TokenType.IDENTIFIER, node.getLeft().getToken().getType());
             assertEquals(TokenType.TYPE, node.getRight().getToken().getType());
         }else{

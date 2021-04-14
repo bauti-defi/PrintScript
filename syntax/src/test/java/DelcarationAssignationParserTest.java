@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class DelcarationAssignationParserTest implements TokenHelper {
 
     @Test
-    public void testBuild(){
+    public void testBuild01(){
 
         // let x:number = "hola"
         List<Token> tokens = Arrays.asList(
@@ -31,7 +31,33 @@ public class DelcarationAssignationParserTest implements TokenHelper {
         if(builder.predicate(tokens)){
             final DeclarationAssignationNode node = builder.parse(tokens);
             assertEquals(TokenType.EQUALS, node.getToken().getType());
-            assertEquals(TokenType.COLON, node.getLeft().getToken().getType());
+            assertEquals(TokenType.LET, node.getLeft().getToken().getType());
+            assertEquals(TokenType.LITERAL, node.getRight().getToken().getType());
+        }else{
+            throw new Error();
+        }
+    }
+
+    @Test
+    public void testBuild02(){
+
+        // let x:number = "hola"
+        List<Token> tokens = Arrays.asList(
+                createMockToken("const", TokenType.CONST),
+                createMockToken("x", TokenType.IDENTIFIER),
+                createMockToken(":", TokenType.COLON),
+                createMockToken("number", TokenType.TYPE),
+                createMockToken("=", TokenType.EQUALS),
+                createMockToken("5", TokenType.LITERAL)
+        );
+
+
+        final DelcarationAssignationParser builder = new DelcarationAssignationParser();
+
+        if(builder.predicate(tokens)){
+            final DeclarationAssignationNode node = builder.parse(tokens);
+            assertEquals(TokenType.EQUALS, node.getToken().getType());
+            assertEquals(TokenType.CONST, node.getLeft().getToken().getType());
             assertEquals(TokenType.LITERAL, node.getRight().getToken().getType());
         }else{
             throw new Error();

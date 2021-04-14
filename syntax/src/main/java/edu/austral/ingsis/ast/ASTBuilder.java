@@ -43,7 +43,7 @@ public class ASTBuilder {
     }
 
     private boolean endsWithSemicolon(List<Token> tokens){
-        return TokenPattern.Builder.of(TokenType.SEMICOLON).end().endsWith(tokens);
+        return TokenPattern.Builder.of(TokenType.SEMICOLON).build().endsWith(tokens);
     }
 
 

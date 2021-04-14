@@ -8,7 +8,7 @@ import edu.austral.ingsis.ast.visitor.Visitor;
 public class ReferenceAssignationNode extends AbstractNode implements Visitable {
 
     private ReferenceNode reference;
-    private AbstractNode value;
+    private ExpressionNode value;
 
     public ReferenceAssignationNode(Token token) {
         super(token);
@@ -22,11 +22,11 @@ public class ReferenceAssignationNode extends AbstractNode implements Visitable 
         return this.reference;
     }
 
-    public void setRight(AbstractNode node) {
+    public void setRight(ExpressionNode node) {
         this.value = node;
     }
 
-    public AbstractNode getRight() {
+    public ExpressionNode getRight() {
         return this.value;
     }
 
