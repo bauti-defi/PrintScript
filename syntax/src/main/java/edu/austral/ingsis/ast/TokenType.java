@@ -1,6 +1,11 @@
 package edu.austral.ingsis.ast;
 
 public enum TokenType {
+    LOGICAL_EQUALS,
+    GREATER_THAN,
+    GREATER_THAN_EQUALS,
+    LESS_THAN,
+    LESS_THAN_EQUALS,
     LET,
     IDENTIFIER,
     SEMICOLON,
