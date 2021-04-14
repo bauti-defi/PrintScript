@@ -1,11 +1,18 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.ast.Node;
-import edu.austral.ingsis.tokens.SyntaxToken;
 
-public class ValueLiteralNode extends AbstractNode implements Node {
+import edu.austral.ingsis.ast.Token;
+import edu.austral.ingsis.ast.visitor.Visitable;
+import edu.austral.ingsis.ast.visitor.Visitor;
 
-    public ValueLiteralNode(SyntaxToken token) {
+public class ValueLiteralNode extends ExpressionNode implements Visitable {
+
+    public ValueLiteralNode(Token token) {
         super(token);
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

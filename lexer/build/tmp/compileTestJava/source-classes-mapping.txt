@@ -1,0 +1,2 @@
+edu/austral/ingsis/LexerTest.java
+ edu.austral.ingsis.LexerTest

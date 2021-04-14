@@ -1,18 +1,20 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.ast.Node;
-import edu.austral.ingsis.tokens.SyntaxToken;
 
-public abstract class AbstractNode implements Node {
+import edu.austral.ingsis.ast.Token;
+import edu.austral.ingsis.ast.visitor.Visitable;
+import edu.austral.ingsis.ast.visitor.Visitor;
 
-    protected final SyntaxToken token;
+public abstract class AbstractNode {
 
-    AbstractNode(SyntaxToken token) {
+    protected final Token token;
+
+    AbstractNode(Token token) {
         this.token = token;
     }
 
-    @Override
-    public SyntaxToken getToken() {
+    public Token getToken() {
         return this.token;
     }
+
 }

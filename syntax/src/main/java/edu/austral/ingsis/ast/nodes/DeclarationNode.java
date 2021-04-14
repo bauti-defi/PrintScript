@@ -1,34 +1,36 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.ast.Joint;
-import edu.austral.ingsis.tokens.SyntaxToken;
+import edu.austral.ingsis.ast.Token;
+import edu.austral.ingsis.ast.visitor.Visitable;
+import edu.austral.ingsis.ast.visitor.Visitor;
 
-public class DeclarationNode extends AbstractNode implements Joint<IdentifierNode, TypeNode> {
+public class DeclarationNode extends AbstractNode implements Visitable {
 
     private IdentifierNode identifier;
     private TypeNode type;
 
-    public DeclarationNode(SyntaxToken token) {
+    public DeclarationNode(Token token) {
         super(token);
     }
 
-    @Override
     public void setLeft(IdentifierNode node) {
         this.identifier = node;
     }
 
-    @Override
     public IdentifierNode getLeft() {
         return this.identifier;
     }
 
-    @Override
     public void setRight(TypeNode node) {
         this.type = node;
     }
 
-    @Override
     public TypeNode getRight() {
         return this.type;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }
