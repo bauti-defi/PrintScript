@@ -31,7 +31,7 @@ public class ShuntingYard {
                     }
                 }
                 operatorStack.push(token);
-            }else if(isTokenType(token, TokenType.R_PARANTHESES)){
+            }else if(isTokenType(token, TokenType.R_PARENTHESES)){
                 Token popped;
                 while(!isTokenType((popped = operatorStack.pop()), TokenType.L_PARENTHESES)){
                     expStack.push(popped);

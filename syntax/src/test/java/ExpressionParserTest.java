@@ -18,7 +18,7 @@ public class ExpressionParserTest implements TokenHelper{
         List<Token> tokens = Arrays.asList(
                 createMockToken("(", TokenType.L_PARENTHESES),
                 createMockToken("5", TokenType.LITERAL),
-                createMockToken(")", TokenType.R_PARANTHESES)
+                createMockToken(")", TokenType.R_PARENTHESES)
         );
 
         final ExpressionParser builder = new ExpressionParser();
@@ -37,7 +37,7 @@ public class ExpressionParserTest implements TokenHelper{
         List<Token> tokens = Arrays.asList(
                 createMockToken("(", TokenType.L_PARENTHESES),
                 createMockToken("5", TokenType.LITERAL),
-                createMockToken(")", TokenType.R_PARANTHESES),
+                createMockToken(")", TokenType.R_PARENTHESES),
                 createMockToken("-", TokenType.MINUS_SYMBOL),
                 createMockToken("size", TokenType.IDENTIFIER)
         );

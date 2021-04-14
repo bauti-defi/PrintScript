@@ -17,7 +17,7 @@ public enum TokenType {
     EQUALS,
     TYPE,
     L_PARENTHESES,
-    R_PARANTHESES,
+    R_PARENTHESES,
     PLUS_SYMBOL,
     MINUS_SYMBOL,
     SLASH_SYMBOL,

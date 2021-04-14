@@ -6,17 +6,17 @@ import edu.austral.ingsis.ast.visitor.Visitor;
 
 public class PrintNode extends AbstractNode implements Visitable {
 
-    private CompoundExpressionNode args;
+    private ExpressionNode args;
 
     public PrintNode(Token token) {
         super(token);
     }
 
-    public void setArgs(CompoundExpressionNode args) {
+    public void setArgs(ExpressionNode args) {
         this.args = args;
     }
 
-    public CompoundExpressionNode getArgs() {
+    public ExpressionNode getArgs() {
         return args;
     }
 
