@@ -1,6 +1,6 @@
 package edu.austral.ingsis.ast;
 
-import edu.austral.ingsis.ast.builders.NodeParser;
+import edu.austral.ingsis.ast.parsers.NodeParser;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.ast.exceptions.SemicolonAbsentException;
 import edu.austral.ingsis.ast.exceptions.SyntaxException;

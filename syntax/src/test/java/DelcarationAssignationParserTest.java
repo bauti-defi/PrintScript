@@ -1,6 +1,6 @@
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenType;
-import edu.austral.ingsis.ast.builders.DelcarationAssignationParser;
+import edu.austral.ingsis.ast.parsers.DelcarationAssignationParser;
 import edu.austral.ingsis.ast.nodes.*;
 import org.junit.jupiter.api.Test;
 

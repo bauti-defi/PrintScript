@@ -1,6 +1,6 @@
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenType;
-import edu.austral.ingsis.ast.builders.NodeParser;
+import edu.austral.ingsis.ast.parsers.NodeParser;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
 import org.junit.jupiter.api.Test;
 

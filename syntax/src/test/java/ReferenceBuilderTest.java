@@ -1,6 +1,6 @@
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenType;
-import edu.austral.ingsis.ast.builders.ReferenceParser;
+import edu.austral.ingsis.ast.parsers.ReferenceParser;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

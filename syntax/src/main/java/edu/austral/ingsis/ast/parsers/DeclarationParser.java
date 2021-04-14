@@ -1,4 +1,4 @@
-package edu.austral.ingsis.ast.builders;
+package edu.austral.ingsis.ast.parsers;
 
 import edu.austral.ingsis.ast.Token;
 import edu.austral.ingsis.ast.TokenPattern;
