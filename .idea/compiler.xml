@@ -8,11 +8,13 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.16/6dc192c7f93ec1853f70d59d8a6dcf94eb42866/lombok-1.18.16.jar" />
         </processorPath>
+        <module name="PrintScript.fileReader.main" />
+        <module name="PrintScript.syntax.main" />
+        <module name="PrintScript.fileReader.test" />
         <module name="PrintScript.syntax.test" />
         <module name="PrintScript.lexer.test" />
         <module name="PrintScript.grammar.main" />
         <module name="PrintScript.lexer.main" />
-        <module name="PrintScript.syntax.main" />
         <module name="PrintScript.grammar.test" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
