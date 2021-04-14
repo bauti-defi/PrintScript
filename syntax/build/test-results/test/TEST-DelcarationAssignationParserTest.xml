@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="DelcarationAssignationParserTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-04-14T22:42:26" hostname="bautistas-MacBook-Pro.local" time="0.035">
+<testsuite name="DelcarationAssignationParserTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-04-14T22:44:33" hostname="bautistas-MacBook-Pro.local" time="0.024">
   <properties/>
-  <testcase name="testBuild01()" classname="DelcarationAssignationParserTest" time="0.033"/>
+  <testcase name="testBuild01()" classname="DelcarationAssignationParserTest" time="0.022"/>
   <testcase name="testBuild02()" classname="DelcarationAssignationParserTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

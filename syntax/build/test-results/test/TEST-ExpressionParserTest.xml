@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ExpressionParserTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-04-14T22:42:26" hostname="bautistas-MacBook-Pro.local" time="0.015">
+<testsuite name="ExpressionParserTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-04-14T22:44:33" hostname="bautistas-MacBook-Pro.local" time="0.006">
   <properties/>
-  <testcase name="testBuild1()" classname="ExpressionParserTest" time="0.007"/>
-  <testcase name="testBuild2()" classname="ExpressionParserTest" time="0.004"/>
+  <testcase name="testBuild1()" classname="ExpressionParserTest" time="0.002"/>
+  <testcase name="testBuild2()" classname="ExpressionParserTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
