@@ -8,13 +8,13 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.16/6dc192c7f93ec1853f70d59d8a6dcf94eb42866/lombok-1.18.16.jar" />
         </processorPath>
+        <module name="PrintScript.fileReader.main" />
         <module name="PrintScript.syntax.main" />
-        <module name="faculty.PrintScript.fileReader.test" />
+        <module name="PrintScript.fileReader.test" />
         <module name="PrintScript.syntax.test" />
         <module name="PrintScript.lexer.test" />
         <module name="PrintScript.grammar.main" />
         <module name="PrintScript.lexer.main" />
-        <module name="faculty.PrintScript.fileReader.main" />
         <module name="PrintScript.grammar.test" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
@@ -32,7 +32,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/info.picocli/picocli-codegen/4.1.0/12f758a528ec2c183ece2be0293d9f1faa789aac/picocli-codegen-4.1.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/info.picocli/picocli/4.1.0/ad5ceceeacdd697e5764ecac6f0f90b98f7af5a9/picocli-4.1.0.jar" />
         </processorPath>
-        <module name="PrintScript.cli.main" />
+        <module name="org.example.PrintScript.cli.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="15" />
