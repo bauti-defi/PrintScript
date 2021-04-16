@@ -1,63 +1,63 @@
-edu/austral/ingsis/ast/GlobalConfig.java
- edu.austral.ingsis.ast.GlobalConfig
-edu/austral/ingsis/ast/TokenType.java
- edu.austral.ingsis.ast.TokenType
-edu/austral/ingsis/ast/nodes/CompoundExpressionNode.java
- edu.austral.ingsis.ast.nodes.CompoundExpressionNode
-edu/austral/ingsis/ast/nodes/IdentifierNode.java
- edu.austral.ingsis.ast.nodes.IdentifierNode
-edu/austral/ingsis/ast/nodes/ExpressionNode.java
- edu.austral.ingsis.ast.nodes.ExpressionNode
-edu/austral/ingsis/ast/exceptions/SyntaxTokenExpectedException.java
- edu.austral.ingsis.ast.exceptions.SyntaxTokenExpectedException
+edu/austral/ingsis/ast/builders/ExpressionParser.java
+ edu.austral.ingsis.ast.builders.ExpressionParser
+edu/austral/ingsis/ast/nodes/BinaryOpNode.java
+ edu.austral.ingsis.ast.nodes.BinaryOpNode
+edu/austral/ingsis/ast/TokenPattern.java
+ edu.austral.ingsis.ast.TokenPattern
+ edu.austral.ingsis.ast.TokenPattern$Builder
+ edu.austral.ingsis.ast.TokenPattern$Node
+edu/austral/ingsis/ast/nodes/ReferenceNode.java
+ edu.austral.ingsis.ast.nodes.ReferenceNode
+edu/austral/ingsis/ast/visitor/Visitor.java
+ edu.austral.ingsis.ast.visitor.Visitor
+edu/austral/ingsis/ast/nodes/TypeNode.java
+ edu.austral.ingsis.ast.nodes.TypeNode
 edu/austral/ingsis/ast/ShuntingYard.java
  edu.austral.ingsis.ast.ShuntingYard
-edu/austral/ingsis/ast/Token.java
- edu.austral.ingsis.ast.Token
- edu.austral.ingsis.ast.Token$TokenBuilder
+edu/austral/ingsis/ast/builders/DeclarationParser.java
+ edu.austral.ingsis.ast.builders.DeclarationParser
 edu/austral/ingsis/ast/exceptions/VariableUndefinedException.java
  edu.austral.ingsis.ast.exceptions.VariableUndefinedException
 edu/austral/ingsis/ast/nodes/AbstractNode.java
  edu.austral.ingsis.ast.nodes.AbstractNode
 edu/austral/ingsis/ast/exceptions/SemicolonAbsentException.java
  edu.austral.ingsis.ast.exceptions.SemicolonAbsentException
-edu/austral/ingsis/ast/exceptions/SyntaxException.java
- edu.austral.ingsis.ast.exceptions.SyntaxException
-edu/austral/ingsis/ast/builders/NodeParser.java
- edu.austral.ingsis.ast.builders.NodeParser
 edu/austral/ingsis/ast/visitor/Visitable.java
  edu.austral.ingsis.ast.visitor.Visitable
-edu/austral/ingsis/ast/nodes/ReferenceAssignationNode.java
- edu.austral.ingsis.ast.nodes.ReferenceAssignationNode
-edu/austral/ingsis/ast/nodes/BinaryOpNode.java
- edu.austral.ingsis.ast.nodes.BinaryOpNode
-edu/austral/ingsis/ast/nodes/TypeNode.java
- edu.austral.ingsis.ast.nodes.TypeNode
-edu/austral/ingsis/ast/nodes/ValueLiteralNode.java
- edu.austral.ingsis.ast.nodes.ValueLiteralNode
-edu/austral/ingsis/ast/nodes/DeclarationNode.java
- edu.austral.ingsis.ast.nodes.DeclarationNode
-edu/austral/ingsis/ast/nodes/ReferenceNode.java
- edu.austral.ingsis.ast.nodes.ReferenceNode
-edu/austral/ingsis/ast/visitor/Visitor.java
- edu.austral.ingsis.ast.visitor.Visitor
 edu/austral/ingsis/ast/nodes/DeclarationAssignationNode.java
  edu.austral.ingsis.ast.nodes.DeclarationAssignationNode
-edu/austral/ingsis/ast/builders/ReferenceParser.java
- edu.austral.ingsis.ast.builders.ReferenceParser
-edu/austral/ingsis/ast/builders/DeclarationParser.java
- edu.austral.ingsis.ast.builders.DeclarationParser
-edu/austral/ingsis/ast/builders/ExpressionParser.java
- edu.austral.ingsis.ast.builders.ExpressionParser
-edu/austral/ingsis/ast/builders/ReferenceAssignationParser.java
- edu.austral.ingsis.ast.builders.ReferenceAssignationParser
-edu/austral/ingsis/ast/ASTBuilder.java
- edu.austral.ingsis.ast.ASTBuilder
-edu/austral/ingsis/ast/TokenPattern.java
- edu.austral.ingsis.ast.TokenPattern
- edu.austral.ingsis.ast.TokenPattern$Builder
- edu.austral.ingsis.ast.TokenPattern$Node
+edu/austral/ingsis/ast/builders/NodeParser.java
+ edu.austral.ingsis.ast.builders.NodeParser
+edu/austral/ingsis/ast/nodes/ReferenceAssignationNode.java
+ edu.austral.ingsis.ast.nodes.ReferenceAssignationNode
+edu/austral/ingsis/ast/exceptions/SyntaxException.java
+ edu.austral.ingsis.ast.exceptions.SyntaxException
 edu/austral/ingsis/ast/builders/DelcarationAssignationParser.java
  edu.austral.ingsis.ast.builders.DelcarationAssignationParser
 edu/austral/ingsis/ast/AST.java
  edu.austral.ingsis.ast.AST
+edu/austral/ingsis/ast/Token.java
+ edu.austral.ingsis.ast.Token
+ edu.austral.ingsis.ast.Token$TokenBuilder
+edu/austral/ingsis/ast/nodes/ValueLiteralNode.java
+ edu.austral.ingsis.ast.nodes.ValueLiteralNode
+edu/austral/ingsis/ast/nodes/DeclarationNode.java
+ edu.austral.ingsis.ast.nodes.DeclarationNode
+edu/austral/ingsis/ast/builders/ReferenceParser.java
+ edu.austral.ingsis.ast.builders.ReferenceParser
+edu/austral/ingsis/ast/nodes/IdentifierNode.java
+ edu.austral.ingsis.ast.nodes.IdentifierNode
+edu/austral/ingsis/ast/nodes/ExpressionNode.java
+ edu.austral.ingsis.ast.nodes.ExpressionNode
+edu/austral/ingsis/ast/builders/ReferenceAssignationParser.java
+ edu.austral.ingsis.ast.builders.ReferenceAssignationParser
+edu/austral/ingsis/ast/exceptions/SyntaxTokenExpectedException.java
+ edu.austral.ingsis.ast.exceptions.SyntaxTokenExpectedException
+edu/austral/ingsis/ast/ASTBuilder.java
+ edu.austral.ingsis.ast.ASTBuilder
+edu/austral/ingsis/ast/nodes/CompoundExpressionNode.java
+ edu.austral.ingsis.ast.nodes.CompoundExpressionNode
+edu/austral/ingsis/ast/TokenType.java
+ edu.austral.ingsis.ast.TokenType
+edu/austral/ingsis/ast/GlobalConfig.java
+ edu.austral.ingsis.ast.GlobalConfig

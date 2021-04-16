@@ -1,6 +1,6 @@
 package austral.ing.sis;
 
-import fileReader.FileReader;
+import edu.austral.ingsis.Lexer;
 import lombok.val;
 import picocli.CommandLine.*;
 
@@ -21,14 +21,14 @@ public class App implements Callable<Integer> {
     private Lexer lexer = new Lexer();
 
     private void run() {
-        List<String> document = FileReader.read(filePath);
-        val tokens = lexer.tokenize(document);
-        val nodes = .parse(tokens);
-
-        // here validates
-        if (validateOnly) ValidatorImpl.run(nodes);
-        else InterpreterImpl.run(nodes);
-
+//
+//        List<String> document = FileReaderPS.read(filePath);
+//        val tokens = lexer.tokenize(document);
+//        val nodes = .parse(tokens);
+//
+//        // here validates
+//        if (validateOnly) ValidatorImpl.run(nodes);
+//        else InterpreterImpl.run(nodes);
         //    ValidatorImpl.run(nodes);
         //    if (validateOnly) return;
         //    InterpreterImpl.run(nodes);
