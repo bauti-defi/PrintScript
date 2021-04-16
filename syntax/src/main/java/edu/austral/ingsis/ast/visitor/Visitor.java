@@ -4,22 +4,21 @@ import edu.austral.ingsis.ast.nodes.*;
 
 public interface Visitor {
 
-    void visit(ReferenceAssignationNode node);
+  void visit(ReferenceAssignationNode node);
 
-    void visit(DeclarationAssignationNode node);
+  void visit(DeclarationAssignationNode node);
 
-    void visit(BinaryOpNode node);
+  void visit(BinaryOpNode node);
 
-    void visit(DeclarationNode node);
+  void visit(DeclarationNode node);
 
-    void visit(IdentifierNode node);
+  void visit(IdentifierNode node);
 
-    void visit(TypeNode node);
+  void visit(TypeNode node);
 
-    void visit(ValueLiteralNode node);
+  void visit(ValueLiteralNode node);
 
-    void visit(ExpressionNode node);
+  void visit(ExpressionNode node);
 
-    void visit(CompoundExpressionNode node);
-
+  void visit(CompoundExpressionNode node);
 }

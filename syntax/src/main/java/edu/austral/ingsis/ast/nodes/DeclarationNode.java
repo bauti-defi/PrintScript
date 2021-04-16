@@ -6,31 +6,31 @@ import edu.austral.ingsis.ast.visitor.Visitor;
 
 public class DeclarationNode extends AbstractNode implements Visitable {
 
-    private IdentifierNode identifier;
-    private TypeNode type;
+  private IdentifierNode identifier;
+  private TypeNode type;
 
-    public DeclarationNode(Token token) {
-        super(token);
-    }
+  public DeclarationNode(Token token) {
+    super(token);
+  }
 
-    public void setLeft(IdentifierNode node) {
-        this.identifier = node;
-    }
+  public void setLeft(IdentifierNode node) {
+    this.identifier = node;
+  }
 
-    public IdentifierNode getLeft() {
-        return this.identifier;
-    }
+  public IdentifierNode getLeft() {
+    return this.identifier;
+  }
 
-    public void setRight(TypeNode node) {
-        this.type = node;
-    }
+  public void setRight(TypeNode node) {
+    this.type = node;
+  }
 
-    public TypeNode getRight() {
-        return this.type;
-    }
+  public TypeNode getRight() {
+    return this.type;
+  }
 
-    @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
-    }
+  @Override
+  public void accept(Visitor visitor) {
+    visitor.visit(this);
+  }
 }

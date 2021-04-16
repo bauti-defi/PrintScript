@@ -57,7 +57,7 @@ public class Lexer {
     }
   }
 
-  private Boolean isString(String s){
-      return s.charAt(0) == s.charAt(s.length() - 1) && (s.charAt(0) == 34 || s.charAt(0) == 39);
+  private Boolean isString(String s) {
+    return s.charAt(0) == s.charAt(s.length() - 1) && (s.charAt(0) == 34 || s.charAt(0) == 39);
   }
 }

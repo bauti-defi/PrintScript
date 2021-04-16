@@ -6,12 +6,12 @@ import edu.austral.ingsis.ast.visitor.Visitor;
 
 public class ReferenceNode extends ExpressionNode implements Visitable {
 
-    public ReferenceNode(Token token) {
-        super(token);
-    }
+  public ReferenceNode(Token token) {
+    super(token);
+  }
 
-    @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
-    }
+  @Override
+  public void accept(Visitor visitor) {
+    visitor.visit(this);
+  }
 }
