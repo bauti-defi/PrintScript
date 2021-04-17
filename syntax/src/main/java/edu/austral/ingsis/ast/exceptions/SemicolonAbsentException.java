@@ -1,6 +1,6 @@
 package edu.austral.ingsis.ast.exceptions;
 
-import edu.austral.ingsis.ast.Token;
+import edu.austral.ingsis.Token;
 
 public class SemicolonAbsentException extends RuntimeException {
 

@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
 public class Lexer {
 
   Map<String, TokenType> keyWords = Keywords.getKeyword();
@@ -27,12 +26,12 @@ public class Lexer {
   private Token getToken(String s, Integer index, Integer line) {
 
     if (keyWords.containsKey(s))
-      return Token.builder().value(s).tokenType(keyWords.get(s)).index(index).line(line).build();
+      return Token.builder().value(s).type(keyWords.get(s)).index(index).line(line).build();
 
     if (isString(s))
       return Token.builder()
           .value(s)
-          .tokenType(TokenType.STRING_LITERAL)
+          .type(TokenType.LITERAL)
           .index(index)
           .line(line)
           .build();
@@ -40,12 +39,12 @@ public class Lexer {
     if (isNumber(s))
       return Token.builder()
           .value(s)
-          .tokenType(TokenType.NUMBER_LITERAL)
+          .type(TokenType.LITERAL)
           .index(index)
           .line(line)
           .build();
 
-    return Token.builder().value(s).tokenType(TokenType.IDENTIFIER).index(index).line(line).build();
+    return Token.builder().value(s).type(TokenType.IDENTIFIER).index(index).line(line).build();
   }
 
   private Boolean isNumber(String s) {

@@ -24,12 +24,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
     compile 'com.google.googlejavaformat:google-java-format:1.10.0'
 }
-//dependencies {
-//    testImplementation 'junit:junit:4.13'
-//    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.19.0'
-//}
-
-
 
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
@@ -37,33 +31,6 @@ test {
 
 check.dependsOn jacocoTestCoverageVerification
 
-//JACOCO SETTINGS
-
-jacocoTestReport {
-    dependsOn test // tests are required to run before generating the report
-    reports {
-        xml.enabled false
-        csv.enabled false
-        html.destination file("${buildDir}/jacocoHtml")
-    }
-}
-
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                counter = 'LINE'
-                minimum = 0.7
-            }
-        }
-    }
-}
-
-// GOOGLE JAVA FORMATTER
-
-
-
-//TASKS
 
 task format {
     dependsOn tasks.googleJavaFormat
@@ -82,18 +49,61 @@ task verifyAndTest {
 }
 
 build.dependsOn(tasks.googleJavaFormat)
-build.dependsOn(tasks.format)
+build.dependsOn(tasks.compileAndFormat)
+//check.dependsOn(tasks.googleJavaFormat)
+
+//verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)
 
 googleJavaFormat {
     toolVersion = '1.9'
+//    options style: 'AOSP'
 }
 
 jacoco {
     toolVersion = "0.8.6"
 }
 
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                minimum = 0.8
+            }
+        }
+    }
+}
+
+checkstyle {
+    toolVersion "8.41.1"
+    configFile file("${rootDir}/config/checkstyle/checkstyle.xml")
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+checkstyleTest {
+    source = 'src/test/java'
+}
+
 task installGitHooks(type: Copy) {
     from file("$rootDir/config/hooks")
     into file("$rootDir/.git/hooks")
     fileMode 0777
+}
+
+build.dependsOn installGitHooks
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '6.8.3'
 }

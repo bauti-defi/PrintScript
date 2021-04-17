@@ -1,12 +1,13 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import edu.austral.ingsis.ast.Token;
-import edu.austral.ingsis.ast.TokenType;
+import edu.austral.ingsis.Token;
+import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.builders.ExpressionParser;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
 import edu.austral.ingsis.ast.nodes.BinaryOpNode;
 import java.util.Arrays;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class ExpressionParserTest implements TokenHelper {

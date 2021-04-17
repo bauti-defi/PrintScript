@@ -18,8 +18,8 @@ dependencies {
     implementation project(":lexer")
     implementation project(":grammar")
     implementation project(":syntax")
-//    implementation project(":interpreter")
     implementation project(":fileReader")
+
 }
 
 compileTestJava {

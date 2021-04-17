@@ -1,7 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import edu.austral.ingsis.ast.Token;
-import edu.austral.ingsis.ast.TokenType;
+import edu.austral.ingsis.Token;
+import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.builders.ReferenceParser;
 import java.util.Arrays;
 import java.util.List;

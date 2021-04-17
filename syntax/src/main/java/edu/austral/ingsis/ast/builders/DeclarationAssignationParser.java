@@ -1,11 +1,13 @@
 package edu.austral.ingsis.ast.builders;
 
-import edu.austral.ingsis.ast.*;
+import edu.austral.ingsis.Token;
+import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.nodes.DeclarationAssignationNode;
 import edu.austral.ingsis.ast.nodes.DeclarationNode;
+
 import java.util.List;
 
-public class DelcarationAssignationParser implements NodeParser<DeclarationAssignationNode> {
+public class DeclarationAssignationParser implements NodeParser<DeclarationAssignationNode> {
 
   private final DeclarationParser declarationParser = new DeclarationParser();
   private final ExpressionParser expressionParser = new ExpressionParser();

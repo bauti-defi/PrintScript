@@ -1,5 +1,7 @@
 package edu.austral.ingsis.ast.builders;
 
+import edu.austral.ingsis.Token;
+import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.*;
 import edu.austral.ingsis.ast.nodes.BinaryOpNode;
 import edu.austral.ingsis.ast.nodes.ExpressionNode;

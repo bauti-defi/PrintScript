@@ -1,8 +1,8 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import edu.austral.ingsis.ast.Token;
-import edu.austral.ingsis.ast.TokenType;
-import edu.austral.ingsis.ast.builders.DelcarationAssignationParser;
+import edu.austral.ingsis.Token;
+import edu.austral.ingsis.TokenType;
+import edu.austral.ingsis.ast.builders.DeclarationAssignationParser;
 import edu.austral.ingsis.ast.nodes.*;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +23,7 @@ public class DelcarationAssignationParserTest implements TokenHelper {
             createMockToken("=", TokenType.EQUALS),
             createMockToken("5", TokenType.LITERAL));
 
-    final DelcarationAssignationParser builder = new DelcarationAssignationParser();
+    final DeclarationAssignationParser builder = new DeclarationAssignationParser();
 
     if (builder.predicate(tokens)) {
       final DeclarationAssignationNode node = builder.parse(tokens);
@@ -48,7 +48,7 @@ public class DelcarationAssignationParserTest implements TokenHelper {
             createMockToken("=", TokenType.EQUALS),
             createMockToken("5", TokenType.LITERAL));
 
-    final DelcarationAssignationParser builder = new DelcarationAssignationParser();
+    final DeclarationAssignationParser builder = new DeclarationAssignationParser();
 
     if (builder.predicate(tokens)) {
       final DeclarationAssignationNode node = builder.parse(tokens);

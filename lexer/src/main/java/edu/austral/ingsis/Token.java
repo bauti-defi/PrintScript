@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Token {
 
-  private String value;
-  private TokenType tokenType;
-  private Integer line;
-  private Integer index;
+    private String value;
+    private TokenType type;
+    private int line;
+    private int index;
 }

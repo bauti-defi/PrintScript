@@ -1,8 +1,8 @@
 package edu.austral.ingsis.ast.builders;
 
-import edu.austral.ingsis.ast.Token;
+import edu.austral.ingsis.Token;
+import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.TokenPattern;
-import edu.austral.ingsis.ast.TokenType;
 import edu.austral.ingsis.ast.exceptions.SyntaxException;
 import edu.austral.ingsis.ast.exceptions.SyntaxTokenExpectedException;
 import edu.austral.ingsis.ast.nodes.DeclarationNode;

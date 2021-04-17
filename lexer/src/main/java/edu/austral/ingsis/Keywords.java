@@ -13,8 +13,8 @@ public class Keywords {
     keywords.put(":", TokenType.COLON);
     keywords.put("=", TokenType.EQUALS);
     keywords.put(";", TokenType.SEMICOLON);
-    keywords.put("number", TokenType.NUMBER_TYPE);
-    keywords.put("string", TokenType.STRING_TYPE);
+    keywords.put("number", TokenType.LITERAL);
+    keywords.put("string", TokenType.LITERAL);
     keywords.put("+", TokenType.PLUS_SYMBOL);
     keywords.put("-", TokenType.MINUS_SYMBOL);
     keywords.put("*", TokenType.STAR_SYMBOL);
