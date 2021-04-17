@@ -1,6 +1,5 @@
 package edu.austral.ingsis.ast.exceptions;
 
-
 import edu.austral.ingsis.Token;
 
 public class VariableUndefinedException extends RuntimeException {

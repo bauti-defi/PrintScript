@@ -1,6 +1,5 @@
 package edu.austral.ingsis.ast.nodes;
 
-
 import edu.austral.ingsis.Token;
 
 public abstract class AbstractNode {

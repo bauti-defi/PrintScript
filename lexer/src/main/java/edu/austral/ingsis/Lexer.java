@@ -2,7 +2,6 @@ package edu.austral.ingsis;
 
 import java.util.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,20 +28,10 @@ public class Lexer {
       return Token.builder().value(s).type(keyWords.get(s)).index(index).line(line).build();
 
     if (isString(s))
-      return Token.builder()
-          .value(s)
-          .type(TokenType.LITERAL)
-          .index(index)
-          .line(line)
-          .build();
+      return Token.builder().value(s).type(TokenType.LITERAL).index(index).line(line).build();
 
     if (isNumber(s))
-      return Token.builder()
-          .value(s)
-          .type(TokenType.LITERAL)
-          .index(index)
-          .line(line)
-          .build();
+      return Token.builder().value(s).type(TokenType.LITERAL).index(index).line(line).build();
 
     return Token.builder().value(s).type(TokenType.IDENTIFIER).index(index).line(line).build();
   }
