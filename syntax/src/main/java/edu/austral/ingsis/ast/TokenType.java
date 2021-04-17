@@ -5,6 +5,7 @@ public enum TokenType {
     GREATER_THAN,
     GREATER_THAN_EQUALS,
     LESS_THAN,
+    NOT_EQUALS,
     LESS_THAN_EQUALS,
     IF,
     ELSE,

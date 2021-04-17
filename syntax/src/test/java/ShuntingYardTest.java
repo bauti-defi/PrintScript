@@ -31,7 +31,7 @@ public class ShuntingYardTest implements TokenHelper{
                 createMockToken("1", TokenType.LITERAL)
         );
 
-        List<String> result = ShuntingYard.process(tokens).stream().map(Token::getValue).collect(Collectors.toList());
+        List<String> result = ShuntingYard.parse(tokens).stream().map(Token::getValue).collect(Collectors.toList());
 
         List<String> expected = Arrays.asList("5", "4", "*", "3", "2", "*", "+", "1", "-");
 
@@ -55,7 +55,7 @@ public class ShuntingYardTest implements TokenHelper{
                 createMockToken("size", TokenType.IDENTIFIER)
         );
 
-        List<String> result = ShuntingYard.process(tokens).stream().map(Token::getValue).collect(Collectors.toList());
+        List<String> result = ShuntingYard.parse(tokens).stream().map(Token::getValue).collect(Collectors.toList());
 
         List<String> expected = Arrays.asList("5", "4", "*", "3", "x", "*", "+", "size", "-");
 
@@ -69,7 +69,7 @@ public class ShuntingYardTest implements TokenHelper{
                 createMockToken("5", TokenType.LITERAL)
         );
 
-        List<String> result = ShuntingYard.process(tokens).stream().map(Token::getValue).collect(Collectors.toList());
+        List<String> result = ShuntingYard.parse(tokens).stream().map(Token::getValue).collect(Collectors.toList());
 
         List<String> expected = Arrays.asList("5");
 
@@ -87,7 +87,7 @@ public class ShuntingYardTest implements TokenHelper{
                 createMockToken("size", TokenType.IDENTIFIER)
         );
 
-        List<String> result = ShuntingYard.process(tokens).stream().map(Token::getValue).collect(Collectors.toList());
+        List<String> result = ShuntingYard.parse(tokens).stream().map(Token::getValue).collect(Collectors.toList());
 
         List<String> expected = Arrays.asList("5", "size", "-");
 
@@ -101,7 +101,7 @@ public class ShuntingYardTest implements TokenHelper{
                 createMockToken("5", TokenType.LITERAL)
         );
 
-        List<String> result = ShuntingYard.process(tokens).stream().map(Token::getValue).collect(Collectors.toList());
+        List<String> result = ShuntingYard.parse(tokens).stream().map(Token::getValue).collect(Collectors.toList());
 
         List<String> expected = Arrays.asList("5");
 

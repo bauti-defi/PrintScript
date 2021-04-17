@@ -11,7 +11,7 @@ public class ShuntingYard {
         return token.getType() == type;
     }
 
-    public static Stack<Token> process(List<Token> tokens){
+    public static Stack<Token> parse(List<Token> tokens){
         final Stack<Token> operatorStack = new Stack<>();
         final Stack<Token> expStack = new Stack<>();
 
