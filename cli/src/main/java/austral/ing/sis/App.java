@@ -1,6 +1,5 @@
 package austral.ing.sis;
 
-import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
 import java.util.concurrent.Callable;
 import picocli.CommandLine.*;
@@ -17,8 +16,7 @@ public class App implements Callable<Integer> {
 
   private Lexer lexer = new Lexer();
 
-  private void run() {
-  }
+  private void run() {}
 
   @Override
   public Integer call() throws Exception {
