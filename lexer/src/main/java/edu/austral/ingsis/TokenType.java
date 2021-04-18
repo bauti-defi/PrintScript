@@ -1,6 +1,16 @@
 package edu.austral.ingsis;
 
 public enum TokenType {
+  DOUBLE_EQUALS,
+  GREATER_THAN,
+  GREATER_THAN_EQUALS,
+  LESS_THAN,
+  NOT_EQUALS,
+  LESS_THAN_EQUALS,
+  IF,
+  ELSE,
+  L_CURLY_BRACE,
+  R_CURLY_BRACE,
   LET,
   IDENTIFIER,
   SEMICOLON,
@@ -8,7 +18,7 @@ public enum TokenType {
   EQUALS,
   TYPE,
   L_PARENTHESES,
-  R_PARANTHESES,
+  R_PARENTHESES,
   PLUS_SYMBOL,
   MINUS_SYMBOL,
   SLASH_SYMBOL,

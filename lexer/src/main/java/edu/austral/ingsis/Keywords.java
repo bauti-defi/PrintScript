@@ -21,7 +21,7 @@ public class Keywords {
     keywords.put("/", TokenType.SLASH_SYMBOL);
     keywords.put("println", TokenType.PRINTLN);
     keywords.put("(", TokenType.L_PARENTHESES);
-    keywords.put(")", TokenType.R_PARANTHESES);
+    keywords.put(")", TokenType.R_PARENTHESES);
 
     return keywords;
   }

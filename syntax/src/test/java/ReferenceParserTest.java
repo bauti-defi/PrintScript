@@ -1,30 +1,26 @@
-import edu.austral.ingsis.ast.Token;
-import edu.austral.ingsis.ast.TokenType;
-import edu.austral.ingsis.ast.parsers.ReferenceParser;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ReferenceParserTest implements TokenHelper{
+import edu.austral.ingsis.Token;
+import edu.austral.ingsis.TokenType;
+import edu.austral.ingsis.ast.parsers.ReferenceParser;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
-    @Test
-    public void testBuild1(){
+public class ReferenceParserTest implements TokenHelper {
 
-        // let x:number
-        List<Token> tokens = Arrays.asList(
-                createMockToken("x", TokenType.IDENTIFIER)
-        );
+  @Test
+  public void testBuild1() {
 
-        final ReferenceParser parser = new ReferenceParser();
+    // let x:number
+    List<Token> tokens = Arrays.asList(createMockToken("x", TokenType.IDENTIFIER));
 
-        if(parser.predicate(tokens)){
-            assertEquals(TokenType.IDENTIFIER, parser.parse(tokens).getToken().getType());
-        }else{
-            throw new Error();
-        }
+    final ReferenceParser parser = new ReferenceParser();
+
+    if (parser.predicate(tokens)) {
+      assertEquals(TokenType.IDENTIFIER, parser.parse(tokens).getToken().getType());
+    } else {
+      throw new Error();
     }
-
+  }
 }

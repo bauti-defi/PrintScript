@@ -1,57 +1,55 @@
-import edu.austral.ingsis.ast.Token;
-import edu.austral.ingsis.ast.TokenType;
-import edu.austral.ingsis.ast.parsers.ExpressionParser;
-import edu.austral.ingsis.ast.nodes.AbstractNode;
-import edu.austral.ingsis.ast.nodes.BinaryOpNode;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionParserTest implements TokenHelper{
+import edu.austral.ingsis.Token;
+import edu.austral.ingsis.TokenType;
+import edu.austral.ingsis.ast.nodes.AbstractNode;
+import edu.austral.ingsis.ast.nodes.BinaryOpNode;
+import edu.austral.ingsis.ast.parsers.ExpressionParser;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
-    @Test
-    public void testBuild1(){
-        //(5)
-        List<Token> tokens = Arrays.asList(
-                createMockToken("(", TokenType.L_PARENTHESES),
-                createMockToken("5", TokenType.LITERAL),
-                createMockToken(")", TokenType.R_PARENTHESES)
-        );
+public class ExpressionParserTest implements TokenHelper {
 
-        final ExpressionParser builder = new ExpressionParser();
+  @Test
+  public void testBuild1() {
+    // (5)
+    List<Token> tokens =
+        Arrays.asList(
+            createMockToken("(", TokenType.L_PARENTHESES),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken(")", TokenType.R_PARENTHESES));
 
-        if(builder.predicate(tokens)){
-            final AbstractNode node = builder.parse(tokens);
-            assertEquals(TokenType.LITERAL, node.getToken().getType());
-        }else{
-            throw new Error();
-        }
+    final ExpressionParser builder = new ExpressionParser();
+
+    if (builder.predicate(tokens)) {
+      final AbstractNode node = builder.parse(tokens);
+      assertEquals(TokenType.LITERAL, node.getToken().getType());
+    } else {
+      throw new Error();
     }
+  }
 
-    @Test
-    public void testBuild2(){
-        //(5)-size
-        List<Token> tokens = Arrays.asList(
-                createMockToken("(", TokenType.L_PARENTHESES),
-                createMockToken("5", TokenType.LITERAL),
-                createMockToken(")", TokenType.R_PARENTHESES),
-                createMockToken("-", TokenType.MINUS_SYMBOL),
-                createMockToken("size", TokenType.IDENTIFIER)
-        );
+  @Test
+  public void testBuild2() {
+    // (5)-size
+    List<Token> tokens =
+        Arrays.asList(
+            createMockToken("(", TokenType.L_PARENTHESES),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken(")", TokenType.R_PARENTHESES),
+            createMockToken("-", TokenType.MINUS_SYMBOL),
+            createMockToken("size", TokenType.IDENTIFIER));
 
+    final ExpressionParser expressionParser = new ExpressionParser();
 
-        final ExpressionParser expressionParser = new ExpressionParser();
-
-        if(expressionParser.predicate(tokens)){
-            final BinaryOpNode binaryOpNode = (BinaryOpNode) expressionParser.parse(tokens);
-            assertEquals(TokenType.MINUS_SYMBOL, binaryOpNode.getToken().getType());
-            assertEquals(TokenType.LITERAL, binaryOpNode.getLeft().getToken().getType());
-            assertEquals(TokenType.IDENTIFIER, binaryOpNode.getRight().getToken().getType());
-        }else{
-            throw new Error();
-        }
+    if (expressionParser.predicate(tokens)) {
+      final BinaryOpNode binaryOpNode = (BinaryOpNode) expressionParser.parse(tokens);
+      assertEquals(TokenType.MINUS_SYMBOL, binaryOpNode.getToken().getType());
+      assertEquals(TokenType.LITERAL, binaryOpNode.getLeft().getToken().getType());
+      assertEquals(TokenType.IDENTIFIER, binaryOpNode.getRight().getToken().getType());
+    } else {
+      throw new Error();
     }
+  }
 }
