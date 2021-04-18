@@ -1,33 +1,11 @@
 plugins {
     id 'java-library'
-//    id 'my-library.java-common-conventions'
-}
-//
-//group 'org.example'
-//version '1.0-SNAPSHOT'
-//
-repositories {
-    mavenCentral()
+    id 'my-library.java-common-conventions'
 }
 
 dependencies {
-    implementation 'org.projectlombok:lombok:1.18.16'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    testCompileOnly 'org.projectlombok:lombok:1.18.16'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
-    compileOnly 'org.projectlombok:lombok:1.18.16'
-    annotationProcessor 'org.projectlombok:lombok:1.18.16'
-    testImplementation("org.assertj:assertj-core:3.19.0")
+    implementation project(":lexer")
 }
 
-test {
-    useJUnitPlatform()
-}
-//plugins {
-//    id 'java-library'
-//    id 'my-library.java-common-conventions'
-//}
-
-group = 'edu.austral.ingsis'
-version = '1.0.1'
+group 'edu.austral.ingsis'
+version '1.0-SNAPSHOT'

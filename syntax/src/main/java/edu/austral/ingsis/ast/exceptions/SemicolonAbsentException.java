@@ -1,12 +1,10 @@
 package edu.austral.ingsis.ast.exceptions;
 
+import edu.austral.ingsis.Token;
 
-import edu.austral.ingsis.ast.Token;
+public class SemicolonAbsentException extends RuntimeException {
 
-public class SemicolonAbsentException extends RuntimeException{
-
-    public SemicolonAbsentException(Token token) {
-        super(token.toString() + " is illegal line ending. Semicolon required.");
-    }
-
+  public SemicolonAbsentException(Token token) {
+    super(token.toString() + " is illegal line ending. Semicolon required.");
+  }
 }
