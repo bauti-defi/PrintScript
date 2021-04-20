@@ -3,9 +3,5 @@ plugins {
     id 'my-library.java-common-conventions'
 }
 
-dependencies {
-    implementation project(":syntax")
-}
-
 group 'edu.austral.ingsis'
 version '1.0-SNAPSHOT'
