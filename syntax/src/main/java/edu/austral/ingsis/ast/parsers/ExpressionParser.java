@@ -10,22 +10,39 @@ import java.util.List;
 public class ExpressionParser implements NodeParser<ExpressionNode> {
 
   private final ArithmeticParser arithmeticParser = new ArithmeticParser();
+
   private final List<LogicalOpParser> logicalParser =
       Arrays.asList(
-          new LogicalOpParser(TokenType.DOUBLE_EQUALS), new LogicalOpParser(TokenType.NOT_EQUALS));
+          new LogicalOpParser(this, TokenType.DOUBLE_EQUALS),
+          new LogicalOpParser(this, TokenType.NOT_EQUALS));
+
   private final List<LogicalOpParser> comparisonParsers =
       Arrays.asList(
-          new LogicalOpParser(TokenType.GREATER_THAN),
-          new LogicalOpParser(TokenType.GREATER_THAN_EQUALS),
-          new LogicalOpParser(TokenType.LESS_THAN),
-          new LogicalOpParser(TokenType.LESS_THAN_EQUALS));
+          new LogicalOpParser(this, TokenType.GREATER_THAN),
+          new LogicalOpParser(this, TokenType.GREATER_THAN_EQUALS),
+          new LogicalOpParser(this, TokenType.LESS_THAN),
+          new LogicalOpParser(this, TokenType.LESS_THAN_EQUALS));
 
   public boolean predicate(List<Token> tokens) {
     return true;
   }
 
   public ExpressionNode parse(List<Token> tokens) {
+    // Logical parsers first
+    for (LogicalOpParser parser : logicalParser) {
+      if (parser.predicate(tokens)) {
+        return parser.parse(tokens);
+      }
+    }
 
+    // Comparison parsers next
+    for (LogicalOpParser parser : comparisonParsers) {
+      if (parser.predicate(tokens)) {
+        return parser.parse(tokens);
+      }
+    }
+
+    // Arithmetic parser last
     return arithmeticParser.parse(tokens);
   }
 }

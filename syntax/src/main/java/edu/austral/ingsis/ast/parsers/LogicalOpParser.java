@@ -7,10 +7,11 @@ import java.util.List;
 
 public class LogicalOpParser implements NodeParser<LogicalOpNode> {
 
-  private final ExpressionParser expressionParser = new ExpressionParser();
+  private final ExpressionParser expressionParser;
   private final TokenType type;
 
-  public LogicalOpParser(TokenType type) {
+  public LogicalOpParser(ExpressionParser parser, TokenType type) {
+    this.expressionParser = parser;
     this.type = type;
   }
 
@@ -25,7 +26,7 @@ public class LogicalOpParser implements NodeParser<LogicalOpNode> {
 
     final LogicalOpNode node = new LogicalOpNode(tokens.get(index));
     node.setLeft(expressionParser.parse(tokens.subList(0, index)));
-    node.setRight(expressionParser.parse(tokens.subList(index + 1, tokens.size() - 1)));
+    node.setRight(expressionParser.parse(tokens.subList(index + 1, tokens.size())));
     return node;
   }
 }
