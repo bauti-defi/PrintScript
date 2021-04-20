@@ -7,10 +7,11 @@ import java.util.List;
 
 public class LogicalOpParser implements NodeParser<LogicalOpNode> {
 
-  private final ExpressionParser expressionParser = new ExpressionParser();
+  private final ExpressionParser expressionParser;
   private final TokenType type;
 
-  public LogicalOpParser(TokenType type) {
+  public LogicalOpParser(ExpressionParser parser, TokenType type) {
+    this.expressionParser = parser;
     this.type = type;
   }
 
