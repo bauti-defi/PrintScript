@@ -4,3 +4,5 @@ include 'grammar'
 include 'syntax'
 include 'cli'
 include 'fileReader'
+include 'interpreter'
+
