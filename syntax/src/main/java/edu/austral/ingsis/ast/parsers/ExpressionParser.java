@@ -13,7 +13,8 @@ public class ExpressionParser implements NodeParser<ExpressionNode> {
 
   private final List<LogicalOpParser> logicalParser =
       Arrays.asList(
-          new LogicalOpParser(this, TokenType.DOUBLE_EQUALS), new LogicalOpParser(this, TokenType.NOT_EQUALS));
+          new LogicalOpParser(this, TokenType.DOUBLE_EQUALS),
+          new LogicalOpParser(this, TokenType.NOT_EQUALS));
 
   private final List<LogicalOpParser> comparisonParsers =
       Arrays.asList(
@@ -27,16 +28,16 @@ public class ExpressionParser implements NodeParser<ExpressionNode> {
   }
 
   public ExpressionNode parse(List<Token> tokens) {
-    //Logical parsers first
-    for(LogicalOpParser parser: logicalParser){
-      if(parser.predicate(tokens)){
+    // Logical parsers first
+    for (LogicalOpParser parser : logicalParser) {
+      if (parser.predicate(tokens)) {
         return parser.parse(tokens);
       }
     }
 
-    //Comparison parsers next
-    for(LogicalOpParser parser: comparisonParsers){
-      if(parser.predicate(tokens)){
+    // Comparison parsers next
+    for (LogicalOpParser parser : comparisonParsers) {
+      if (parser.predicate(tokens)) {
         return parser.parse(tokens);
       }
     }
@@ -44,5 +45,4 @@ public class ExpressionParser implements NodeParser<ExpressionNode> {
     // Arithmetic parser last
     return arithmeticParser.parse(tokens);
   }
-
 }
