@@ -115,6 +115,10 @@ public class TokenPattern {
       return this;
     }
 
+    public Builder leftParantheses() {
+      return next(TokenType.L_PARENTHESES);
+    }
+
     public Builder let() {
       return next(TokenType.LET);
     }

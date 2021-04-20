@@ -21,4 +21,6 @@ public interface Visitor {
   void visit(ExpressionNode node);
 
   void visit(CompoundExpressionNode node);
+
+  void visit(PrintNode node);
 }

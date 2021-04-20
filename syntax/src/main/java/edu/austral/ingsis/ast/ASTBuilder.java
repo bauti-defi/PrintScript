@@ -2,10 +2,10 @@ package edu.austral.ingsis.ast;
 
 import edu.austral.ingsis.Token;
 import edu.austral.ingsis.TokenType;
-import edu.austral.ingsis.ast.builders.NodeParser;
 import edu.austral.ingsis.ast.exceptions.SemicolonAbsentException;
 import edu.austral.ingsis.ast.exceptions.SyntaxException;
 import edu.austral.ingsis.ast.nodes.*;
+import edu.austral.ingsis.ast.parsers.NodeParser;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

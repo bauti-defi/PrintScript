@@ -12,7 +12,7 @@ public class ShuntingYard {
     return token.getType() == type;
   }
 
-  public static Stack<Token> process(List<Token> tokens) {
+  public static Stack<Token> parse(List<Token> tokens) {
     final Stack<Token> operatorStack = new Stack<>();
     final Stack<Token> expStack = new Stack<>();
 
@@ -36,7 +36,7 @@ public class ShuntingYard {
           }
         }
         operatorStack.push(token);
-      } else if (isTokenType(token, TokenType.R_PARANTHESES)) {
+      } else if (isTokenType(token, TokenType.R_PARENTHESES)) {
         Token popped;
         while (!isTokenType((popped = operatorStack.pop()), TokenType.L_PARENTHESES)) {
           expStack.push(popped);

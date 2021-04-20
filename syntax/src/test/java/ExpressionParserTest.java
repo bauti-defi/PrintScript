@@ -2,9 +2,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import edu.austral.ingsis.Token;
 import edu.austral.ingsis.TokenType;
-import edu.austral.ingsis.ast.builders.ExpressionParser;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
 import edu.austral.ingsis.ast.nodes.BinaryOpNode;
+import edu.austral.ingsis.ast.parsers.ExpressionParser;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ public class ExpressionParserTest implements TokenHelper {
         Arrays.asList(
             createMockToken("(", TokenType.L_PARENTHESES),
             createMockToken("5", TokenType.LITERAL),
-            createMockToken(")", TokenType.R_PARANTHESES));
+            createMockToken(")", TokenType.R_PARENTHESES));
 
     final ExpressionParser builder = new ExpressionParser();
 
@@ -37,7 +37,7 @@ public class ExpressionParserTest implements TokenHelper {
         Arrays.asList(
             createMockToken("(", TokenType.L_PARENTHESES),
             createMockToken("5", TokenType.LITERAL),
-            createMockToken(")", TokenType.R_PARANTHESES),
+            createMockToken(")", TokenType.R_PARENTHESES),
             createMockToken("-", TokenType.MINUS_SYMBOL),
             createMockToken("size", TokenType.IDENTIFIER));
 
