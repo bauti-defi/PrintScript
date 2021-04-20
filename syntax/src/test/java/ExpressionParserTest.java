@@ -8,8 +8,6 @@ import edu.austral.ingsis.ast.nodes.LogicalOpNode;
 import edu.austral.ingsis.ast.parsers.ExpressionParser;
 import java.util.Arrays;
 import java.util.List;
-
-import edu.austral.ingsis.ast.parsers.LogicalOpParser;
 import org.junit.jupiter.api.Test;
 
 public class ExpressionParserTest implements TokenHelper {
@@ -60,12 +58,12 @@ public class ExpressionParserTest implements TokenHelper {
   public void testBuild3() {
     // (5)-size
     List<Token> tokens =
-            Arrays.asList(
-                    createMockToken("(", TokenType.L_PARENTHESES),
-                    createMockToken("5", TokenType.LITERAL),
-                    createMockToken(")", TokenType.R_PARENTHESES),
-                    createMockToken("==", TokenType.DOUBLE_EQUALS),
-                    createMockToken("size", TokenType.IDENTIFIER));
+        Arrays.asList(
+            createMockToken("(", TokenType.L_PARENTHESES),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken(")", TokenType.R_PARENTHESES),
+            createMockToken("==", TokenType.DOUBLE_EQUALS),
+            createMockToken("size", TokenType.IDENTIFIER));
 
     final ExpressionParser expressionParser = new ExpressionParser();
 
@@ -83,14 +81,14 @@ public class ExpressionParserTest implements TokenHelper {
   public void testBuild4() {
     // (5)-size
     List<Token> tokens =
-            Arrays.asList(
-                    createMockToken("(", TokenType.L_PARENTHESES),
-                    createMockToken("5", TokenType.LITERAL),
-                    createMockToken(")", TokenType.R_PARENTHESES),
-                    createMockToken(">=", TokenType.GREATER_THAN_EQUALS),
-                    createMockToken("10", TokenType.LITERAL),
-                    createMockToken("+", TokenType.PLUS_SYMBOL),
-                    createMockToken("10", TokenType.LITERAL));
+        Arrays.asList(
+            createMockToken("(", TokenType.L_PARENTHESES),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken(")", TokenType.R_PARENTHESES),
+            createMockToken(">=", TokenType.GREATER_THAN_EQUALS),
+            createMockToken("10", TokenType.LITERAL),
+            createMockToken("+", TokenType.PLUS_SYMBOL),
+            createMockToken("10", TokenType.LITERAL));
 
     final ExpressionParser expressionParser = new ExpressionParser();
 
@@ -108,12 +106,12 @@ public class ExpressionParserTest implements TokenHelper {
   public void testBuild5() {
     // (5)-size
     List<Token> tokens =
-            Arrays.asList(
-                    createMockToken("size", TokenType.IDENTIFIER),
-                    createMockToken("!=", TokenType.NOT_EQUALS),
-                    createMockToken("10", TokenType.LITERAL),
-                    createMockToken("+", TokenType.PLUS_SYMBOL),
-                    createMockToken("10", TokenType.LITERAL));
+        Arrays.asList(
+            createMockToken("size", TokenType.IDENTIFIER),
+            createMockToken("!=", TokenType.NOT_EQUALS),
+            createMockToken("10", TokenType.LITERAL),
+            createMockToken("+", TokenType.PLUS_SYMBOL),
+            createMockToken("10", TokenType.LITERAL));
 
     final ExpressionParser expressionParser = new ExpressionParser();
 
