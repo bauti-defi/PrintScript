@@ -19,6 +19,7 @@ dependencies {
     implementation project(":grammar")
     implementation project(":syntax")
     implementation project(":fileReader")
+    implementation project(":interpreter")
 
 }
 
