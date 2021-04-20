@@ -26,7 +26,7 @@ public class LogicalOpParser implements NodeParser<LogicalOpNode> {
 
     final LogicalOpNode node = new LogicalOpNode(tokens.get(index));
     node.setLeft(expressionParser.parse(tokens.subList(0, index)));
-    node.setRight(expressionParser.parse(tokens.subList(index + 1, tokens.size() - 1)));
+    node.setRight(expressionParser.parse(tokens.subList(index + 1, tokens.size())));
     return node;
   }
 }
