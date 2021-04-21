@@ -10,6 +10,15 @@ public class ReferenceNode extends ExpressionNode implements Visitable {
     super(token);
   }
 
+  public String getIdentifier() {
+    return token.getValue();
+  }
+
+  @Override
+  public String getNodeType() {
+    return "REFERENCE";
+  }
+
   @Override
   public void accept(Visitor visitor) {
     visitor.visit(this);

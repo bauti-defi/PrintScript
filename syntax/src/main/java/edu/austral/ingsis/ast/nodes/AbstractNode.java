@@ -13,4 +13,6 @@ public abstract class AbstractNode {
   public Token getToken() {
     return this.token;
   }
+
+  public abstract String getNodeType();
 }

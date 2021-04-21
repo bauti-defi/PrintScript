@@ -11,6 +11,11 @@ public class ExpressionNode extends AbstractNode implements Visitable {
   }
 
   @Override
+  public String getNodeType() {
+    return "EXPRESSION";
+  }
+
+  @Override
   public void accept(Visitor visitor) {
     visitor.visit(this);
   }

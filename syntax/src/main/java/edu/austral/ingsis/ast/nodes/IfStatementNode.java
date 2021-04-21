@@ -7,31 +7,36 @@ import edu.austral.ingsis.ast.visitor.Visitor;
 
 public class IfStatementNode extends AbstractNode implements Visitable {
 
-    private ExpressionNode left;
-    private AST body;
+  private ExpressionNode left;
+  private AST body;
 
-    public IfStatementNode(Token token) {
-        super(token);
-    }
+  public IfStatementNode(Token token) {
+    super(token);
+  }
 
-    public ExpressionNode getLeft() {
-        return left;
-    }
+  @Override
+  public String getNodeType() {
+    return "IF";
+  }
 
-    public void setBody(AST ast){
-        this.body = ast;
-    }
+  public ExpressionNode getLeft() {
+    return left;
+  }
 
-    public AST getBody() {
-        return body;
-    }
+  public void setBody(AST ast) {
+    this.body = ast;
+  }
 
-    public void setLeft(ExpressionNode left) {
-        this.left = left;
-    }
+  public AST getBody() {
+    return body;
+  }
 
-    @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
-    }
+  public void setLeft(ExpressionNode left) {
+    this.left = left;
+  }
+
+  @Override
+  public void accept(Visitor visitor) {
+    visitor.visit(this);
+  }
 }

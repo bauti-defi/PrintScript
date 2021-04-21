@@ -25,4 +25,6 @@ public interface Visitor {
   void visit(PrintNode node);
 
   void visit(IfStatementNode node);
+
+  void visit(ReferenceNode node);
 }

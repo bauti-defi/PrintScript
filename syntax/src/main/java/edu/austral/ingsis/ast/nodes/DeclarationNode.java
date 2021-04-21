@@ -13,6 +13,11 @@ public class DeclarationNode extends AbstractNode implements Visitable {
     super(token);
   }
 
+  @Override
+  public String getNodeType() {
+    return "DECLARATION";
+  }
+
   public void setLeft(IdentifierNode node) {
     this.identifier = node;
   }

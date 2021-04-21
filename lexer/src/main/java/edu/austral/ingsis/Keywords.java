@@ -10,11 +10,12 @@ public class Keywords {
   public static Map<String, TokenType> getKeyword() {
     Map<String, TokenType> keywords = new HashMap<>();
     keywords.put("let", TokenType.LET);
+    keywords.put("const", TokenType.CONST);
     keywords.put(":", TokenType.COLON);
     keywords.put("=", TokenType.EQUALS);
     keywords.put(";", TokenType.SEMICOLON);
-    keywords.put("number", TokenType.LITERAL);
-    keywords.put("string", TokenType.LITERAL);
+    keywords.put("number", TokenType.TYPE);
+    keywords.put("string", TokenType.TYPE);
     keywords.put("+", TokenType.PLUS_SYMBOL);
     keywords.put("-", TokenType.MINUS_SYMBOL);
     keywords.put("*", TokenType.STAR_SYMBOL);

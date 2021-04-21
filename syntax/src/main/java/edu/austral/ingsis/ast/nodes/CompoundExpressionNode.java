@@ -11,6 +11,11 @@ public class CompoundExpressionNode extends ExpressionNode {
     super(token);
   }
 
+  @Override
+  public String getNodeType() {
+    return "COMPOUND_EXPRESSION";
+  }
+
   public void setLeft(ExpressionNode node) {
     this.left = node;
   }

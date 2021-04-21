@@ -11,6 +11,11 @@ public class IdentifierNode extends AbstractNode implements Visitable {
   }
 
   @Override
+  public String getNodeType() {
+    return "IDENTIFIER";
+  }
+
+  @Override
   public void accept(Visitor visitor) {
     visitor.visit(this);
   }
