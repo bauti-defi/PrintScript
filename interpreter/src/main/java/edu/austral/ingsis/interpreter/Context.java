@@ -2,9 +2,9 @@ package edu.austral.ingsis.interpreter;
 
 public class Context {
 
-  private final DeclarationTable declarations = new DeclarationTable();
+  private final VariableTable variables = new VariableTable();
 
-  public DeclarationTable getDeclarations() {
-    return declarations;
+  public VariableTable getVariables() {
+    return variables;
   }
 }

@@ -12,7 +12,7 @@ public class LogicalOpNode extends CompoundExpressionNode implements Visitable {
 
   @Override
   public String getNodeType() {
-    return "LOGICAL";
+    return "LOGICAL_EXPRESSION";
   }
 
   @Override

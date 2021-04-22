@@ -12,7 +12,7 @@ public class BinaryOpNode extends CompoundExpressionNode implements Visitable {
 
   @Override
   public String getNodeType() {
-    return this.token.getValue();
+    return "BINARY_EXPRESSION";
   }
 
   @Override

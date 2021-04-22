@@ -10,12 +10,6 @@ public class DeclarationVisitor implements Visitor {
   private String type;
   private boolean immutable;
 
-  private final Context context;
-
-  private DeclarationVisitor(Context context) {
-    this.context = context;
-  }
-
   @Override
   public void visit(ReferenceAssignationNode node) {}
 
@@ -64,13 +58,9 @@ public class DeclarationVisitor implements Visitor {
   @Override
   public void visit(ReferenceNode node) {}
 
-  public static void process(DeclarationNode node, Context context) {
-    final DeclarationVisitor visitor = new DeclarationVisitor(context);
+  public static Declaration process(DeclarationNode node) {
+    final DeclarationVisitor visitor = new DeclarationVisitor();
     visitor.visit(node);
-    try {
-      context.getDeclarations().insert(visitor.identifier, visitor.type, visitor.immutable);
-    } catch (Exception e) {
-      System.out.println(e);
-    }
+    return new Declaration(visitor.identifier, visitor.immutable, visitor.type);
   }
 }

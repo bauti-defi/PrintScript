@@ -13,16 +13,46 @@ public class ASTVisitor implements Visitor {
     this.context = context;
   }
 
+  @SneakyThrows
   @Override
   public void visit(ReferenceAssignationNode node) {
-    node.getLeft().accept(this);
-    node.getRight().accept(this);
+    String value = null;
+    switch (context.getVariables().getDeclaration(node.getLeft().getIdentifier()).getType()){
+      case "number":
+        value = String.valueOf(NumberExpressionVisitor.process(node.getRight(), context));
+        break;
+    }
+
+    try {
+      context.getVariables().setValue(node.getLeft().getIdentifier(), value);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
   public void visit(DeclarationAssignationNode node) {
-    node.getLeft().accept(this);
-    node.getRight().accept(this);
+    final Declaration declaration = DeclarationVisitor.process(node.getLeft());
+    try {
+      context.getVariables().insertDeclaration(declaration);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    String value = null;
+    switch (declaration.getType()){
+      case "number":
+        value = String.valueOf(NumberExpressionVisitor.process(node.getRight(), context));
+      case "string":
+
+        break;
+    }
+
+    try {
+      context.getVariables().setValue(declaration.getIdentifier(), value);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
@@ -30,7 +60,7 @@ public class ASTVisitor implements Visitor {
 
   @Override
   public void visit(DeclarationNode node) {
-    DeclarationVisitor.process(node, context);
+    DeclarationVisitor.process(node);
   }
 
   @Override
@@ -57,24 +87,10 @@ public class ASTVisitor implements Visitor {
   @SneakyThrows
   @Override
   public void visit(ReferenceNode node) {
-    if (!context.getDeclarations().contains(node.getIdentifier())) {
-      throw new Exception("Identifier " + node.getIdentifier() + " is undefined.");
-    }
+    System.out.println("Reference");
   }
 
-  public static void process(AST ast, Context context) {
-    ASTVisitor visitor = new ASTVisitor(context);
-    ast.getNodes()
-        .forEach(
-            node -> {
-              switch (node.getNodeType()) {
-                case "DECLARATION_ASSIGNATION":
-                  ((DeclarationAssignationNode) node).accept(visitor);
-                  break;
-                case "REFERENCE_ASSIGNATION":
-                  ((ReferenceAssignationNode) node).accept(visitor);
-                  break;
-              }
-            });
+  public static ASTVisitor create(Context context) {
+    return new ASTVisitor(context);
   }
 }
