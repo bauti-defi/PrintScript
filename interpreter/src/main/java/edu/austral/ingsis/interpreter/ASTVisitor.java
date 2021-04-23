@@ -1,5 +1,6 @@
 package edu.austral.ingsis.interpreter;
 
+import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.ast.visitor.Visitor;
 import lombok.SneakyThrows;
@@ -19,7 +20,7 @@ public class ASTVisitor implements Visitor {
       context
           .getVariables()
           .setValue(
-              node.getLeft().getIdentifier(),
+              node.getIdentifier(),
               ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
@@ -28,18 +29,13 @@ public class ASTVisitor implements Visitor {
 
   @Override
   public void visit(DeclarationAssignationNode node) {
-    final Declaration declaration = DeclarationVisitor.process(node.getLeft());
-    try {
-      context.getVariables().insertDeclaration(declaration);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    this.visit(node.getLeft());
 
     try {
       context
           .getVariables()
           .setValue(
-              declaration.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
+              node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -50,7 +46,15 @@ public class ASTVisitor implements Visitor {
 
   @Override
   public void visit(DeclarationNode node) {
-    DeclarationVisitor.process(node);
+    boolean immutable = node.getToken().getType() == TokenType.CONST;
+    String identifier = node.getLeft().getToken().getValue();
+    String type = node.getRight().getToken().getValue();
+
+    try {
+      context.getVariables().insertDeclaration(new Declaration(identifier, immutable,type));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
@@ -74,7 +78,6 @@ public class ASTVisitor implements Visitor {
   @Override
   public void visit(IfStatementNode node) {}
 
-  @SneakyThrows
   @Override
   public void visit(ReferenceNode node) {}
 

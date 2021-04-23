@@ -3,15 +3,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import edu.austral.ingsis.Token;
 import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.nodes.*;
-import edu.austral.ingsis.ast.parsers.DelcarationAssignationParser;
+import edu.austral.ingsis.ast.parsers.DeclarationAssignationParser;
 import java.util.Arrays;
 import java.util.List;
+
+import edu.austral.ingsis.ast.parsers.DeclarationParser;
 import org.junit.jupiter.api.Test;
 
-public class DelcarationAssignationParserTest implements TokenHelper {
+public class DeclarationAssignationParserTest implements TokenHelper {
 
   @Test
-  public void testBuild01() {
+  public void testParse01() {
 
     // let x:number = "hola"
     List<Token> tokens =
@@ -23,10 +25,10 @@ public class DelcarationAssignationParserTest implements TokenHelper {
             createMockToken("=", TokenType.EQUALS),
             createMockToken("5", TokenType.LITERAL));
 
-    final DelcarationAssignationParser builder = new DelcarationAssignationParser();
+    final DeclarationAssignationParser parser = new DeclarationAssignationParser(new DeclarationParser(TokenType.LET));
 
-    if (builder.predicate(tokens)) {
-      final DeclarationAssignationNode node = builder.parse(tokens);
+    if (parser.predicate(tokens)) {
+      final DeclarationAssignationNode node = parser.parse(tokens);
       assertEquals(TokenType.EQUALS, node.getToken().getType());
       assertEquals(TokenType.LET, node.getLeft().getToken().getType());
       assertEquals(TokenType.LITERAL, node.getRight().getToken().getType());
@@ -36,7 +38,7 @@ public class DelcarationAssignationParserTest implements TokenHelper {
   }
 
   @Test
-  public void testBuild02() {
+  public void testParse02() {
 
     // let x:number = "hola"
     List<Token> tokens =
@@ -48,10 +50,10 @@ public class DelcarationAssignationParserTest implements TokenHelper {
             createMockToken("=", TokenType.EQUALS),
             createMockToken("5", TokenType.LITERAL));
 
-    final DelcarationAssignationParser builder = new DelcarationAssignationParser();
+    final DeclarationAssignationParser parser = new DeclarationAssignationParser(new DeclarationParser(TokenType.CONST));
 
-    if (builder.predicate(tokens)) {
-      final DeclarationAssignationNode node = builder.parse(tokens);
+    if (parser.predicate(tokens)) {
+      final DeclarationAssignationNode node = parser.parse(tokens);
       assertEquals(TokenType.EQUALS, node.getToken().getType());
       assertEquals(TokenType.CONST, node.getLeft().getToken().getType());
       assertEquals(TokenType.LITERAL, node.getRight().getToken().getType());
