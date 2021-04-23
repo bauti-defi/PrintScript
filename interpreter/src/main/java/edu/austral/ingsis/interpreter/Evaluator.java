@@ -2,7 +2,7 @@ package edu.austral.ingsis.interpreter;
 
 import edu.austral.ingsis.ast.nodes.*;
 
-public interface ExpressionVisitor<T> {
+public interface Evaluator<T> {
 
   T visit(BinaryOpNode node); // string or number
 
@@ -12,5 +12,5 @@ public interface ExpressionVisitor<T> {
 
   T visit(ReferenceNode node); // string, number boolean
 
-  boolean visit(LogicalOpNode node); // boolean
+  T visit(LogicalOpNode node); // boolean
 }

@@ -28,7 +28,12 @@ public class Lexer {
       return Token.builder().value(s).type(keyWords.get(s)).index(index).line(line).build();
 
     if (isString(s))
-      return Token.builder().value("\""+s+"\"").type(TokenType.LITERAL).index(index).line(line).build();
+      return Token.builder()
+          .value("\"" + s + "\"")
+          .type(TokenType.LITERAL)
+          .index(index)
+          .line(line)
+          .build();
 
     if (isNumber(s))
       return Token.builder().value(s).type(TokenType.LITERAL).index(index).line(line).build();

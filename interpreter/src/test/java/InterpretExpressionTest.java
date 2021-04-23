@@ -10,7 +10,7 @@ import edu.austral.ingsis.interpreter.Context;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-public class InterpreterTest implements TokenHelper {
+public class InterpretExpressionTest implements TokenHelper {
 
   private AST createAST(String filename) {
     Lexer lexer = new Lexer();
@@ -72,7 +72,6 @@ public class InterpreterTest implements TokenHelper {
       e.printStackTrace();
     }
   }
-
 
   @Test
   public void testNumberDeclaration() {

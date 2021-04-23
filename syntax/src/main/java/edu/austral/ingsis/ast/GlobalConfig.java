@@ -1,9 +1,7 @@
 package edu.austral.ingsis.ast;
 
-import edu.austral.ingsis.ast.parsers.DelcarationAssignationParser;
-import edu.austral.ingsis.ast.parsers.NodeParser;
-import edu.austral.ingsis.ast.parsers.PrintlnParser;
-import edu.austral.ingsis.ast.parsers.ReferenceAssignationParser;
+import edu.austral.ingsis.ast.parsers.*;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,5 +11,6 @@ public class GlobalConfig {
       Arrays.asList(
           new DelcarationAssignationParser(),
           new ReferenceAssignationParser(),
+              new DeclarationParser(),
           new PrintlnParser());
 }

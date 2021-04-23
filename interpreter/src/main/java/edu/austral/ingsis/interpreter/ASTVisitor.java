@@ -15,15 +15,8 @@ public class ASTVisitor implements Visitor {
   @SneakyThrows
   @Override
   public void visit(ReferenceAssignationNode node) {
-    String value = null;
-    switch (context.getVariables().getDeclaration(node.getLeft().getIdentifier()).getType()) {
-      case "number":
-        value = String.valueOf(NumberExpressionVisitor.process(node.getRight(), context));
-        break;
-    }
-
     try {
-      context.getVariables().setValue(node.getLeft().getIdentifier(), value);
+      context.getVariables().setValue(node.getLeft().getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -38,18 +31,8 @@ public class ASTVisitor implements Visitor {
       e.printStackTrace();
     }
 
-    String value = null;
-    switch (declaration.getType()) {
-      case "number":
-        value = String.valueOf(NumberExpressionVisitor.process(node.getRight(), context));
-        break;
-      case "string":
-        value = StringExpressionVisitor.process(node.getRight(), context);
-        break;
-    }
-
     try {
-      context.getVariables().setValue(declaration.getIdentifier(), value);
+      context.getVariables().setValue(declaration.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -87,7 +70,7 @@ public class ASTVisitor implements Visitor {
   @SneakyThrows
   @Override
   public void visit(ReferenceNode node) {
-    System.out.println("Reference");
+
   }
 
   public static ASTVisitor create(Context context) {
