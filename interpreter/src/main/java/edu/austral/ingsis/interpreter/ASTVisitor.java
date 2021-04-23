@@ -16,7 +16,11 @@ public class ASTVisitor implements Visitor {
   @Override
   public void visit(ReferenceAssignationNode node) {
     try {
-      context.getVariables().setValue(node.getLeft().getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
+      context
+          .getVariables()
+          .setValue(
+              node.getLeft().getIdentifier(),
+              ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -32,7 +36,10 @@ public class ASTVisitor implements Visitor {
     }
 
     try {
-      context.getVariables().setValue(declaration.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
+      context
+          .getVariables()
+          .setValue(
+              declaration.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -69,9 +76,7 @@ public class ASTVisitor implements Visitor {
 
   @SneakyThrows
   @Override
-  public void visit(ReferenceNode node) {
-
-  }
+  public void visit(ReferenceNode node) {}
 
   public static ASTVisitor create(Context context) {
     return new ASTVisitor(context);
