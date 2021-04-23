@@ -21,7 +21,6 @@ public class ExpressionEvaluator implements Evaluator<String> {
     return value.contains("\"");
   }
 
-
   private boolean isNumber(String s) {
     try {
       Integer.parseInt(s);
@@ -31,7 +30,7 @@ public class ExpressionEvaluator implements Evaluator<String> {
     }
   }
 
-  private boolean isBoolean(String s){
+  private boolean isBoolean(String s) {
     return s.equals("true") || s.equals("false");
   }
 
@@ -40,7 +39,7 @@ public class ExpressionEvaluator implements Evaluator<String> {
   public String visit(BinaryOpNode node) {
     String left = this.visit(node.getLeft());
     String right = this.visit(node.getRight());
-    if(isNumber(left) && isNumber(right)){
+    if (isNumber(left) && isNumber(right)) {
       int leftInt = Integer.parseInt(left);
       int rightInt = Integer.parseInt(right);
       switch (node.getToken().getType()) {
@@ -53,7 +52,9 @@ public class ExpressionEvaluator implements Evaluator<String> {
         case SLASH_SYMBOL:
           return String.valueOf(leftInt / rightInt);
       }
-    }else if(node.getToken().getType() == TokenType.PLUS_SYMBOL && !isBoolean(left) && !isBoolean(right)){
+    } else if (node.getToken().getType() == TokenType.PLUS_SYMBOL
+        && !isBoolean(left)
+        && !isBoolean(right)) {
       return left + right;
     }
     throw new Exception("Unsupported binary operation: " + node.getToken().getType());
