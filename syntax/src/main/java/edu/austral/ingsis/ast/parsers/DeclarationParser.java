@@ -8,7 +8,6 @@ import edu.austral.ingsis.ast.exceptions.SyntaxTokenExpectedException;
 import edu.austral.ingsis.ast.nodes.DeclarationNode;
 import edu.austral.ingsis.ast.nodes.IdentifierNode;
 import edu.austral.ingsis.ast.nodes.TypeNode;
-
 import java.security.InvalidParameterException;
 import java.util.List;
 
@@ -16,8 +15,8 @@ public class DeclarationParser implements NodeParser<DeclarationNode> {
 
   private final TokenType type;
 
-  public DeclarationParser(TokenType type){
-    if(type != TokenType.LET && type != TokenType.CONST){
+  public DeclarationParser(TokenType type) {
+    if (type != TokenType.LET && type != TokenType.CONST) {
       throw new InvalidParameterException(type + " is not a valid declaration keyword");
     }
     this.type = type;

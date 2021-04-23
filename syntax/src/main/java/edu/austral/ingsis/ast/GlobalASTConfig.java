@@ -15,12 +15,11 @@ public class GlobalASTConfig {
           new PrintlnParser());
 
   public static List<NodeParser<?>> NODE_PARSERS_V_1_1 =
-          Arrays.asList(
-                  new DeclarationAssignationParser(new DeclarationParser(TokenType.LET),
-                          new DeclarationParser(TokenType.CONST)),
-                  new ReferenceAssignationParser(),
-                  new DeclarationParser(TokenType.LET),
-                  new DeclarationParser(TokenType.CONST),
-                  new PrintlnParser());
+      Arrays.asList(
+          new DeclarationAssignationParser(
+              new DeclarationParser(TokenType.LET), new DeclarationParser(TokenType.CONST)),
+          new ReferenceAssignationParser(),
+          new DeclarationParser(TokenType.LET),
+          new DeclarationParser(TokenType.CONST),
+          new PrintlnParser());
 }
-

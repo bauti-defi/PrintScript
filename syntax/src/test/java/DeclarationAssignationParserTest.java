@@ -4,10 +4,9 @@ import edu.austral.ingsis.Token;
 import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.ast.parsers.DeclarationAssignationParser;
+import edu.austral.ingsis.ast.parsers.DeclarationParser;
 import java.util.Arrays;
 import java.util.List;
-
-import edu.austral.ingsis.ast.parsers.DeclarationParser;
 import org.junit.jupiter.api.Test;
 
 public class DeclarationAssignationParserTest implements TokenHelper {
@@ -25,7 +24,8 @@ public class DeclarationAssignationParserTest implements TokenHelper {
             createMockToken("=", TokenType.EQUALS),
             createMockToken("5", TokenType.LITERAL));
 
-    final DeclarationAssignationParser parser = new DeclarationAssignationParser(new DeclarationParser(TokenType.LET));
+    final DeclarationAssignationParser parser =
+        new DeclarationAssignationParser(new DeclarationParser(TokenType.LET));
 
     if (parser.predicate(tokens)) {
       final DeclarationAssignationNode node = parser.parse(tokens);
@@ -50,7 +50,8 @@ public class DeclarationAssignationParserTest implements TokenHelper {
             createMockToken("=", TokenType.EQUALS),
             createMockToken("5", TokenType.LITERAL));
 
-    final DeclarationAssignationParser parser = new DeclarationAssignationParser(new DeclarationParser(TokenType.CONST));
+    final DeclarationAssignationParser parser =
+        new DeclarationAssignationParser(new DeclarationParser(TokenType.CONST));
 
     if (parser.predicate(tokens)) {
       final DeclarationAssignationNode node = parser.parse(tokens);

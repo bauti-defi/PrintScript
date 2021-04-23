@@ -19,9 +19,7 @@ public class ASTVisitor implements Visitor {
     try {
       context
           .getVariables()
-          .setValue(
-              node.getIdentifier(),
-              ExpressionEvaluator.evaluate(node.getRight(), context));
+          .setValue(node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -34,8 +32,7 @@ public class ASTVisitor implements Visitor {
     try {
       context
           .getVariables()
-          .setValue(
-              node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
+          .setValue(node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -51,7 +48,7 @@ public class ASTVisitor implements Visitor {
     String type = node.getRight().getToken().getValue();
 
     try {
-      context.getVariables().insertDeclaration(new Declaration(identifier, immutable,type));
+      context.getVariables().insertDeclaration(new Declaration(identifier, immutable, type));
     } catch (Exception e) {
       e.printStackTrace();
     }
