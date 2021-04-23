@@ -6,11 +6,11 @@ import edu.austral.ingsis.ast.exceptions.SemicolonAbsentException;
 import edu.austral.ingsis.ast.exceptions.SyntaxException;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.ast.parsers.NodeParser;
-import lombok.Builder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.Builder;
 
 @Builder
 public class ASTBuilder {

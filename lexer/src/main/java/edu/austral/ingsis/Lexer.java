@@ -1,19 +1,16 @@
 package edu.austral.ingsis;
 
 import java.util.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @Builder
 @Data
 public class Lexer {
 
-    @Builder.Default
-    private final Map<String, TokenType> keywords = Keywords.getKeyword();
+  @Builder.Default private final Map<String, TokenType> keywords = Keywords.getKeyword();
 
   public List<Token> tokenize(List<String> document) {
     List<String> strings;
@@ -30,11 +27,13 @@ public class Lexer {
     if (keywords.containsKey(s))
       return Token.builder().value(s).type(keywords.get(s)).index(index).line(line).build();
 
-    if (isString(s)){
-//        System.out.println("\""+s+"\"");
-        return Token.builder().value("\""+s+"\"").type(TokenType.LITERAL).index(index).line(line).build();
-
-    }
+    if (isString(s))
+      return Token.builder()
+          .value("\"" + s + "\"")
+          .type(TokenType.LITERAL)
+          .index(index)
+          .line(line)
+          .build();
 
     if (isNumber(s))
       return Token.builder().value(s).type(TokenType.LITERAL).index(index).line(line).build();

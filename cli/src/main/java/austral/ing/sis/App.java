@@ -3,6 +3,7 @@ package austral.ing.sis;
 import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
 import edu.austral.ingsis.Token;
+import edu.austral.ingsis.ast.AST;
 import java.util.List;
 import picocli.CommandLine;
 import picocli.CommandLine.*;
@@ -13,20 +14,20 @@ import picocli.CommandLine.*;
     version = "1.0",
     mixinStandardHelpOptions = true)
 public class App implements Runnable {
-    //CLI
-    @Parameters(paramLabel = "<file path>", description = "Path of .txt file")
-    private String filePath = "";
+  // CLI
+  @Parameters(paramLabel = "<file path>", description = "Path of .txt file")
+  private String filePath = "";
 
-    private final Lexer lexer = Lexer.builder().build();
+  private final Lexer lexer = Lexer.builder().build();
 
-    public void run() {
-        List<String> document = FileReaderPS.read(filePath);
-        List<Token> tokens = lexer.tokenize(document);
-        System.out.println(tokens);
-    }
+  public void run() {
+    List<String> document = FileReaderPS.read(filePath);
+    List<Token> tokens = lexer.tokenize(document);
+    AST ast = AST.create(tokens);
+  }
 
-    public static void main(String[] args) {
-        final var exitCode = new CommandLine(new App()).execute(args);
-        System.exit(exitCode);
-    }
+  public static void main(String[] args) {
+    final var exitCode = new CommandLine(new App()).execute(args);
+    System.exit(exitCode);
+  }
 }
