@@ -1,5 +1,3 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
 import edu.austral.ingsis.Token;
@@ -8,13 +6,13 @@ import edu.austral.ingsis.ast.nodes.DeclarationAssignationNode;
 import edu.austral.ingsis.interpreter.ASTVisitor;
 import edu.austral.ingsis.interpreter.Context;
 import java.util.List;
-
-import edu.austral.ingsis.interpreter.Interpreter;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class InterpreterTest implements TokenHelper {
 
-  private final AST createAST(String filename) {
+  private AST createAST(String filename) {
     Lexer lexer = new Lexer();
     List<Token> tokens = lexer.tokenize(FileReaderPS.read("src/test/java/scripts/" + filename));
     tokens.forEach(System.out::println);
@@ -28,8 +26,8 @@ public class InterpreterTest implements TokenHelper {
 
     ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
 
-    assertEquals(true, !context.getVariables().isUndefined("message"));
-    assertEquals(false, context.getVariables().getDeclaration("message").isImmutable());
+    assertTrue(!context.getVariables().isUndefined("message"));
+    assertFalse(context.getVariables().getDeclaration("message").isImmutable());
     assertEquals("string", context.getVariables().getDeclaration("message").getType());
 
     try {
@@ -46,8 +44,8 @@ public class InterpreterTest implements TokenHelper {
 
     ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
 
-    assertEquals(false, context.getVariables().isUndefined("x"));
-    assertEquals(false, context.getVariables().getDeclaration("x").isImmutable());
+    assertFalse(context.getVariables().isUndefined("x"));
+    assertFalse(context.getVariables().getDeclaration("x").isImmutable());
     assertEquals("number", context.getVariables().getDeclaration("x").getType());
 
     try {
@@ -64,8 +62,8 @@ public class InterpreterTest implements TokenHelper {
 
     ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
 
-    assertEquals(true, !context.getVariables().isUndefined("x"));
-    assertEquals(true, context.getVariables().getDeclaration("x").isImmutable());
+    assertTrue(!context.getVariables().isUndefined("x"));
+    assertTrue(context.getVariables().getDeclaration("x").isImmutable());
     assertEquals("number", context.getVariables().getDeclaration("x").getType());
   }
 }

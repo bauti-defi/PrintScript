@@ -1,6 +1,5 @@
 package edu.austral.ingsis.interpreter;
 
-import edu.austral.ingsis.ast.AST;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.ast.visitor.Visitor;
 import lombok.SneakyThrows;
@@ -17,7 +16,7 @@ public class ASTVisitor implements Visitor {
   @Override
   public void visit(ReferenceAssignationNode node) {
     String value = null;
-    switch (context.getVariables().getDeclaration(node.getLeft().getIdentifier()).getType()){
+    switch (context.getVariables().getDeclaration(node.getLeft().getIdentifier()).getType()) {
       case "number":
         value = String.valueOf(NumberExpressionVisitor.process(node.getRight(), context));
         break;
@@ -40,11 +39,10 @@ public class ASTVisitor implements Visitor {
     }
 
     String value = null;
-    switch (declaration.getType()){
+    switch (declaration.getType()) {
       case "number":
         value = String.valueOf(NumberExpressionVisitor.process(node.getRight(), context));
       case "string":
-
         break;
     }
 

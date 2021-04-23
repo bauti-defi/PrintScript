@@ -19,7 +19,7 @@ public class NumberExpressionVisitor implements ExpressionVisitor<Integer> {
 
   @Override
   public Integer visit(BinaryOpNode node) {
-    switch (node.getToken().getType()){
+    switch (node.getToken().getType()) {
       case PLUS_SYMBOL:
         return this.visit(node.getLeft()) + this.visit(node.getRight());
       case MINUS_SYMBOL:
@@ -40,7 +40,7 @@ public class NumberExpressionVisitor implements ExpressionVisitor<Integer> {
   @SneakyThrows
   @Override
   public Integer visit(ExpressionNode node) {
-    switch (node.getNodeType()){
+    switch (node.getNodeType()) {
       case "BINARY_EXPRESSION":
         return this.visit((BinaryOpNode) node);
       case "VALUE_LITERAL":

@@ -12,7 +12,7 @@ public class Interpreter {
     ast.getNodes().forEach(node -> execute(node, context));
   }
 
-  private void execute(AbstractNode node, Context context){
+  private void execute(AbstractNode node, Context context) {
     switch (node.getNodeType()) {
       case "DECLARATION_ASSIGNATION":
         ASTVisitor.create(context).visit((DeclarationAssignationNode) node);

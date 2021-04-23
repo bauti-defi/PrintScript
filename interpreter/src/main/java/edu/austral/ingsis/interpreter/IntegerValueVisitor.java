@@ -7,21 +7,20 @@ import lombok.SneakyThrows;
 
 public class IntegerValueVisitor implements ValueVisitor<Integer> {
 
-    private final Context context;
+  private final Context context;
 
-    public IntegerValueVisitor(Context context) {
-        this.context = context;
-    }
+  public IntegerValueVisitor(Context context) {
+    this.context = context;
+  }
 
-    @SneakyThrows
-    @Override
-    public Integer visit(ReferenceNode node) {
-        return Integer.valueOf(context.getVariables().getValue(node.getIdentifier()));
-    }
+  @SneakyThrows
+  @Override
+  public Integer visit(ReferenceNode node) {
+    return Integer.valueOf(context.getVariables().getValue(node.getIdentifier()));
+  }
 
-    @Override
-    public Integer visit(ValueLiteralNode node) {
-        return Integer.valueOf(node.getToken().getValue());
-    }
-
+  @Override
+  public Integer visit(ValueLiteralNode node) {
+    return Integer.valueOf(node.getToken().getValue());
+  }
 }

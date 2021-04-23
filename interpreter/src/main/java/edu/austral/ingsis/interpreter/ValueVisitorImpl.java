@@ -7,21 +7,20 @@ import lombok.SneakyThrows;
 
 public class ValueVisitorImpl implements ValueVisitor<String> {
 
-    private final Context context;
+  private final Context context;
 
-    public ValueVisitorImpl(Context context) {
-        this.context = context;
-    }
+  public ValueVisitorImpl(Context context) {
+    this.context = context;
+  }
 
-    @SneakyThrows
-    @Override
-    public String visit(ReferenceNode node) {
-        return context.getVariables().getValue(node.getIdentifier());
-    }
+  @SneakyThrows
+  @Override
+  public String visit(ReferenceNode node) {
+    return context.getVariables().getValue(node.getIdentifier());
+  }
 
-    @Override
-    public String visit(ValueLiteralNode node) {
-        return node.getToken().getValue();
-    }
-
+  @Override
+  public String visit(ValueLiteralNode node) {
+    return node.getToken().getValue();
+  }
 }
