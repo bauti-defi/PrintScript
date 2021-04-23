@@ -2,7 +2,6 @@ package edu.austral.ingsis.interpreter;
 
 import edu.austral.ingsis.ast.nodes.ReferenceNode;
 import edu.austral.ingsis.ast.nodes.ValueLiteralNode;
-import edu.austral.ingsis.ast.visitor.ValueVisitor;
 import lombok.SneakyThrows;
 
 public class IntegerValueVisitor implements ValueVisitor<Integer> {

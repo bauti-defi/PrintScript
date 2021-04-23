@@ -1,7 +1,6 @@
 package edu.austral.ingsis.interpreter;
 
 import edu.austral.ingsis.ast.nodes.*;
-import edu.austral.ingsis.ast.visitor.ExpressionVisitor;
 import lombok.SneakyThrows;
 
 public class NumberExpressionVisitor implements ExpressionVisitor<Integer> {
@@ -33,8 +32,8 @@ public class NumberExpressionVisitor implements ExpressionVisitor<Integer> {
   }
 
   @Override
-  public String visit(ValueLiteralNode node) {
-    return node.getToken().getValue();
+  public Integer visit(ValueLiteralNode node) {
+    return Integer.valueOf(node.getToken().getValue());
   }
 
   @SneakyThrows
@@ -44,17 +43,17 @@ public class NumberExpressionVisitor implements ExpressionVisitor<Integer> {
       case "BINARY_EXPRESSION":
         return this.visit((BinaryOpNode) node);
       case "VALUE_LITERAL":
-        return Integer.valueOf(this.visit((ValueLiteralNode) node));
+        return this.visit((ValueLiteralNode) node);
       case "REFERENCE":
-        return Integer.valueOf(this.visit((ReferenceNode) node));
+        return this.visit((ReferenceNode) node);
     }
     throw new Exception("Unknown symbol: " + node.getToken().getValue());
   }
 
   @SneakyThrows
   @Override
-  public String visit(ReferenceNode node) {
-    return this.context.getVariables().getValue(node.getIdentifier());
+  public Integer visit(ReferenceNode node) {
+    return Integer.valueOf(this.context.getVariables().getValue(node.getIdentifier()));
   }
 
   @Override

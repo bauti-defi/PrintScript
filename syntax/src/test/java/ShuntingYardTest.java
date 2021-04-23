@@ -34,25 +34,26 @@ public class ShuntingYardTest implements TokenHelper {
 
     assertEquals(expected, result);
   }
+
   @Test
   public void testProcessShuntingYard02() {
     // 5+5+(5*5)-1
     List<Token> tokens =
-            Arrays.asList(
-                    createMockToken("5", TokenType.LITERAL),
-                    createMockToken("+", TokenType.PLUS_SYMBOL),
-                    createMockToken("5", TokenType.LITERAL),
-                    createMockToken("+", TokenType.PLUS_SYMBOL),
-                    createMockToken("(", TokenType.L_PARENTHESES),
-                    createMockToken("5", TokenType.LITERAL),
-                    createMockToken("*", TokenType.STAR_SYMBOL),
-                    createMockToken("5", TokenType.LITERAL),
-                    createMockToken(")", TokenType.R_PARENTHESES),
-                    createMockToken("-", TokenType.MINUS_SYMBOL),
-                    createMockToken("1", TokenType.LITERAL));
+        Arrays.asList(
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken("+", TokenType.PLUS_SYMBOL),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken("+", TokenType.PLUS_SYMBOL),
+            createMockToken("(", TokenType.L_PARENTHESES),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken("*", TokenType.STAR_SYMBOL),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken(")", TokenType.R_PARENTHESES),
+            createMockToken("-", TokenType.MINUS_SYMBOL),
+            createMockToken("1", TokenType.LITERAL));
 
     List<String> result =
-            ShuntingYard.parse(tokens).stream().map(Token::getValue).collect(Collectors.toList());
+        ShuntingYard.parse(tokens).stream().map(Token::getValue).collect(Collectors.toList());
 
     List<String> expected = Arrays.asList("5", "5", "+", "5", "5", "*", "+", "1", "-");
 

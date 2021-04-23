@@ -42,7 +42,9 @@ public class ASTVisitor implements Visitor {
     switch (declaration.getType()) {
       case "number":
         value = String.valueOf(NumberExpressionVisitor.process(node.getRight(), context));
+        break;
       case "string":
+        value = StringExpressionVisitor.process(node.getRight(), context);
         break;
     }
 

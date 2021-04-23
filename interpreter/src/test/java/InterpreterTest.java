@@ -1,3 +1,5 @@
+import static org.junit.jupiter.api.Assertions.*;
+
 import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
 import edu.austral.ingsis.Token;
@@ -7,8 +9,6 @@ import edu.austral.ingsis.interpreter.ASTVisitor;
 import edu.austral.ingsis.interpreter.Context;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class InterpreterTest implements TokenHelper {
 
@@ -36,6 +36,43 @@ public class InterpreterTest implements TokenHelper {
       e.printStackTrace();
     }
   }
+
+  @Test
+  public void testStringConcat() {
+    final AST ast = createAST("testStringConcat.txt");
+    final Context context = new Context();
+
+    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
+
+    assertTrue(!context.getVariables().isUndefined("name"));
+    assertFalse(context.getVariables().getDeclaration("name").isImmutable());
+    assertEquals("string", context.getVariables().getDeclaration("name").getType());
+
+    try {
+      assertEquals("BautistaBaiocchi", context.getVariables().getValue("name"));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Test
+  public void testStringNumberConcat() {
+    final AST ast = createAST("testStringNumberConcat.txt");
+    final Context context = new Context();
+
+    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
+
+    assertTrue(!context.getVariables().isUndefined("name"));
+    assertFalse(context.getVariables().getDeclaration("name").isImmutable());
+    assertEquals("string", context.getVariables().getDeclaration("name").getType());
+
+    try {
+      assertEquals("Bautista12345", context.getVariables().getValue("name"));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
 
   @Test
   public void testNumberDeclaration() {

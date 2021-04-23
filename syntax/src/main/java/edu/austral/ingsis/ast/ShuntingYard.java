@@ -12,8 +12,8 @@ public class ShuntingYard {
     return token.getType() == type;
   }
 
-  private static int precedence(Token token){
-    switch (token.getType()){
+  private static int precedence(Token token) {
+    switch (token.getType()) {
       case R_PARENTHESES:
         return 3;
       case STAR_SYMBOL:
@@ -37,24 +37,24 @@ public class ShuntingYard {
       if (isTokenType(token, TokenType.L_PARENTHESES)) {
         operatorStack.push(token);
       } else if (isTokenType(token, TokenType.LITERAL)
-              || isTokenType(token, TokenType.IDENTIFIER)) {
+          || isTokenType(token, TokenType.IDENTIFIER)) {
         expStack.push(token);
-      } else if(isTokenType(token, TokenType.R_PARENTHESES)){
+      } else if (isTokenType(token, TokenType.R_PARENTHESES)) {
         Token popped;
         while (!isTokenType((popped = operatorStack.pop()), TokenType.L_PARENTHESES)) {
           expStack.push(popped);
         }
-      }else {
-          if(precedence(token) == -1){
-            throw new SyntaxException(token);
-          }
-          while (!operatorStack.empty() && precedence(operatorStack.peek()) >= precedence(token)) {
-            Token top = operatorStack.pop();
-            expStack.push(top);
-          }
-          operatorStack.push(token);
+      } else {
+        if (precedence(token) == -1) {
+          throw new SyntaxException(token);
         }
+        while (!operatorStack.empty() && precedence(operatorStack.peek()) >= precedence(token)) {
+          Token top = operatorStack.pop();
+          expStack.push(top);
+        }
+        operatorStack.push(token);
       }
+    }
 
     expStack.addAll(operatorStack);
 
