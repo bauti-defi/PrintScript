@@ -21,6 +21,9 @@ public class Keywords {
     keywords.put("*", TokenType.STAR_SYMBOL);
     keywords.put("/", TokenType.SLASH_SYMBOL);
     keywords.put("println", TokenType.PRINTLN);
+    keywords.put("boolean", TokenType.BOOLEAN);
+    keywords.put("true", TokenType.TRUE);
+    keywords.put("false", TokenType.FALSE);
     keywords.put("(", TokenType.L_PARENTHESES);
     keywords.put(")", TokenType.R_PARENTHESES);
 

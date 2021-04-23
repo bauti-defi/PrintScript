@@ -5,6 +5,8 @@ import edu.austral.ingsis.Lexer;
 import edu.austral.ingsis.Token;
 import edu.austral.ingsis.ast.AST;
 import java.util.List;
+
+import edu.austral.ingsis.interpreter.Interpreter;
 import picocli.CommandLine;
 import picocli.CommandLine.*;
 
@@ -19,11 +21,12 @@ public class App implements Runnable {
   private String filePath = "";
 
   private final Lexer lexer = Lexer.builder().build();
-
+  private final Interpreter interpreter = new Interpreter();
   public void run() {
     List<String> document = FileReaderPS.read(filePath);
     List<Token> tokens = lexer.tokenize(document);
     AST ast = AST.create(tokens);
+    interpreter.execute(ast);
   }
 
   public static void main(String[] args) {
