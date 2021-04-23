@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileReaderPS {
-  public static List<String> read(String filename) {
+
+  public static List<String> read(String path) {
     List<String> document = new ArrayList<>();
     try {
-      File statements = new File(filename);
+      File statements = new File(path);
       Scanner reader = new Scanner(statements);
       while (reader.hasNextLine()) {
         document.add(reader.nextLine());

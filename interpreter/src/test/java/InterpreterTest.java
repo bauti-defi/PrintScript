@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 public class InterpreterTest implements TokenHelper {
 
   private final AST createAST(String filename) {
-    Lexer lexer = new Lexer();
+    Lexer lexer = Lexer.builder().build();
     List<Token> tokens = lexer.tokenize(FileReaderPS.read("src/test/java/scripts/" + filename));
     tokens.forEach(System.out::println);
     return AST.create(tokens);
