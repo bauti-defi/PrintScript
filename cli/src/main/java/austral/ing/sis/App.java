@@ -4,9 +4,9 @@ import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
 import edu.austral.ingsis.Token;
 import edu.austral.ingsis.ast.AST;
-import java.util.List;
-
+import edu.austral.ingsis.ast.GlobalASTConfig;
 import edu.austral.ingsis.interpreter.Interpreter;
+import java.util.List;
 import picocli.CommandLine;
 import picocli.CommandLine.*;
 
@@ -22,10 +22,11 @@ public class App implements Runnable {
 
   private final Lexer lexer = Lexer.builder().build();
   private final Interpreter interpreter = new Interpreter();
+
   public void run() {
     List<String> document = FileReaderPS.read(filePath);
     List<Token> tokens = lexer.tokenize(document);
-    AST ast = AST.create(tokens);
+    AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_0);
     interpreter.execute(ast);
   }
 
