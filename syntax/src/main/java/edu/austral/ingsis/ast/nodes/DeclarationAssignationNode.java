@@ -4,7 +4,8 @@ import edu.austral.ingsis.Token;
 import edu.austral.ingsis.ast.visitor.Visitable;
 import edu.austral.ingsis.ast.visitor.Visitor;
 
-public class DeclarationAssignationNode extends AbstractNode implements Visitable {
+public class DeclarationAssignationNode extends AssignationNode<DeclarationNode>
+    implements Visitable {
 
   private DeclarationNode declaration;
   private ExpressionNode value;
@@ -13,12 +14,22 @@ public class DeclarationAssignationNode extends AbstractNode implements Visitabl
     super(token);
   }
 
+  @Override
+  public String getNodeType() {
+    return "DECLARATION_ASSIGNATION";
+  }
+
   public void setLeft(DeclarationNode node) {
     this.declaration = node;
   }
 
   public DeclarationNode getLeft() {
     return this.declaration;
+  }
+
+  @Override
+  public String getIdentifier() {
+    return this.declaration.getLeft().getToken().getValue();
   }
 
   public void setRight(ExpressionNode node) {

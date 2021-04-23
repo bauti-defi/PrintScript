@@ -11,6 +11,11 @@ public class BinaryOpNode extends CompoundExpressionNode implements Visitable {
   }
 
   @Override
+  public String getNodeType() {
+    return "BINARY_EXPRESSION";
+  }
+
+  @Override
   public void accept(Visitor visitor) {
     visitor.visit(this);
   }

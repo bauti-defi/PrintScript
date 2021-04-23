@@ -11,6 +11,11 @@ public class ValueLiteralNode extends ExpressionNode implements Visitable {
   }
 
   @Override
+  public String getNodeType() {
+    return "VALUE_LITERAL";
+  }
+
+  @Override
   public void accept(Visitor visitor) {
     visitor.visit(this);
   }

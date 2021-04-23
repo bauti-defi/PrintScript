@@ -23,4 +23,8 @@ public interface Visitor {
   void visit(CompoundExpressionNode node);
 
   void visit(PrintNode node);
+
+  void visit(IfStatementNode node);
+
+  void visit(ReferenceNode node);
 }

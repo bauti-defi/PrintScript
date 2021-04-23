@@ -12,6 +12,11 @@ public class PrintNode extends AbstractNode implements Visitable {
     super(token);
   }
 
+  @Override
+  public String getNodeType() {
+    return "PRINT";
+  }
+
   public void setArgs(ExpressionNode args) {
     this.args = args;
   }

@@ -11,6 +11,11 @@ public class TypeNode extends AbstractNode implements Visitable {
   }
 
   @Override
+  public String getNodeType() {
+    return "TYPE";
+  }
+
+  @Override
   public void accept(Visitor visitor) {
     visitor.visit(this);
   }

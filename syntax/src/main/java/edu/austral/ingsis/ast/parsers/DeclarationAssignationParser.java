@@ -5,16 +5,21 @@ import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.*;
 import edu.austral.ingsis.ast.nodes.DeclarationAssignationNode;
 import edu.austral.ingsis.ast.nodes.DeclarationNode;
+import java.util.Arrays;
 import java.util.List;
 
-public class DelcarationAssignationParser implements NodeParser<DeclarationAssignationNode> {
+public class DeclarationAssignationParser implements NodeParser<DeclarationAssignationNode> {
 
-  private final DeclarationParser declarationParser = new DeclarationParser();
+  private final List<DeclarationParser> declarationParsers;
   private final ExpressionParser expressionParser = new ExpressionParser();
+
+  public DeclarationAssignationParser(DeclarationParser... declarationParsers) {
+    this.declarationParsers = Arrays.asList(declarationParsers);
+  }
 
   public boolean predicate(List<Token> tokens) {
     return containsToken(tokens, TokenType.EQUALS)
-        && (startsWith(tokens, TokenType.LET) || startsWith(tokens, TokenType.CONST));
+        && declarationParsers.stream().anyMatch(parser -> parser.predicate(tokens));
   }
 
   public DeclarationAssignationNode parse(List<Token> tokens) {
@@ -26,10 +31,12 @@ public class DelcarationAssignationParser implements NodeParser<DeclarationAssig
     final DeclarationAssignationNode declarationAssignationNode =
         new DeclarationAssignationNode(tokens.get(index));
 
-    if (declarationParser.predicate(declaration)) {
-      // Declare brand new variable
-      final DeclarationNode node = declarationParser.parse(declaration);
-      declarationAssignationNode.setLeft(node);
+    // Declare brand new variable
+    for (DeclarationParser parser : declarationParsers) {
+      if (parser.predicate(declaration)) {
+        final DeclarationNode node = parser.parse(declaration);
+        declarationAssignationNode.setLeft(node);
+      }
     }
 
     // Get value of assignation

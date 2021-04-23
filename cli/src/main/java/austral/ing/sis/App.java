@@ -3,8 +3,11 @@ package austral.ing.sis;
 import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
 import edu.austral.ingsis.Token;
+import edu.austral.ingsis.ast.AST;
+import edu.austral.ingsis.ast.GlobalASTConfig;
+import edu.austral.ingsis.interpreter.Interpreter;
 import java.util.List;
-import java.util.concurrent.Callable;
+import picocli.CommandLine;
 import picocli.CommandLine.*;
 
 @Command(
@@ -12,20 +15,23 @@ import picocli.CommandLine.*;
     description = "Executes printscript files",
     version = "1.0",
     mixinStandardHelpOptions = true)
-public class App implements Callable<Integer> {
+public class App implements Runnable {
+  // CLI
+  @Parameters(paramLabel = "<file path>", description = "Path of .txt file")
+  private String filePath = "";
 
-  @Parameters(description = "File to read", arity = "1")
-  private String filePath;
+  private final Lexer lexer = Lexer.builder().build();
+  private final Interpreter interpreter = new Interpreter();
 
-  private final Lexer lexer = new Lexer();
-
-  private void run() {
+  public void run() {
     List<String> document = FileReaderPS.read(filePath);
     List<Token> tokens = lexer.tokenize(document);
+    AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_0);
+    interpreter.execute(ast);
   }
 
-  @Override
-  public Integer call() throws Exception {
-    return null;
+  public static void main(String[] args) {
+    final var exitCode = new CommandLine(new App()).execute(args);
+    System.exit(exitCode);
   }
 }

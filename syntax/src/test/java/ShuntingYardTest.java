@@ -37,6 +37,31 @@ public class ShuntingYardTest implements TokenHelper {
 
   @Test
   public void testProcessShuntingYard02() {
+    // 5+5+(5*5)-1
+    List<Token> tokens =
+        Arrays.asList(
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken("+", TokenType.PLUS_SYMBOL),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken("+", TokenType.PLUS_SYMBOL),
+            createMockToken("(", TokenType.L_PARENTHESES),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken("*", TokenType.STAR_SYMBOL),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken(")", TokenType.R_PARENTHESES),
+            createMockToken("-", TokenType.MINUS_SYMBOL),
+            createMockToken("1", TokenType.LITERAL));
+
+    List<String> result =
+        ShuntingYard.parse(tokens).stream().map(Token::getValue).collect(Collectors.toList());
+
+    List<String> expected = Arrays.asList("5", "5", "+", "5", "5", "*", "+", "1", "-");
+
+    assertEquals(expected, result);
+  }
+
+  @Test
+  public void testProcessShuntingYard03() {
     // (5*4+3*x)-size
     List<Token> tokens =
         Arrays.asList(
@@ -61,7 +86,7 @@ public class ShuntingYardTest implements TokenHelper {
   }
 
   @Test
-  public void testProcessShuntingYard03() {
+  public void testProcessShuntingYard04() {
     // 5
     List<Token> tokens = Arrays.asList(createMockToken("5", TokenType.LITERAL));
 
@@ -74,7 +99,7 @@ public class ShuntingYardTest implements TokenHelper {
   }
 
   @Test
-  public void testProcessShuntingYard04() {
+  public void testProcessShuntingYard05() {
     // (5)-size
     List<Token> tokens =
         Arrays.asList(
@@ -93,7 +118,7 @@ public class ShuntingYardTest implements TokenHelper {
   }
 
   @Test
-  public void testProcessShuntingYard05() {
+  public void testProcessShuntingYard06() {
     // 5
     List<Token> tokens = Arrays.asList(createMockToken("5", TokenType.LITERAL));
 

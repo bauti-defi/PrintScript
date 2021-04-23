@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class DeclartionParserTest implements TokenHelper {
 
   @Test
-  public void testBuild() {
+  public void testLetParse() {
 
     // let x:number
     List<Token> tokens =
@@ -21,11 +21,34 @@ public class DeclartionParserTest implements TokenHelper {
             createMockToken(":", TokenType.COLON),
             createMockToken("number", TokenType.TYPE));
 
-    final DeclarationParser parser = new DeclarationParser();
+    final DeclarationParser parser = new DeclarationParser(TokenType.LET);
 
     if (parser.predicate(tokens)) {
       final DeclarationNode node = parser.parse(tokens);
       assertEquals(TokenType.LET, node.getToken().getType());
+      assertEquals(TokenType.IDENTIFIER, node.getLeft().getToken().getType());
+      assertEquals(TokenType.TYPE, node.getRight().getToken().getType());
+    } else {
+      throw new Error();
+    }
+  }
+
+  @Test
+  public void testParseConst() {
+
+    // const x:number
+    List<Token> tokens =
+        Arrays.asList(
+            createMockToken("const", TokenType.CONST),
+            createMockToken("x", TokenType.IDENTIFIER),
+            createMockToken(":", TokenType.COLON),
+            createMockToken("number", TokenType.TYPE));
+
+    final DeclarationParser parser = new DeclarationParser(TokenType.CONST);
+
+    if (parser.predicate(tokens)) {
+      final DeclarationNode node = parser.parse(tokens);
+      assertEquals(TokenType.CONST, node.getToken().getType());
       assertEquals(TokenType.IDENTIFIER, node.getLeft().getToken().getType());
       assertEquals(TokenType.TYPE, node.getRight().getToken().getType());
     } else {

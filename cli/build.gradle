@@ -28,14 +28,14 @@ compileTestJava {
 }
 
 application {
-    mainClass = 'edu.austral.ingsis.App'
+    mainClass = 'austral.ing.sis.App'
 }
 
 jar {
     manifest {
         attributes(
                 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'cli.App'
+                'Main-Class': 'austral.ing.sis.App'
         )
     }
 }
@@ -52,7 +52,7 @@ jacocoTestCoverageVerification {
 }
 
 graal {
-    mainClass 'edu.austral.ingsis.App'
+    mainClass 'austral.ing.sis.App'
     outputName 'printscript'
 }
 
