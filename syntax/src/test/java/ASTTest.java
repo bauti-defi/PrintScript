@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import edu.austral.ingsis.Token;
 import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.AST;
+import edu.austral.ingsis.ast.GlobalASTConfig;
 import edu.austral.ingsis.ast.nodes.DeclarationAssignationNode;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ASTTest implements TokenHelper {
             createMockToken("5", TokenType.LITERAL),
             createMockToken(";", TokenType.SEMICOLON));
 
-    final AST ast = AST.create(tokens);
+    final AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_0);
 
     assertEquals(1, ast.getNodes().size());
     boolean isRootAssignationNode = ast.getNodes().get(0) instanceof DeclarationAssignationNode;
