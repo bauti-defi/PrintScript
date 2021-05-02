@@ -1,6 +1,6 @@
 package edu.austral.ingsis.interpreter;
 
-import edu.austral.ingsis.TokenType;
+import edu.austral.ingsis.tokens.TokenType;
 import edu.austral.ingsis.ast.nodes.*;
 import lombok.SneakyThrows;
 

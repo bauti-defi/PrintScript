@@ -1,7 +1,7 @@
 package edu.austral.ingsis.ast.parsers;
 
-import edu.austral.ingsis.Token;
-import edu.austral.ingsis.TokenType;
+import edu.austral.ingsis.tokens.Token;
+import edu.austral.ingsis.tokens.TokenType;
 import edu.austral.ingsis.ast.TokenPattern;
 import edu.austral.ingsis.ast.exceptions.SyntaxException;
 import edu.austral.ingsis.ast.nodes.ExpressionNode;

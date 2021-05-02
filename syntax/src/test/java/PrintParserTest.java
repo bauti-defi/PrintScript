@@ -1,7 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import edu.austral.ingsis.Token;
-import edu.austral.ingsis.TokenType;
+import edu.austral.ingsis.tokens.Token;
+import edu.austral.ingsis.tokens.TokenType;
 import edu.austral.ingsis.ast.nodes.BinaryOpNode;
 import edu.austral.ingsis.ast.nodes.PrintNode;
 import edu.austral.ingsis.ast.parsers.PrintlnParser;

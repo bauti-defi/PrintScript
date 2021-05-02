@@ -1,6 +1,6 @@
 package edu.austral.ingsis.ast;
 
-import edu.austral.ingsis.TokenType;
+import edu.austral.ingsis.tokens.TokenType;
 import edu.austral.ingsis.ast.parsers.*;
 import java.util.Arrays;
 import java.util.List;

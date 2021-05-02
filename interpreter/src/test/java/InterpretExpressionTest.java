@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
-import edu.austral.ingsis.Token;
+import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.ast.AST;
 import edu.austral.ingsis.ast.GlobalASTConfig;
 import edu.austral.ingsis.ast.nodes.DeclarationAssignationNode;

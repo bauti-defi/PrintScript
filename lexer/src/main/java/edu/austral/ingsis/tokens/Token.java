@@ -1,4 +1,4 @@
-package edu.austral.ingsis;
+package edu.austral.ingsis.tokens;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
