@@ -6,7 +6,6 @@ import edu.austral.ingsis.ast.nodes.DeclarationAssignationNode;
 import edu.austral.ingsis.interpreter.ASTVisitor;
 import edu.austral.ingsis.interpreter.Context;
 import edu.austral.ingsis.tokens.Token;
-
 import java.util.List;
 
 public class InterpretPrintTest {

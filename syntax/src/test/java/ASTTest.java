@@ -27,7 +27,8 @@ public class ASTTest implements TokenHelper {
     final AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_0);
 
     assertEquals(1, ast.getBlock().getNodes().size());
-    boolean isRootAssignationNode = ast.getBlock().getNodes().get(0) instanceof DeclarationAssignationNode;
+    boolean isRootAssignationNode =
+        ast.getBlock().getNodes().get(0) instanceof DeclarationAssignationNode;
     assertEquals(true, isRootAssignationNode);
     final DeclarationAssignationNode declarationAssignationNode =
         (DeclarationAssignationNode) ast.getBlock().getNodes().get(0);
