@@ -104,7 +104,7 @@ public class InterpretExpressionTest {
     assertEquals("number", context.getVariables().getDeclaration("x").getType());
   }
 
-  //@Test
+  // @Test
   public void testBooleanDeclaration() {
     final AST ast = createAST("testComplexBooleanDeclaration.txt");
     final Context context = new Context();
