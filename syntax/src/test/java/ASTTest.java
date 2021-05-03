@@ -26,11 +26,11 @@ public class ASTTest implements TokenHelper {
 
     final AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_0);
 
-    assertEquals(1, ast.getNodes().size());
-    boolean isRootAssignationNode = ast.getNodes().get(0) instanceof DeclarationAssignationNode;
+    assertEquals(1, ast.getBlock().getNodes().size());
+    boolean isRootAssignationNode = ast.getBlock().getNodes().get(0) instanceof DeclarationAssignationNode;
     assertEquals(true, isRootAssignationNode);
     final DeclarationAssignationNode declarationAssignationNode =
-        (DeclarationAssignationNode) ast.getNodes().get(0);
+        (DeclarationAssignationNode) ast.getBlock().getNodes().get(0);
     assertEquals(TokenType.EQUALS, declarationAssignationNode.getToken().getType());
     assertEquals(TokenType.LET, declarationAssignationNode.getLeft().getToken().getType());
     assertEquals(TokenType.LITERAL, declarationAssignationNode.getRight().getToken().getType());

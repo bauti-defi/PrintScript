@@ -1,20 +1,20 @@
 package edu.austral.ingsis.ast;
 
-import edu.austral.ingsis.ast.nodes.AbstractNode;
+import edu.austral.ingsis.ast.nodes.CodeBlock;
 import edu.austral.ingsis.ast.parsers.NodeParser;
 import edu.austral.ingsis.tokens.Token;
 import java.util.List;
 
 public class AST {
 
-  private final List<AbstractNode> nodes;
+  private final CodeBlock block;
 
   private AST(ASTBuilder builder) {
-    this.nodes = builder.nodes;
+    this.block = new CodeBlock(builder.nodes);
   }
 
-  public List<AbstractNode> getNodes() {
-    return nodes;
+  public CodeBlock getBlock() {
+    return block;
   }
 
   public static AST create(List<Token> tokens, List<NodeParser<?>> parsers) {

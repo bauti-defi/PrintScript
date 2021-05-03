@@ -1,11 +1,12 @@
 import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
-import edu.austral.ingsis.Token;
 import edu.austral.ingsis.ast.AST;
 import edu.austral.ingsis.ast.GlobalASTConfig;
 import edu.austral.ingsis.ast.nodes.DeclarationAssignationNode;
 import edu.austral.ingsis.interpreter.ASTVisitor;
 import edu.austral.ingsis.interpreter.Context;
+import edu.austral.ingsis.tokens.Token;
+
 import java.util.List;
 
 public class InterpretPrintTest {
@@ -23,6 +24,6 @@ public class InterpretPrintTest {
     final AST ast = createAST("testPrint.txt");
     final Context context = new Context();
 
-    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
+    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
   }
 }
