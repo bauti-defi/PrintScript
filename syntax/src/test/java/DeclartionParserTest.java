@@ -55,4 +55,26 @@ public class DeclartionParserTest implements TokenHelper {
       throw new Error();
     }
   }
+
+  @Test
+  public void testParseBoolean() {
+    // const x:boolean
+    List<Token> tokens =
+            Arrays.asList(
+                    createMockToken("const", TokenType.CONST),
+                    createMockToken("x", TokenType.IDENTIFIER),
+                    createMockToken(":", TokenType.COLON),
+                    createMockToken("boolean", TokenType.TYPE));
+
+    final DeclarationParser parser = new DeclarationParser(TokenType.CONST);
+
+    if (parser.predicate(tokens)) {
+      final DeclarationNode node = parser.parse(tokens);
+      assertEquals(TokenType.CONST, node.getToken().getType());
+      assertEquals(TokenType.IDENTIFIER, node.getLeft().getToken().getType());
+      assertEquals(TokenType.TYPE, node.getRight().getToken().getType());
+    } else {
+      throw new Error();
+    }
+  }
 }
