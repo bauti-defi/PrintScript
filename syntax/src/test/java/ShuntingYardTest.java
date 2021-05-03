@@ -1,8 +1,8 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import edu.austral.ingsis.ast.ShuntingYard;
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
-import edu.austral.ingsis.ast.ShuntingYard;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

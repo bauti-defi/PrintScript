@@ -1,7 +1,7 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.ast.visitor.Visitor;
+import edu.austral.ingsis.tokens.Token;
 
 public class CompoundExpressionNode extends ExpressionNode {
 

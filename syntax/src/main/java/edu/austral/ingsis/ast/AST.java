@@ -1,8 +1,8 @@
 package edu.austral.ingsis.ast;
 
-import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
 import edu.austral.ingsis.ast.parsers.NodeParser;
+import edu.austral.ingsis.tokens.Token;
 import java.util.List;
 
 public class AST {

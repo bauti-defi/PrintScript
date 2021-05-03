@@ -1,11 +1,11 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import edu.austral.ingsis.tokens.Token;
-import edu.austral.ingsis.tokens.TokenType;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
 import edu.austral.ingsis.ast.nodes.BinaryOpNode;
 import edu.austral.ingsis.ast.nodes.LogicalOpNode;
 import edu.austral.ingsis.ast.parsers.ExpressionParser;
+import edu.austral.ingsis.tokens.Token;
+import edu.austral.ingsis.tokens.TokenType;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;

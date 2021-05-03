@@ -1,10 +1,9 @@
 package edu.austral.ingsis;
 
-import java.util.*;
-
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
 import edu.austral.ingsis.util.Keywords;
+import java.util.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

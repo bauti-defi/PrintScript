@@ -2,10 +2,9 @@ package edu.austral.ingsis;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.*;
-
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
+import java.util.*;
 import org.junit.jupiter.api.Test;
 
 class LexerTest {
