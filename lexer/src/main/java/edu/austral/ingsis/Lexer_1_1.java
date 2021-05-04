@@ -17,19 +17,20 @@ import lombok.NoArgsConstructor;
 @Data
 public class Lexer_1_1 {
 
-    private Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
-    private String accum = "";
-    private StateType state = StateType.EMPTY;
-    private List<Token> tokens = new ArrayList<>();
-    private Integer index = 0;
+  private final Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
+  private String accum = "";
+  private StateType state = StateType.EMPTY;
+  private List<Token> tokens = new ArrayList<>();
+  private Integer index = 0;
 
   public List<Token> lex(List<String> text) {
+    clear();
     Integer lineNumber = 0;
     for (String s : text) {
       List<Character> line = s.chars().mapToObj(e -> (char) e).collect(Collectors.toList());
       for (Character c : line) {
         tokenize(c, lineNumber);
-//        index++;
+        //        index++;
       }
       this.index = 0;
       lineNumber++;
@@ -46,50 +47,38 @@ public class Lexer_1_1 {
         accum += "\"";
         createToken(TokenType.LITERAL, lineNumber);
       }
-    }
-    else if (state.equals(StateType.STRING)) accum += c.toString();
-
+    } else if (state.equals(StateType.STRING)) accum += c.toString();
     else if (accum.isEmpty() && isNumber(c)) {
       accum += c.toString();
       state = StateType.NUMBER;
-    }
-
-    else if (state.equals(StateType.NUMBER) && isNumber(c)) accum += c.toString();
-
+    } else if (state.equals(StateType.NUMBER) && isNumber(c)) accum += c.toString();
     else if (accum.isEmpty() && isLetter(c)) {
       state = StateType.IS_LETTER;
       accum += c.toString();
-    }
-
-    else if (isLetter(c) && state.equals(StateType.IS_LETTER)) {
+    } else if (isLetter(c) && state.equals(StateType.IS_LETTER)) {
       accum += c.toString();
       if (accumIsKeyboard()) {
         createToken(keyWords.get(accum), lineNumber);
       }
-    }
-
-    else if (isKeyword(c) && !accum.isEmpty()) {
-      if (state.equals(StateType.NUMBER) && !isNumber(c)){
-          createToken(TokenType.LITERAL, lineNumber);
-          accum+=c.toString();
-          createToken(keyWords.get(c.toString()),lineNumber);
-      }
-
-      else if (state.equals(StateType.IS_LETTER) || state.equals(StateType.EMPTY)){
-          createToken(TokenType.IDENTIFIER, lineNumber);
-          accum+=c.toString();
-          createToken(keyWords.get(c.toString()), lineNumber);
-      }
-    }
-    else if (isKeyword(c) && accum.isEmpty()) {
+    } else if (isKeyword(c) && !accum.isEmpty()) {
+      if (state.equals(StateType.NUMBER) && !isNumber(c)) {
+        createToken(TokenType.LITERAL, lineNumber);
         accum += c.toString();
         createToken(keyWords.get(c.toString()), lineNumber);
+      } else if (state.equals(StateType.IS_LETTER) || state.equals(StateType.EMPTY)) {
+        createToken(TokenType.IDENTIFIER, lineNumber);
+        accum += c.toString();
+        createToken(keyWords.get(c.toString()), lineNumber);
+      }
+    } else if (isKeyword(c) && accum.isEmpty()) {
+      accum += c.toString();
+      createToken(keyWords.get(c.toString()), lineNumber);
     }
   }
 
   private void createToken(TokenType tokenType, Integer line) {
     tokens.add(Token.builder().value(accum).type(tokenType).index(index).line(line).build());
-    this.index+=1;
+    this.index += 1;
     this.state = StateType.EMPTY;
     accum = "";
   }
@@ -108,5 +97,12 @@ public class Lexer_1_1 {
 
   private boolean isNumber(Character c) {
     return Character.isDigit(c);
+  }
+
+  private void clear(){
+      accum = "";
+      state = StateType.EMPTY;
+      tokens.clear();
+      index = 0;
   }
 }
