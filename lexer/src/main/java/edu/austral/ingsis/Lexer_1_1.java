@@ -99,10 +99,10 @@ public class Lexer_1_1 {
     return Character.isDigit(c);
   }
 
-  private void clear(){
-      accum = "";
-      state = StateType.EMPTY;
-      tokens.clear();
-      index = 0;
+  private void clear() {
+    accum = "";
+    state = StateType.EMPTY;
+    tokens.clear();
+    index = 0;
   }
 }
