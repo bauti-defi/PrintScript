@@ -1,8 +1,8 @@
 package edu.austral.ingsis.ast.parsers;
 
-import edu.austral.ingsis.Token;
-import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
+import edu.austral.ingsis.tokens.Token;
+import edu.austral.ingsis.tokens.TokenType;
 import java.util.List;
 
 public interface NodeParser<T extends AbstractNode> {

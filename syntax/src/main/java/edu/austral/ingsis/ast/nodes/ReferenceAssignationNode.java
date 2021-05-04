@@ -1,8 +1,8 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.Token;
 import edu.austral.ingsis.ast.visitor.Visitable;
 import edu.austral.ingsis.ast.visitor.Visitor;
+import edu.austral.ingsis.tokens.Token;
 
 public class ReferenceAssignationNode extends AssignationNode<ReferenceNode> implements Visitable {
 

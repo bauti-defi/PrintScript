@@ -2,12 +2,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
-import edu.austral.ingsis.Token;
 import edu.austral.ingsis.ast.AST;
 import edu.austral.ingsis.ast.GlobalASTConfig;
 import edu.austral.ingsis.ast.nodes.DeclarationAssignationNode;
 import edu.austral.ingsis.interpreter.ASTVisitor;
 import edu.austral.ingsis.interpreter.Context;
+import edu.austral.ingsis.tokens.Token;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ public class InterpretExpressionTest {
     final AST ast = createAST("testStringDeclaration.txt");
     final Context context = new Context();
 
-    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
+    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
     assertTrue(!context.getVariables().isUndefined("message"));
     assertFalse(context.getVariables().getDeclaration("message").isImmutable());
@@ -43,7 +43,7 @@ public class InterpretExpressionTest {
     final AST ast = createAST("testStringConcat.txt");
     final Context context = new Context();
 
-    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
+    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
     assertTrue(!context.getVariables().isUndefined("name"));
     assertFalse(context.getVariables().getDeclaration("name").isImmutable());
@@ -61,7 +61,7 @@ public class InterpretExpressionTest {
     final AST ast = createAST("testStringNumberConcat.txt");
     final Context context = new Context();
 
-    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
+    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
     assertTrue(!context.getVariables().isUndefined("name"));
     assertFalse(context.getVariables().getDeclaration("name").isImmutable());
@@ -79,7 +79,7 @@ public class InterpretExpressionTest {
     final AST ast = createAST("testNumberDeclaration.txt");
     final Context context = new Context();
 
-    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
+    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
     assertFalse(context.getVariables().isUndefined("x"));
     assertFalse(context.getVariables().getDeclaration("x").isImmutable());
@@ -97,7 +97,7 @@ public class InterpretExpressionTest {
     final AST ast = createAST("testConstDeclaration.txt");
     final Context context = new Context();
 
-    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
+    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
     assertTrue(!context.getVariables().isUndefined("x"));
     assertTrue(context.getVariables().getDeclaration("x").isImmutable());
@@ -106,10 +106,10 @@ public class InterpretExpressionTest {
 
   // @Test
   public void testBooleanDeclaration() {
-    final AST ast = createAST("testBooleanDeclaration.txt");
+    final AST ast = createAST("testComplexBooleanDeclaration.txt");
     final Context context = new Context();
 
-    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getNodes().get(0));
+    ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
     assertFalse(context.getVariables().isUndefined("x"));
     assertFalse(context.getVariables().getDeclaration("x").isImmutable());

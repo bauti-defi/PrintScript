@@ -1,7 +1,7 @@
 package edu.austral.ingsis.ast.nodes;
 
-import edu.austral.ingsis.Token;
 import edu.austral.ingsis.ast.visitor.Visitable;
+import edu.austral.ingsis.tokens.Token;
 
 public abstract class AssignationNode<K extends AbstractNode> extends AbstractNode
     implements Visitable {

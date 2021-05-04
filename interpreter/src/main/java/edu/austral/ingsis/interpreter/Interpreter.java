@@ -9,7 +9,7 @@ public class Interpreter {
 
   public void execute(AST ast) {
     final Context context = new Context();
-    ast.getNodes().forEach(node -> execute(node, context));
+    ast.getBlock().getNodes().forEach(node -> execute(node, context));
   }
 
   private void execute(AbstractNode node, Context context) {

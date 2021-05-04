@@ -1,5 +1,5 @@
-import edu.austral.ingsis.Token;
-import edu.austral.ingsis.TokenType;
+import edu.austral.ingsis.tokens.Token;
+import edu.austral.ingsis.tokens.TokenType;
 
 public interface TokenHelper {
 

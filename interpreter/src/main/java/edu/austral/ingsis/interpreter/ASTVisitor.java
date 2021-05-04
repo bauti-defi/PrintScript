@@ -1,8 +1,8 @@
 package edu.austral.ingsis.interpreter;
 
-import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.ast.visitor.Visitor;
+import edu.austral.ingsis.tokens.TokenType;
 import lombok.SneakyThrows;
 
 public class ASTVisitor implements Visitor {
@@ -70,7 +70,9 @@ public class ASTVisitor implements Visitor {
   public void visit(CompoundExpressionNode node) {}
 
   @Override
-  public void visit(PrintNode node) {}
+  public void visit(PrintNode node) {
+    System.out.println(ExpressionEvaluator.evaluate(node.getArgs(), context));
+  }
 
   @Override
   public void visit(IfStatementNode node) {}

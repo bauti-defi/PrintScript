@@ -1,5 +1,8 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.tokens.Token;
+import edu.austral.ingsis.tokens.TokenType;
+import edu.austral.ingsis.util.Keywords;
 import java.util.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Lexer {
 
-  @Builder.Default private final Map<String, TokenType> keywords = Keywords.getKeyword();
+  @Builder.Default private final Map<String, TokenType> keywords = Keywords.getKeyword1_0();
 
   public List<Token> tokenize(List<String> document) {
     List<String> strings;

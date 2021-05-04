@@ -1,10 +1,10 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import edu.austral.ingsis.Token;
-import edu.austral.ingsis.TokenType;
 import edu.austral.ingsis.ast.AST;
 import edu.austral.ingsis.ast.GlobalASTConfig;
 import edu.austral.ingsis.ast.nodes.DeclarationAssignationNode;
+import edu.austral.ingsis.tokens.Token;
+import edu.austral.ingsis.tokens.TokenType;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -26,11 +26,12 @@ public class ASTTest implements TokenHelper {
 
     final AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_0);
 
-    assertEquals(1, ast.getNodes().size());
-    boolean isRootAssignationNode = ast.getNodes().get(0) instanceof DeclarationAssignationNode;
+    assertEquals(1, ast.getBlock().getNodes().size());
+    boolean isRootAssignationNode =
+        ast.getBlock().getNodes().get(0) instanceof DeclarationAssignationNode;
     assertEquals(true, isRootAssignationNode);
     final DeclarationAssignationNode declarationAssignationNode =
-        (DeclarationAssignationNode) ast.getNodes().get(0);
+        (DeclarationAssignationNode) ast.getBlock().getNodes().get(0);
     assertEquals(TokenType.EQUALS, declarationAssignationNode.getToken().getType());
     assertEquals(TokenType.LET, declarationAssignationNode.getLeft().getToken().getType());
     assertEquals(TokenType.LITERAL, declarationAssignationNode.getRight().getToken().getType());
