@@ -16,7 +16,6 @@ dependencies {
     annotationProcessor 'info.picocli:picocli-codegen:4.1.0'
 
     implementation project(":lexer")
-    implementation project(":grammar")
     implementation project(":syntax")
     implementation project(":fileReader")
     implementation project(":interpreter")
