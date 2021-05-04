@@ -17,70 +17,80 @@ import lombok.NoArgsConstructor;
 @Data
 public class Lexer_1_1 {
 
-  private Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
-  private String accum = "";
-  private StateType state;
-  private List<Token> tokens = new ArrayList<>();
+    private Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
+    private String accum = "";
+    private StateType state = StateType.EMPTY;
+    private List<Token> tokens = new ArrayList<>();
+    private Integer index = 0;
 
   public List<Token> lex(List<String> text) {
-    Integer index = 0;
     Integer lineNumber = 0;
     for (String s : text) {
       List<Character> line = s.chars().mapToObj(e -> (char) e).collect(Collectors.toList());
       for (Character c : line) {
-        tokenize(c, index, lineNumber);
-        index++;
+        tokenize(c, lineNumber);
+//        index++;
       }
+      this.index = 0;
       lineNumber++;
     }
     return tokens;
   }
 
-  private void tokenize(Character c, Integer index, Integer lineNumber) {
+  private void tokenize(Character c, Integer lineNumber) {
     if (c.toString().equals("\"")) {
       if (accum.isEmpty()) {
         state = StateType.STRING;
-        accum = accum + "\"";
+        accum += "\"";
       } else if (state.equals(StateType.STRING)) {
-        accum.concat("\"");
-        createToken(TokenType.LITERAL, index, lineNumber);
+        accum += "\"";
+        createToken(TokenType.LITERAL, lineNumber);
       }
-    } else if (state.equals(StateType.STRING)) accum.concat(c.toString());
+    }
+    else if (state.equals(StateType.STRING)) accum += c.toString();
+
     else if (accum.isEmpty() && isNumber(c)) {
-      accum.concat(c.toString());
+      accum += c.toString();
       state = StateType.NUMBER;
-    } else if (state.equals(StateType.NUMBER) && isNumber(c)) accum.concat(c.toString());
+    }
+
+    else if (state.equals(StateType.NUMBER) && isNumber(c)) accum += c.toString();
+
     else if (accum.isEmpty() && isLetter(c)) {
       state = StateType.IS_LETTER;
-      accum.concat(c.toString());
-    } else if (isLetter(c) && state.equals(StateType.IS_LETTER)) {
-      accum.concat(c.toString());
+      accum += c.toString();
+    }
+
+    else if (isLetter(c) && state.equals(StateType.IS_LETTER)) {
+      accum += c.toString();
       if (accumIsKeyboard()) {
-        createToken(keyWords.get(accum), index, lineNumber);
+        createToken(keyWords.get(accum), lineNumber);
       }
-    } else if (isKeyword(c) && !accum.isEmpty()) {
-      if (state.equals(StateType.NUMBER) && !isNumber(c))
-        createToken(TokenType.LITERAL, index, lineNumber);
-      else if (state.equals(StateType.IS_LETTER))
-        tokens.add(
-            Token.builder()
-                .value(accum)
-                .type(TokenType.IDENTIFIER)
-                .index(index)
-                .line(lineNumber)
-                .build());
-      tokens.add(
-          Token.builder()
-              .value(c.toString())
-              .type(keyWords.get(c.toString()))
-              .index(index)
-              .line(lineNumber)
-              .build());
+    }
+
+    else if (isKeyword(c) && !accum.isEmpty()) {
+      if (state.equals(StateType.NUMBER) && !isNumber(c)){
+          createToken(TokenType.LITERAL, lineNumber);
+          accum+=c.toString();
+          createToken(keyWords.get(c.toString()),lineNumber);
+      }
+
+      else if (state.equals(StateType.IS_LETTER) || state.equals(StateType.EMPTY)){
+          createToken(TokenType.IDENTIFIER, lineNumber);
+          accum+=c.toString();
+          createToken(keyWords.get(c.toString()), lineNumber);
+      }
+    }
+    else if (isKeyword(c) && accum.isEmpty()) {
+        accum += c.toString();
+        createToken(keyWords.get(c.toString()), lineNumber);
     }
   }
 
-  private void createToken(TokenType tokenType, Integer index, Integer line) {
+  private void createToken(TokenType tokenType, Integer line) {
     tokens.add(Token.builder().value(accum).type(tokenType).index(index).line(line).build());
+    this.index+=1;
+    this.state = StateType.EMPTY;
     accum = "";
   }
 
