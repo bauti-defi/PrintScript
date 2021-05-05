@@ -2,7 +2,6 @@ import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
-
 import java.util.List;
 
 public interface TokenHelper {
