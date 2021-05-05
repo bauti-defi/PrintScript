@@ -20,12 +20,12 @@ public class App implements Runnable {
   @Parameters(paramLabel = "<file path>", description = "Path of .txt file")
   private String filePath = "";
 
-  private final Lexer lexer = Lexer.builder().build();
+  private final Lexer lexer = new Lexer();
   private final Interpreter interpreter = new Interpreter();
 
   public void run() {
     List<String> document = FileReaderPS.read(filePath);
-    List<Token> tokens = lexer.tokenize(document);
+    List<Token> tokens = lexer.lex(document);
     AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_0);
     interpreter.execute(ast);
   }
