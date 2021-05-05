@@ -8,7 +8,8 @@ import edu.austral.ingsis.tokens.Token;
 public class IfStatementNode extends AbstractNode implements Visitable {
 
   private ExpressionNode left;
-  private AST body;
+  private AST ifBlock;
+  private AST elseBlock;
 
   public IfStatementNode(Token token) {
     super(token);
@@ -23,12 +24,20 @@ public class IfStatementNode extends AbstractNode implements Visitable {
     return left;
   }
 
-  public void setBody(AST ast) {
-    this.body = ast;
+  public void setIfBlock(AST ast) {
+    this.ifBlock = ast;
   }
 
-  public AST getBody() {
-    return body;
+  public AST getIfBlock() {
+    return this.ifBlock;
+  }
+
+  public void setElseBlock(AST elseBlock) {
+    this.elseBlock = elseBlock;
+  }
+
+  public AST getElseBlock() {
+    return elseBlock;
   }
 
   public void setLeft(ExpressionNode left) {

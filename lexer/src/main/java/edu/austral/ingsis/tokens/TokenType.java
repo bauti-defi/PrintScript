@@ -27,5 +27,5 @@ public enum TokenType {
   DOUBLE_QUOTATION,
   SINGLE_QUOTATION,
   LITERAL,
-  PRINTLN;
+  PRINTLN
 }

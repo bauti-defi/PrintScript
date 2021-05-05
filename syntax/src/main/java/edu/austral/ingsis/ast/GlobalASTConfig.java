@@ -21,5 +21,6 @@ public class GlobalASTConfig {
           new ReferenceAssignationParser(),
           new DeclarationParser(TokenType.LET),
           new DeclarationParser(TokenType.CONST),
-          new PrintlnParser());
+          new PrintlnParser(),
+          new IfStatementParser());
 }
