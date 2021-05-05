@@ -129,33 +129,32 @@ class LexerTest {
   }
 
   @Test
-    public void complexMultiLineStatement(){
-      List<String> str = new ArrayList<>();
-      str.add("let pi: number;");
-      str.add("pi = 3.14;");
-      str.add("println(pi / 2);");
+  public void complexMultiLineStatement() {
+    List<String> str = new ArrayList<>();
+    str.add("let pi: number;");
+    str.add("pi = 3.14;");
+    str.add("println(pi / 2);");
 
-      List<Token> tokens = lexer.lex(str);
+    List<Token> tokens = lexer.lex(str);
 
-      List<Token> expectedToken =
-              Arrays.asList(
-                      Token.builder().type(TokenType.LET).value("let").index(0).line(0).build(),
-                      Token.builder().type(TokenType.IDENTIFIER).value("pi").index(1).line(0).build(),
-                      Token.builder().type(TokenType.COLON).value(":").index(2).line(0).build(),
-                      Token.builder().type(TokenType.TYPE).value("number").index(3).line(0).build(),
-                      Token.builder().type(TokenType.SEMICOLON).value(";").index(4).line(0).build(),
-                      Token.builder().type(TokenType.IDENTIFIER).value("pi").index(0).line(1).build(),
-                      Token.builder().type(TokenType.EQUALS).value("=").index(1).line(1).build(),
-                      Token.builder().type(TokenType.LITERAL).value("3.14").index(2).line(1).build(),
-                      Token.builder().type(TokenType.SEMICOLON).value(";").index(3).line(1).build(),
-                      Token.builder().type(TokenType.PRINTLN).value("println").index(0).line(2).build(),
-                      Token.builder().type(TokenType.L_PARENTHESES).value("(").index(1).line(2).build(),
-                      Token.builder().type(TokenType.IDENTIFIER).value("pi").index(2).line(2).build(),
-                      Token.builder().type(TokenType.SLASH_SYMBOL).value("/").index(3).line(2).build(),
-                      Token.builder().type(TokenType.LITERAL).value("2").index(4).line(2).build(),
-                      Token.builder().type(TokenType.R_PARENTHESES).value(")").index(5).line(2).build(),
-                      Token.builder().type(TokenType.SEMICOLON).value(";").index(6).line(2).build()
-                      );
-      assertEquals(expectedToken, tokens);
+    List<Token> expectedToken =
+        Arrays.asList(
+            Token.builder().type(TokenType.LET).value("let").index(0).line(0).build(),
+            Token.builder().type(TokenType.IDENTIFIER).value("pi").index(1).line(0).build(),
+            Token.builder().type(TokenType.COLON).value(":").index(2).line(0).build(),
+            Token.builder().type(TokenType.TYPE).value("number").index(3).line(0).build(),
+            Token.builder().type(TokenType.SEMICOLON).value(";").index(4).line(0).build(),
+            Token.builder().type(TokenType.IDENTIFIER).value("pi").index(0).line(1).build(),
+            Token.builder().type(TokenType.EQUALS).value("=").index(1).line(1).build(),
+            Token.builder().type(TokenType.LITERAL).value("3.14").index(2).line(1).build(),
+            Token.builder().type(TokenType.SEMICOLON).value(";").index(3).line(1).build(),
+            Token.builder().type(TokenType.PRINTLN).value("println").index(0).line(2).build(),
+            Token.builder().type(TokenType.L_PARENTHESES).value("(").index(1).line(2).build(),
+            Token.builder().type(TokenType.IDENTIFIER).value("pi").index(2).line(2).build(),
+            Token.builder().type(TokenType.SLASH_SYMBOL).value("/").index(3).line(2).build(),
+            Token.builder().type(TokenType.LITERAL).value("2").index(4).line(2).build(),
+            Token.builder().type(TokenType.R_PARENTHESES).value(")").index(5).line(2).build(),
+            Token.builder().type(TokenType.SEMICOLON).value(";").index(6).line(2).build());
+    assertEquals(expectedToken, tokens);
   }
 }

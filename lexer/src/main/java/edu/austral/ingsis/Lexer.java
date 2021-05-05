@@ -73,9 +73,8 @@ public class Lexer {
     } else if (isKeyword(c) && accum.isEmpty()) {
       accum += c.toString();
       createToken(keyWords.get(c.toString()), lineNumber);
-    }
-    else if (state == StateType.NUMBER && c.toString().equals(".")){
-        accum+=c.toString();
+    } else if (state == StateType.NUMBER && c.toString().equals(".")) {
+      accum += c.toString();
     }
   }
 
