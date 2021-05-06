@@ -20,8 +20,11 @@ public class TokenGrouper {
     return groups;
   }
 
-  private static boolean iSimpleOpening(Token token){
-    return token.getType() == TokenType.LET || token.getType() == TokenType.CONST || token.getType() == TokenType.PRINTLN || token.getType() == TokenType.IDENTIFIER;
+  private static boolean iSimpleOpening(Token token) {
+    return token.getType() == TokenType.LET
+        || token.getType() == TokenType.CONST
+        || token.getType() == TokenType.PRINTLN
+        || token.getType() == TokenType.IDENTIFIER;
   }
 
   private static List<Token> group(List<Token> tokens, int start) {
