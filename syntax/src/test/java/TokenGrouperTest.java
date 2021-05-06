@@ -43,17 +43,14 @@ public class TokenGrouperTest implements TokenHelper {
         Arrays.asList("println", "(", "numberResult", ")", ";"));
   }
 
-
-  //@Test
+  // @Test
   public void test04() {
     List<Token> tokens = readTokensFromFile("test4.txt");
 
     List<List<Token>> groups = TokenGrouper.group(tokens);
 
     assertLinesMatch(
-            groups.get(0).stream().map(Token::getValue).collect(Collectors.toList()),
-            Arrays.asList("const", "booleanResult", ":", "boolean", "=", "5", "<", "=", "3", ";"));
-
-
+        groups.get(0).stream().map(Token::getValue).collect(Collectors.toList()),
+        Arrays.asList("const", "booleanResult", ":", "boolean", "=", "5", "<", "=", "3", ";"));
   }
 }
