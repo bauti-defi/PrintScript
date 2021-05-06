@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Lexer {
 
   private final Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
-  private final Map<String, TokenType> wordsType = WordsToken.getWords1_1();
+  private final Map<String, TokenType> wordsKeyWords = WordsToken.getWords1_1();
   private String accum = "";
   private StateType state = StateType.EMPTY;
   private List<Token> tokens = new ArrayList<>();
@@ -32,7 +32,6 @@ public class Lexer {
       List<Character> line = s.chars().mapToObj(e -> (char) e).collect(Collectors.toList());
       for (Character c : line) {
         tokenize(c, lineNumber);
-        //        index++;
       }
       this.index = 0;
       lineNumber++;
@@ -50,9 +49,25 @@ public class Lexer {
         createToken(TokenType.LITERAL, lineNumber);
       }
     } else if (state.equals(StateType.STRING)) accum += c.toString();
-    else if (accum.isEmpty() && isNumber(c)) {
+    else if (isCompound(c) && state.equals(StateType.EMPTY)) {
+      state = StateType.COMPOUND_KEYWORD;
+      accum += c.toString();
+    } else if (isCompound(c)
+        && !accum.isEmpty()
+        && (state.equals(StateType.NUMBER) || state.equals(StateType.IS_LETTER))) {
+      if (state.equals(StateType.NUMBER)) createToken(TokenType.LITERAL, lineNumber);
+      else createToken(TokenType.IDENTIFIER, lineNumber);
+      accum += c.toString();
+      state = StateType.COMPOUND_KEYWORD;
+    } else if (state.equals(StateType.COMPOUND_KEYWORD) && isCompound(c)) {
+      accum += c.toString();
+    } else if (accum.isEmpty() && isNumber(c)) {
       accum += c.toString();
       state = StateType.NUMBER;
+    } else if (isNumber(c) && state.equals(StateType.COMPOUND_KEYWORD)) {
+      createToken(wordsKeyWords.get(accum), lineNumber);
+      state = StateType.NUMBER;
+      accum += c;
     } else if (state.equals(StateType.NUMBER) && isNumber(c)) accum += c.toString();
     else if (accum.isEmpty() && isLetter(c)) {
       state = StateType.IS_LETTER;
@@ -61,14 +76,14 @@ public class Lexer {
       accum += c.toString();
 
     } else if (c.toString().equals(" ") && accumIsWordKeyword()) {
-      createToken(wordsType.get(accum), lineNumber);
+      createToken(wordsKeyWords.get(accum), lineNumber);
     } else if (isKeyword(c) && !accum.isEmpty()) {
       if (state.equals(StateType.NUMBER) && !isNumber(c)) {
         createToken(TokenType.LITERAL, lineNumber);
         accum += c.toString();
         createToken(keyWords.get(c.toString()), lineNumber);
       } else if (state.equals(StateType.IS_LETTER) || state.equals(StateType.EMPTY)) {
-        if (accumIsWordKeyword()) createToken(wordsType.get(accum), lineNumber);
+        if (accumIsWordKeyword()) createToken(wordsKeyWords.get(accum), lineNumber);
         else createToken(TokenType.IDENTIFIER, lineNumber);
         accum += c.toString();
         createToken(keyWords.get(c.toString()), lineNumber);
@@ -77,7 +92,7 @@ public class Lexer {
     } else if (isKeyword(c) && accum.isEmpty()) {
       accum += c.toString();
       createToken(keyWords.get(c.toString()), lineNumber);
-    } else if (state == StateType.NUMBER && c.toString().equals(".")) {
+    } else if (state.equals(StateType.NUMBER) && c.toString().equals(".")) {
       accum += c.toString();
     }
   }
@@ -93,6 +108,10 @@ public class Lexer {
     return keyWords.containsKey(c.toString());
   }
 
+  private boolean isCompound(Character c) {
+    return c.toString().equals("=") || c.toString().equals("<") || c.toString().equals(">");
+  }
+
   private boolean accumIsKeyboard() {
     return keyWords.containsKey(accum);
   }
@@ -106,7 +125,7 @@ public class Lexer {
   }
 
   private boolean accumIsWordKeyword() {
-    return wordsType.containsKey(accum);
+    return wordsKeyWords.containsKey(accum);
   }
 
   private void clear() {
