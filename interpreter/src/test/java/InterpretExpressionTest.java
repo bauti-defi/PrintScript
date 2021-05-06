@@ -15,7 +15,7 @@ public class InterpretExpressionTest {
 
   private AST createAST(String filename) {
     Lexer lexer = new Lexer();
-    List<Token> tokens = lexer.tokenize(FileReaderPS.read("src/test/java/scripts/" + filename));
+    List<Token> tokens = lexer.lex(FileReaderPS.read("src/test/java/scripts/" + filename));
     tokens.forEach(System.out::println);
     return AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_1);
   }
