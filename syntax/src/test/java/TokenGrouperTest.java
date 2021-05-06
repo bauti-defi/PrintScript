@@ -22,7 +22,7 @@ public class TokenGrouperTest implements TokenHelper {
 
     assertLinesMatch(
             groups.get(1).stream().map(Token::getValue).collect(Collectors.toList()),
-            Arrays.asList("pi", "=", "314", ";"));
+            Arrays.asList("pi", "=", "3.14", ";"));
 
     assertLinesMatch(
             groups.get(2).stream().map(Token::getValue).collect(Collectors.toList()),
@@ -30,7 +30,7 @@ public class TokenGrouperTest implements TokenHelper {
 
   }
 
-  //@Test
+  @Test
   public void test02() {
     List<Token> tokens = readTokensFromFile("test2.txt");
 
@@ -39,7 +39,7 @@ public class TokenGrouperTest implements TokenHelper {
 
     assertLinesMatch(
             groups.get(0).stream().map(Token::getValue).collect(Collectors.toList()),
-            Arrays.asList("let", "numberResult", ":", "number","5", "*", "5", "-", "8", ";"));
+            Arrays.asList("let", "numberResult", ":", "number","=", "5", "*", "5", "-", "8", ";"));
 
     assertLinesMatch(
             groups.get(1).stream().map(Token::getValue).collect(Collectors.toList()),
