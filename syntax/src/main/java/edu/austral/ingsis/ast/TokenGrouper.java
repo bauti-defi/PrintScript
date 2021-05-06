@@ -20,9 +20,13 @@ public class TokenGrouper {
     return groups;
   }
 
+  private static boolean iSimpleOpening(Token token){
+    return token.getType() == TokenType.LET || token.getType() == TokenType.CONST || token.getType() == TokenType.PRINTLN || token.getType() == TokenType.IDENTIFIER;
+  }
+
   private static List<Token> group(List<Token> tokens, int start) {
     for (int i = start; i < tokens.size(); i++) {
-      if (tokens.get(start).getType() == TokenType.LET) {
+      if (iSimpleOpening(tokens.get(start))) {
         if (tokens.get(i).getType() == TokenType.SEMICOLON) {
           return tokens.subList(start, i + 1);
         }
