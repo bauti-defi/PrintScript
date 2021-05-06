@@ -4,5 +4,6 @@ public enum StateType {
   STRING,
   NUMBER,
   IS_LETTER,
-  EMPTY
+  EMPTY,
+  COMPOUND_KEYWORD
 }

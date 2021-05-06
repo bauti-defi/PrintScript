@@ -27,6 +27,21 @@ public class WordsToken {
     keywords.put("boolean", TokenType.TYPE);
     keywords.put("true", TokenType.LITERAL);
     keywords.put("false", TokenType.LITERAL);
+    keywords.put("if", TokenType.IF);
+    keywords.put("else", TokenType.ELSE);
+    keywords.put("=", TokenType.EQUALS);
+    keywords.put("==", TokenType.DOUBLE_EQUALS);
+    keywords.put(">", TokenType.GREATER_THAN);
+    keywords.put("<", TokenType.LESS_THAN);
+    keywords.put(">=", TokenType.GREATER_THAN_EQUALS);
+    keywords.put("<=", TokenType.LESS_THAN_EQUALS);
+
+    //    keywords.put("<", TokenType.GREATER_THAN);
+    //    keywords.put(">", TokenType.LESS_THAN);
+    //    keywords.put("=", TokenType.EQUALS);
+    //    keywords.put("<=", TokenType.GREATER_THAN_EQUALS);
+    //    keywords.put("==", TokenType.DOUBLE_EQUALS);
+    //    keywords.put("!=", TokenType.NOT_EQUALS);
 
     return keywords;
   }

@@ -6,7 +6,7 @@ plugins {
 dependencies {
     implementation project(":lexer")
     implementation project(":syntax")
-    implementation project(":fileReader")
+    implementation project(":filereader")
 }
 
 group 'edu.austral.ingsis'

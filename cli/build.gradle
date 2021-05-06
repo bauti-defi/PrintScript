@@ -1,6 +1,7 @@
 plugins {
     id 'application'
     id 'my-library.java-common-conventions'
+    id 'maven-publish'
     id 'com.palantir.graal' version '0.6.0'
 }
 
@@ -17,10 +18,28 @@ dependencies {
 
     implementation project(":lexer")
     implementation project(":syntax")
-    implementation project(":fileReader")
+    implementation project(":filereader")
     implementation project(":interpreter")
 
 }
+
+//publishing {
+//    repositories {
+//        maven {
+//            name = "GitHubPackages"
+//            url = uri("https://maven.pkg.github.com/bautista-baiocchi-lora/printscript")
+//            credentials {
+//                username = project.findProperty("gpr.user") ?: System.getenv("eliasleonov")
+//                password = project.findProperty("gpr.key") ?: System.getenv("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")
+//            }
+//        }
+//    }
+//    publications {
+//        gpr(MavenPublication) {
+//            from(components.java)
+//        }
+//    }
+//}
 
 compileTestJava {
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
