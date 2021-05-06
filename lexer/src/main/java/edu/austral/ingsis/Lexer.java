@@ -4,6 +4,7 @@ import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
 import edu.austral.ingsis.util.Keywords;
 import edu.austral.ingsis.util.StateType;
+import edu.austral.ingsis.util.WordsToken;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import lombok.NoArgsConstructor;
 public class Lexer {
 
   private final Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
+  private final Map<String, TokenType> wordsType = WordsToken.getWords1_1();
   private String accum = "";
   private StateType state = StateType.EMPTY;
   private List<Token> tokens = new ArrayList<>();
@@ -57,19 +59,21 @@ public class Lexer {
       accum += c.toString();
     } else if (isLetter(c) && state.equals(StateType.IS_LETTER)) {
       accum += c.toString();
-      if (accumIsKeyboard()) {
-        createToken(keyWords.get(accum), lineNumber);
-      }
+
+    } else if (c.toString().equals(" ") && accumIsWordKeyword()) {
+      createToken(wordsType.get(accum), lineNumber);
     } else if (isKeyword(c) && !accum.isEmpty()) {
       if (state.equals(StateType.NUMBER) && !isNumber(c)) {
         createToken(TokenType.LITERAL, lineNumber);
         accum += c.toString();
         createToken(keyWords.get(c.toString()), lineNumber);
       } else if (state.equals(StateType.IS_LETTER) || state.equals(StateType.EMPTY)) {
-        createToken(TokenType.IDENTIFIER, lineNumber);
+        if (accumIsWordKeyword()) createToken(wordsType.get(accum), lineNumber);
+        else createToken(TokenType.IDENTIFIER, lineNumber);
         accum += c.toString();
         createToken(keyWords.get(c.toString()), lineNumber);
       }
+
     } else if (isKeyword(c) && accum.isEmpty()) {
       accum += c.toString();
       createToken(keyWords.get(c.toString()), lineNumber);
@@ -99,6 +103,10 @@ public class Lexer {
 
   private boolean isNumber(Character c) {
     return Character.isDigit(c);
+  }
+
+  private boolean accumIsWordKeyword() {
+    return wordsType.containsKey(accum);
   }
 
   private void clear() {

@@ -157,4 +157,43 @@ class LexerTest {
             Token.builder().type(TokenType.SEMICOLON).value(";").index(6).line(2).build());
     assertEquals(expectedToken, tokens);
   }
+
+  @Test
+  public void statementWithATypeNameInTheIdentifier() {
+    List<String> str = new ArrayList<>();
+    str.add("let numberResult: number = 5 * 5 - 8;");
+    str.add("println(numberResult);");
+
+    List<Token> tokens = lexer.lex(str);
+
+    List<Token> expectedToken =
+        Arrays.asList(
+            Token.builder().type(TokenType.LET).value("let").index(0).line(0).build(),
+            Token.builder()
+                .type(TokenType.IDENTIFIER)
+                .value("numberResult")
+                .index(1)
+                .line(0)
+                .build(),
+            Token.builder().type(TokenType.COLON).value(":").index(2).line(0).build(),
+            Token.builder().type(TokenType.TYPE).value("number").index(3).line(0).build(),
+            Token.builder().type(TokenType.EQUALS).value("=").index(4).line(0).build(),
+            Token.builder().type(TokenType.LITERAL).value("5").index(5).line(0).build(),
+            Token.builder().type(TokenType.STAR_SYMBOL).value("*").index(6).line(0).build(),
+            Token.builder().type(TokenType.LITERAL).value("5").index(7).line(0).build(),
+            Token.builder().type(TokenType.MINUS_SYMBOL).value("-").index(8).line(0).build(),
+            Token.builder().type(TokenType.LITERAL).value("8").index(9).line(0).build(),
+            Token.builder().type(TokenType.SEMICOLON).value(";").index(10).line(0).build(),
+            Token.builder().type(TokenType.PRINTLN).value("println").index(0).line(1).build(),
+            Token.builder().type(TokenType.L_PARENTHESES).value("(").index(1).line(1).build(),
+            Token.builder()
+                .type(TokenType.IDENTIFIER)
+                .value("numberResult")
+                .index(2)
+                .line(1)
+                .build(),
+            Token.builder().type(TokenType.R_PARENTHESES).value(")").index(3).line(1).build(),
+            Token.builder().type(TokenType.SEMICOLON).value(";").index(4).line(1).build());
+    assertEquals(expectedToken, tokens);
+  }
 }
