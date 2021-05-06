@@ -3,59 +3,116 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
 import edu.austral.ingsis.util.Keywords;
-import java.util.*;
+import edu.austral.ingsis.util.StateType;
+import edu.austral.ingsis.util.WordsToken;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Data
 public class Lexer {
 
-  @Builder.Default private final Map<String, TokenType> keywords = Keywords.getKeyword1_0();
+  private final Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
+  private final Map<String, TokenType> wordsType = WordsToken.getWords1_1();
+  private String accum = "";
+  private StateType state = StateType.EMPTY;
+  private List<Token> tokens = new ArrayList<>();
+  private Integer index = 0;
 
-  public List<Token> tokenize(List<String> document) {
-    List<String> strings;
-    List<Token> tokens = new ArrayList<>();
-    for (String line : document) {
-      strings = Arrays.asList(line.split(" "));
-      for (String s : strings) tokens.add(getToken(s, strings.indexOf(s), document.indexOf(line)));
+  public List<Token> lex(List<String> text) {
+    clear();
+    Integer lineNumber = 0;
+    for (String s : text) {
+      List<Character> line = s.chars().mapToObj(e -> (char) e).collect(Collectors.toList());
+      for (Character c : line) {
+        tokenize(c, lineNumber);
+        //        index++;
+      }
+      this.index = 0;
+      lineNumber++;
     }
     return tokens;
   }
 
-  private Token getToken(String s, Integer index, Integer line) {
+  private void tokenize(Character c, Integer lineNumber) {
+    if (c.toString().equals("\"")) {
+      if (accum.isEmpty()) {
+        state = StateType.STRING;
+        accum += "\"";
+      } else if (state.equals(StateType.STRING)) {
+        accum += "\"";
+        createToken(TokenType.LITERAL, lineNumber);
+      }
+    } else if (state.equals(StateType.STRING)) accum += c.toString();
+    else if (accum.isEmpty() && isNumber(c)) {
+      accum += c.toString();
+      state = StateType.NUMBER;
+    } else if (state.equals(StateType.NUMBER) && isNumber(c)) accum += c.toString();
+    else if (accum.isEmpty() && isLetter(c)) {
+      state = StateType.IS_LETTER;
+      accum += c.toString();
+    } else if (isLetter(c) && state.equals(StateType.IS_LETTER)) {
+      accum += c.toString();
 
-    if (keywords.containsKey(s))
-      return Token.builder().value(s).type(keywords.get(s)).index(index).line(line).build();
+    } else if (c.toString().equals(" ") && accumIsWordKeyword()) {
+      createToken(wordsType.get(accum), lineNumber);
+    } else if (isKeyword(c) && !accum.isEmpty()) {
+      if (state.equals(StateType.NUMBER) && !isNumber(c)) {
+        createToken(TokenType.LITERAL, lineNumber);
+        accum += c.toString();
+        createToken(keyWords.get(c.toString()), lineNumber);
+      } else if (state.equals(StateType.IS_LETTER) || state.equals(StateType.EMPTY)) {
+        if (accumIsWordKeyword()) createToken(wordsType.get(accum), lineNumber);
+        else createToken(TokenType.IDENTIFIER, lineNumber);
+        accum += c.toString();
+        createToken(keyWords.get(c.toString()), lineNumber);
+      }
 
-    if (isString(s))
-      return Token.builder()
-          .value("\"" + s + "\"")
-          .type(TokenType.LITERAL)
-          .index(index)
-          .line(line)
-          .build();
-
-    if (isNumber(s))
-      return Token.builder().value(s).type(TokenType.LITERAL).index(index).line(line).build();
-
-    return Token.builder().value(s).type(TokenType.IDENTIFIER).index(index).line(line).build();
-  }
-
-  private Boolean isNumber(String s) {
-    try {
-      Integer.parseInt(s);
-      return true;
-    } catch (Exception e) {
-      return false;
+    } else if (isKeyword(c) && accum.isEmpty()) {
+      accum += c.toString();
+      createToken(keyWords.get(c.toString()), lineNumber);
+    } else if (state == StateType.NUMBER && c.toString().equals(".")) {
+      accum += c.toString();
     }
   }
 
-  private Boolean isString(String s) {
-    return s.charAt(0) == s.charAt(s.length() - 1) && (s.charAt(0) == 34 || s.charAt(0) == 39);
+  private void createToken(TokenType tokenType, Integer line) {
+    tokens.add(Token.builder().value(accum).type(tokenType).index(index).line(line).build());
+    this.index += 1;
+    this.state = StateType.EMPTY;
+    accum = "";
+  }
+
+  private boolean isKeyword(Character c) {
+    return keyWords.containsKey(c.toString());
+  }
+
+  private boolean accumIsKeyboard() {
+    return keyWords.containsKey(accum);
+  }
+
+  private boolean isLetter(Character c) {
+    return Character.isLetter(c);
+  }
+
+  private boolean isNumber(Character c) {
+    return Character.isDigit(c);
+  }
+
+  private boolean accumIsWordKeyword() {
+    return wordsType.containsKey(accum);
+  }
+
+  private void clear() {
+    accum = "";
+    state = StateType.EMPTY;
+    tokens.clear();
+    index = 0;
   }
 }
