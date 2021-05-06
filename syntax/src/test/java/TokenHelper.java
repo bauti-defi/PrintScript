@@ -12,7 +12,7 @@ public interface TokenHelper {
 
   default List<Token> readTokensFromFile(String filename) {
     Lexer lexer = new Lexer();
-    List<Token> tokens = lexer.tokenize(FileReaderPS.read("src/test/java/resources/" + filename));
+    List<Token> tokens = lexer.lex(FileReaderPS.read("src/test/java/resources/" + filename));
     tokens.forEach(System.out::println);
     return tokens;
   }
