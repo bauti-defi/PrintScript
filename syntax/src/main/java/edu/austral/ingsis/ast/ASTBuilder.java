@@ -45,6 +45,28 @@ public class ASTBuilder {
     }
   }
 
+  public void process01(List<Token> tokens) {
+    int ifStartFlag = -1;
+    int ifEndFlag = -1;
+    int elseFlag = -1;
+    for (int i = 0; i < tokens.size(); i++) {
+      if (tokens.get(i).getType() == TokenType.IF) {
+        ifStartFlag = i;
+        // try parse if
+      } else if (tokens.get(i).getType() == TokenType.SEMICOLON && ifStartFlag == -1) {
+        // parse normal line
+      } else if (tokens.get(i).getType() == TokenType.R_CURLY_BRACE) {
+        ifEndFlag = i;
+        if (tokens.size() > i && tokens.get(i + 1).getType() == TokenType.ELSE) {
+          continue; // ignore because there is an else statement
+        }
+
+      } else if (tokens.get(i).getType() == TokenType.ELSE) {
+        elseFlag = i;
+      }
+    }
+  }
+
   private List<Token> trimSemicolon(List<Token> line) {
     return line.subList(0, line.size() - 1);
   }

@@ -1,5 +1,6 @@
 package edu.austral.ingsis.ast.parsers;
 
+import edu.austral.ingsis.ast.TokenPattern;
 import edu.austral.ingsis.ast.nodes.ReferenceAssignationNode;
 import edu.austral.ingsis.ast.nodes.ReferenceNode;
 import edu.austral.ingsis.tokens.Token;
@@ -12,8 +13,7 @@ public class ReferenceAssignationParser implements NodeParser<ReferenceAssignati
   private final ExpressionParser expressionParser = new ExpressionParser();
 
   public boolean predicate(List<Token> tokens) {
-    return containsToken(tokens, TokenType.EQUALS)
-        && (startsWith(tokens, TokenType.LET) || startsWith(tokens, TokenType.CONST));
+    return TokenPattern.Builder.of(TokenType.IDENTIFIER).equals().build().startWith(tokens);
   }
 
   public ReferenceAssignationNode parse(List<Token> tokens) {
