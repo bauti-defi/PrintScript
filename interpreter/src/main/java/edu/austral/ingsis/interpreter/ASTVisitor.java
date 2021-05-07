@@ -13,13 +13,33 @@ public class ASTVisitor implements Visitor {
     this.context = context;
   }
 
+  public void visit(CodeBlock codeBlock) {
+    codeBlock.getNodes().forEach(node -> execute(node));
+  }
+
+  private void execute(AbstractNode node) {
+    switch (node.getNodeType()) {
+      case "DECLARATION_ASSIGNATION":
+        this.visit((DeclarationAssignationNode) node);
+        break;
+      case "REFERENCE_ASSIGNATION":
+        this.visit((ReferenceAssignationNode) node);
+        break;
+      case "PRINTLN":
+        this.visit((PrintlnNode) node);
+        break;
+      case "IF":
+        this.visit((IfStatementNode) node);
+        break;
+    }
+  }
+
   @SneakyThrows
   @Override
   public void visit(ReferenceAssignationNode node) {
     try {
-      context
-          .getVariables()
-          .setValue(node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
+      context.setValue(
+          node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -30,9 +50,8 @@ public class ASTVisitor implements Visitor {
     this.visit(node.getLeft());
 
     try {
-      context
-          .getVariables()
-          .setValue(node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
+      context.setValue(
+          node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -48,7 +67,7 @@ public class ASTVisitor implements Visitor {
     String type = node.getRight().getToken().getValue();
 
     try {
-      context.getVariables().insertDeclaration(new Declaration(identifier, immutable, type));
+      context.insertDeclaration(new Declaration(identifier, immutable, type));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -75,7 +94,15 @@ public class ASTVisitor implements Visitor {
   }
 
   @Override
-  public void visit(IfStatementNode node) {}
+  public void visit(IfStatementNode node) {
+    boolean predicate =
+        Boolean.valueOf(ExpressionEvaluator.evaluate(node.getExpression(), context));
+    if (predicate && node.getIfBlock() != null) {
+      Interpreter.interpret(node.getIfBlock(), context);
+    } else if (node.getElseBlock() != null) {
+      Interpreter.interpret(node.getElseBlock(), context);
+    }
+  }
 
   @Override
   public void visit(ReferenceNode node) {}

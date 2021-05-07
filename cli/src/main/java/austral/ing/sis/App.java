@@ -27,7 +27,7 @@ public class App implements Runnable {
     List<String> document = FileReaderPS.read(filePath);
     List<Token> tokens = lexer.lex(document);
     AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_0);
-    interpreter.execute(ast);
+    interpreter.interpret(ast);
   }
 
   public static void main(String[] args) {
