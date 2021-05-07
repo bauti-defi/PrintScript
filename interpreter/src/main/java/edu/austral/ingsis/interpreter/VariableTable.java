@@ -1,12 +1,22 @@
 package edu.austral.ingsis.interpreter;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class VariableTable {
 
   private final HashMap<String, Declaration> declarations =
       new HashMap<>(); // identifier, type, immutable
   private final HashMap<String, String> values = new HashMap<>(); // value
+
+  public Set<Map.Entry<String, Declaration>> getAllDeclaration(){
+    return declarations.entrySet();
+  }
+
+  public Set<Map.Entry<String, String>> getAllValues(){
+    return values.entrySet();
+  }
 
   public void insertDeclaration(Declaration declaration) throws Exception {
     declarations.put(declaration.getIdentifier(), declaration);

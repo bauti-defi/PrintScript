@@ -27,12 +27,12 @@ public class InterpretExpressionTest {
 
     ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
-    assertTrue(!context.getVariables().isUndefined("message"));
-    assertFalse(context.getVariables().getDeclaration("message").isImmutable());
-    assertEquals("string", context.getVariables().getDeclaration("message").getType());
+    assertTrue(!context.isUndefined("message"));
+    assertFalse(context.getDeclaration("message").isImmutable());
+    assertEquals("string", context.getDeclaration("message").getType());
 
     try {
-      assertEquals("hola", context.getVariables().getValue("message"));
+      assertEquals("hola", context.getValue("message"));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -45,12 +45,12 @@ public class InterpretExpressionTest {
 
     ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
-    assertTrue(!context.getVariables().isUndefined("name"));
-    assertFalse(context.getVariables().getDeclaration("name").isImmutable());
-    assertEquals("string", context.getVariables().getDeclaration("name").getType());
+    assertTrue(!context.isUndefined("name"));
+    assertFalse(context.getDeclaration("name").isImmutable());
+    assertEquals("string", context.getDeclaration("name").getType());
 
     try {
-      assertEquals("BautistaBaiocchi", context.getVariables().getValue("name"));
+      assertEquals("BautistaBaiocchi", context.getValue("name"));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -63,12 +63,12 @@ public class InterpretExpressionTest {
 
     ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
-    assertTrue(!context.getVariables().isUndefined("name"));
-    assertFalse(context.getVariables().getDeclaration("name").isImmutable());
-    assertEquals("string", context.getVariables().getDeclaration("name").getType());
+    assertTrue(!context.isUndefined("name"));
+    assertFalse(context.getDeclaration("name").isImmutable());
+    assertEquals("string", context.getDeclaration("name").getType());
 
     try {
-      assertEquals("Bautista12345", context.getVariables().getValue("name"));
+      assertEquals("Bautista12345", context.getValue("name"));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -81,12 +81,12 @@ public class InterpretExpressionTest {
 
     ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
-    assertFalse(context.getVariables().isUndefined("x"));
-    assertFalse(context.getVariables().getDeclaration("x").isImmutable());
-    assertEquals("number", context.getVariables().getDeclaration("x").getType());
+    assertFalse(context.isUndefined("x"));
+    assertFalse(context.getDeclaration("x").isImmutable());
+    assertEquals("number", context.getDeclaration("x").getType());
 
     try {
-      assertEquals("34", context.getVariables().getValue("x"));
+      assertEquals("34", context.getValue("x"));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -99,24 +99,24 @@ public class InterpretExpressionTest {
 
     ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
-    assertTrue(!context.getVariables().isUndefined("x"));
-    assertTrue(context.getVariables().getDeclaration("x").isImmutable());
-    assertEquals("number", context.getVariables().getDeclaration("x").getType());
+    assertTrue(!context.isUndefined("x"));
+    assertTrue(context.getDeclaration("x").isImmutable());
+    assertEquals("number", context.getDeclaration("x").getType());
   }
 
-  // @Test
+  @Test
   public void testBooleanDeclaration() {
     final AST ast = createAST("testComplexBooleanDeclaration.txt");
     final Context context = new Context();
 
     ASTVisitor.create(context).visit((DeclarationAssignationNode) ast.getBlock().getNodes().get(0));
 
-    assertFalse(context.getVariables().isUndefined("x"));
-    assertFalse(context.getVariables().getDeclaration("x").isImmutable());
-    assertEquals("boolean", context.getVariables().getDeclaration("x").getType());
+    assertFalse(context.isUndefined("x"));
+    assertFalse(context.getDeclaration("x").isImmutable());
+    assertEquals("boolean", context.getDeclaration("x").getType());
 
     try {
-      assertEquals("true", context.getVariables().getValue("x"));
+      assertEquals("false", context.getValue("x"));
     } catch (Exception e) {
       e.printStackTrace();
     }
