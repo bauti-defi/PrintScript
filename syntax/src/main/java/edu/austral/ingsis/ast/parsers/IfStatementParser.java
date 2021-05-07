@@ -17,8 +17,8 @@ public class IfStatementParser implements NodeParser<IfStatementNode> {
   @Override
   public boolean predicate(List<Token> tokens) {
     return TokenPattern.Builder.of(TokenType.IF).leftParantheses().build().startWith(tokens)
-            && containsToken(tokens, TokenType.L_CURLY_BRACE)
-            && endsWith(tokens,TokenType.R_CURLY_BRACE);
+        && containsToken(tokens, TokenType.L_CURLY_BRACE)
+        && endsWith(tokens, TokenType.R_CURLY_BRACE);
   }
 
   @Override
@@ -51,7 +51,7 @@ public class IfStatementParser implements NodeParser<IfStatementNode> {
 
     if (elseIndex == -1) {
       return ifStatementNode;
-    }else if (elseIndex != closingCurlyBrace + 1) {
+    } else if (elseIndex != closingCurlyBrace + 1) {
       throw new SyntaxException();
     }
 
@@ -60,7 +60,7 @@ public class IfStatementParser implements NodeParser<IfStatementNode> {
     openingCurlyBrace = getIndexOfToken(elseBlock, TokenType.L_CURLY_BRACE);
     closingCurlyBrace = getIndexOfToken(elseBlock, TokenType.R_CURLY_BRACE);
 
-    if(openingCurlyBrace == -1 ||  closingCurlyBrace == -1){
+    if (openingCurlyBrace == -1 || closingCurlyBrace == -1) {
       throw new SyntaxException();
     }
 

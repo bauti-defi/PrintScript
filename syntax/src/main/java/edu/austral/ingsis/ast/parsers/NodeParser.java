@@ -13,7 +13,7 @@ public interface NodeParser<T extends AbstractNode> {
   T parse(List<Token> tokens);
 
   default List<Token> trimSemicolon(List<Token> line) {
-    if(endsWithSemicolon(line)){
+    if (endsWithSemicolon(line)) {
       return line.subList(0, line.size() - 1);
     }
     return line;
