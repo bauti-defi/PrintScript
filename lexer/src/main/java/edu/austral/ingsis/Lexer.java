@@ -8,7 +8,6 @@ import edu.austral.ingsis.util.WordsToken;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,73 +26,78 @@ public class Lexer {
 
   public List<Token> lex(List<String> text) {
     clear();
-    Integer lineNumber = 0;
+    Integer line = 0;
     for (String s : text) {
-      List<Character> line = s.chars().mapToObj(e -> (char) e).collect(Collectors.toList());
-      for (Character c : line) {
-        tokenize(c, lineNumber);
-      }
+      for (Character c : s.toCharArray()) tokenize(c, line);
+
       this.index = 0;
-      lineNumber++;
+      line++;
     }
     return tokens;
   }
 
-  private void tokenize(Character c, Integer lineNumber) {
-    if (c.toString().equals("\"")) {
-      if (accum.isEmpty()) {
-        state = StateType.STRING;
-        accum += "\"";
-      } else if (state.equals(StateType.STRING)) {
-        accum += "\"";
-        createToken(TokenType.LITERAL, lineNumber);
-      }
-    } else if (state.equals(StateType.STRING)) accum += c.toString();
-    else if (isCompound(c) && state.equals(StateType.EMPTY)) {
-      state = StateType.COMPOUND_KEYWORD;
-      accum += c.toString();
-    } else if (isCompound(c)
-        && !accum.isEmpty()
-        && (state.equals(StateType.NUMBER) || state.equals(StateType.IS_LETTER))) {
-      if (state.equals(StateType.NUMBER)) createToken(TokenType.LITERAL, lineNumber);
-      else createToken(TokenType.IDENTIFIER, lineNumber);
-      accum += c.toString();
-      state = StateType.COMPOUND_KEYWORD;
-    } else if (state.equals(StateType.COMPOUND_KEYWORD) && isCompound(c)) {
-      accum += c.toString();
-    } else if (accum.isEmpty() && isNumber(c)) {
-      accum += c.toString();
-      state = StateType.NUMBER;
-    } else if (isNumber(c) && state.equals(StateType.COMPOUND_KEYWORD)) {
-      createToken(wordsKeyWords.get(accum), lineNumber);
-      state = StateType.NUMBER;
-      accum += c;
-    } else if (state.equals(StateType.NUMBER) && isNumber(c)) accum += c.toString();
-    else if (accum.isEmpty() && isLetter(c)) {
-      state = StateType.IS_LETTER;
-      accum += c.toString();
-    } else if (isLetter(c) && state.equals(StateType.IS_LETTER)) {
-      accum += c.toString();
+  private void tokenize(Character c, Integer line) {
 
-    } else if (c.toString().equals(" ") && accumIsWordKeyword()) {
-      createToken(wordsKeyWords.get(accum), lineNumber);
-    } else if (isKeyword(c) && !accum.isEmpty()) {
-      if (state.equals(StateType.NUMBER) && !isNumber(c)) {
-        createToken(TokenType.LITERAL, lineNumber);
+    switch (state) {
+      case STRING:
         accum += c.toString();
-        createToken(keyWords.get(c.toString()), lineNumber);
-      } else if (state.equals(StateType.IS_LETTER) || state.equals(StateType.EMPTY)) {
-        if (accumIsWordKeyword()) createToken(wordsKeyWords.get(accum), lineNumber);
-        else createToken(TokenType.IDENTIFIER, lineNumber);
-        accum += c.toString();
-        createToken(keyWords.get(c.toString()), lineNumber);
-      }
+        if (c.toString().equals("\"")) createToken(TokenType.LITERAL, line);
 
-    } else if (isKeyword(c) && accum.isEmpty()) {
-      accum += c.toString();
-      createToken(keyWords.get(c.toString()), lineNumber);
-    } else if (state.equals(StateType.NUMBER) && c.toString().equals(".")) {
-      accum += c.toString();
+        break;
+      case EMPTY:
+        if (isCompound(c)) addAccum(StateType.COMPOUND_KEYWORD, c);
+        else if (isNumber(c)) addAccum(StateType.NUMBER, c);
+        else if (isLetter(c)) addAccum(StateType.IS_LETTER, c);
+        else if (c.toString().equals("\"")) addAccum(StateType.STRING, c);
+        else if (accumIsWordKeyword()) createToken(wordsKeyWords.get(accum), line);
+        else if (isKeyword(c)) {
+          accum += c.toString();
+          createToken(keyWords.get(c.toString()), line);
+        }
+
+        break;
+      case NUMBER:
+        if (isCompound(c)) {
+          createToken(TokenType.LITERAL, line);
+          changeToCompoundStateAndAddToAccum(c);
+        } else if (isNumber(c)) accum += c.toString();
+        else if (isKeyword(c)) {
+          createToken(TokenType.LITERAL, line);
+          accum += c.toString();
+          createToken(keyWords.get(accum), line);
+        } else if (c.toString().equals(".")) accum += c.toString();
+
+        break;
+      case IS_LETTER:
+        if (isCompound(c)) {
+          if (accumIsWordKeyword()) createToken(wordsKeyWords.get(accum), line);
+          else createToken(TokenType.IDENTIFIER, line);
+          state = StateType.COMPOUND_KEYWORD;
+          accum += c.toString();
+        } else if (isLetter(c)) accum += c.toString();
+        else if (isKeyword(c)) {
+          if (accumIsWordKeyword()) {
+            createToken(wordsKeyWords.get(accum), line);
+          } else {
+            createToken(TokenType.IDENTIFIER, line);
+          }
+          accum += c.toString();
+          createToken(keyWords.get(c.toString()), line);
+
+        } else if (accumIsWordKeyword()) createToken(wordsKeyWords.get(accum), line);
+
+        break;
+      case COMPOUND_KEYWORD:
+        if (isCompound(c)) accum += c.toString();
+        else if (isNumber(c)) {
+          createToken(wordsKeyWords.get(accum), line);
+          state = StateType.NUMBER;
+          accum += c.toString();
+        } else if (c.toString().equals("\"")) {
+          createToken(wordsKeyWords.get(accum), line);
+          state = StateType.STRING;
+          accum += c.toString();
+        } else if (c.toString().equals(" ")) createToken(wordsKeyWords.get(accum), line);
     }
   }
 
@@ -126,6 +130,16 @@ public class Lexer {
 
   private boolean accumIsWordKeyword() {
     return wordsKeyWords.containsKey(accum);
+  }
+
+  private void changeToCompoundStateAndAddToAccum(Character c) {
+    state = StateType.COMPOUND_KEYWORD;
+    accum += c.toString();
+  }
+
+  private void addAccum(StateType state, Character c) {
+    this.state = state;
+    accum += c.toString();
   }
 
   private void clear() {
