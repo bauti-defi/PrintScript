@@ -49,36 +49,36 @@ public class TokenGrouperTest implements TokenHelper {
     assertEquals(1, groups.size());
   }
 
-    @Test
-    public void test04() {
-      List<Token> tokens = readTokensFromFile("test4.txt");
+  @Test
+  public void test04() {
+    List<Token> tokens = readTokensFromFile("test4.txt");
 
-      List<List<Token>> groups = TokenGrouper.group(tokens);
+    List<List<Token>> groups = TokenGrouper.group(tokens);
 
-      testLine(groups, 0, "const", "booleanResult", ":", "boolean", "=", "5", "<=", "3", ";");
+    testLine(groups, 0, "const", "booleanResult", ":", "boolean", "=", "5", "<=", "3", ";");
 
-      testLine(
-          groups,
-          1,
-          "if",
-          "(",
-          "booleanResult",
-          ")",
-          "{",
-          "}",
-          "else",
-          "{",
-          "println",
-          "(",
-          "\"else statement working correctly\"",
-          ")",
-          ";",
-          "}");
+    testLine(
+        groups,
+        1,
+        "if",
+        "(",
+        "booleanResult",
+        ")",
+        "{",
+        "}",
+        "else",
+        "{",
+        "println",
+        "(",
+        "\"else statement working correctly\"",
+        ")",
+        ";",
+        "}");
 
-      testLine(groups, 2, "println", "(", "\"outside of conditional\"", ")", ";");
+    testLine(groups, 2, "println", "(", "\"outside of conditional\"", ")", ";");
 
-      assertEquals(3, groups.size());
-    }
+    assertEquals(3, groups.size());
+  }
 
   private void testLine(List<List<Token>> groups, int group, String... pattern) {
     assertLinesMatch(
