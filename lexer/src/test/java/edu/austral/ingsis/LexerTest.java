@@ -14,7 +14,43 @@ class LexerTest {
   @Test
   public void simpleStatementTest() {
     List<String> str = new ArrayList<>();
-    str.add("let x : number = 5 ;");
+    str.add("let x:number= 5;");
+    List<Token> tokens = lexer.lex(str);
+    List<Token> expectedToken =
+        Arrays.asList(
+            Token.builder().type(TokenType.LET).value("let").index(0).line(0).build(),
+            Token.builder().type(TokenType.IDENTIFIER).value("x").index(1).line(0).build(),
+            Token.builder().type(TokenType.COLON).value(":").index(2).line(0).build(),
+            Token.builder().type(TokenType.TYPE).value("number").index(3).line(0).build(),
+            Token.builder().type(TokenType.EQUALS).value("=").index(4).line(0).build(),
+            Token.builder().type(TokenType.LITERAL).value("5").index(5).line(0).build(),
+            Token.builder().type(TokenType.SEMICOLON).value(";").index(6).line(0).build());
+
+    assertEquals(expectedToken, tokens);
+  }
+
+  @Test
+  public void simpleStatementTestWithoutSpaceBetweenEqualAndNumber() {
+    List<String> str = new ArrayList<>();
+    str.add("let x :number= 5;");
+    List<Token> tokens = lexer.lex(str);
+    List<Token> expectedToken =
+        Arrays.asList(
+            Token.builder().type(TokenType.LET).value("let").index(0).line(0).build(),
+            Token.builder().type(TokenType.IDENTIFIER).value("x").index(1).line(0).build(),
+            Token.builder().type(TokenType.COLON).value(":").index(2).line(0).build(),
+            Token.builder().type(TokenType.TYPE).value("number").index(3).line(0).build(),
+            Token.builder().type(TokenType.EQUALS).value("=").index(4).line(0).build(),
+            Token.builder().type(TokenType.LITERAL).value("5").index(5).line(0).build(),
+            Token.builder().type(TokenType.SEMICOLON).value(";").index(6).line(0).build());
+
+    assertEquals(expectedToken, tokens);
+  }
+
+  @Test
+  public void simpleStatementTestWithSpaceBetweenEqualAndNumber() {
+    List<String> str = new ArrayList<>();
+    str.add("let x:number = 5;");
     List<Token> tokens = lexer.lex(str);
     List<Token> expectedToken =
         Arrays.asList(
@@ -59,7 +95,7 @@ class LexerTest {
   public void twoLinesStatementTest() {
     List<String> str = new ArrayList<>();
     str.add("let x : number = 5 ;");
-    str.add("let a : string = \"hola\" ;");
+    str.add("let a : string =\"hola\" ;");
     List<Token> tokens = lexer.lex(str);
     List<Token> expectedToken =
         Arrays.asList(
@@ -287,6 +323,28 @@ class LexerTest {
             Token.builder().type(TokenType.PLUS_SYMBOL).value("+").index(12).line(0).build(),
             Token.builder().type(TokenType.LITERAL).value("2").index(13).line(0).build(),
             Token.builder().type(TokenType.SEMICOLON).value(";").index(14).line(0).build());
+
+    assertEquals(expectedToken, tokens);
+  }
+
+  @Test
+  public void statementWithBooleansOperators() {
+    List<String> str = new ArrayList<>();
+    str.add("let cuenta: boolean = 1==2;");
+
+    List<Token> tokens = lexer.lex(str);
+
+    List<Token> expectedToken =
+        Arrays.asList(
+            Token.builder().type(TokenType.LET).value("let").index(0).line(0).build(),
+            Token.builder().type(TokenType.IDENTIFIER).value("cuenta").index(1).line(0).build(),
+            Token.builder().type(TokenType.COLON).value(":").index(2).line(0).build(),
+            Token.builder().type(TokenType.TYPE).value("boolean").index(3).line(0).build(),
+            Token.builder().type(TokenType.EQUALS).value("=").index(4).line(0).build(),
+            Token.builder().type(TokenType.LITERAL).value("1").index(5).line(0).build(),
+            Token.builder().type(TokenType.DOUBLE_EQUALS).value("==").index(6).line(0).build(),
+            Token.builder().type(TokenType.LITERAL).value("2").index(7).line(0).build(),
+            Token.builder().type(TokenType.SEMICOLON).value(";").index(8).line(0).build());
 
     assertEquals(expectedToken, tokens);
   }
