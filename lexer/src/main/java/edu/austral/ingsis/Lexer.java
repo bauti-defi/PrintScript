@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class Lexer {
 
-  private final Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
-  private final Map<String, TokenType> wordsKeyWords = WordsToken.getWords1_1();
+  private final Map<String, TokenType> keyWords = Keywords.getKeyword1_0();
+  private final Map<String, TokenType> wordsKeyWords = WordsToken.getWords1_0();
   private String accum = "";
   private StateType state = StateType.EMPTY;
   private List<Token> tokens = new ArrayList<>();

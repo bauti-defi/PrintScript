@@ -233,71 +233,6 @@ class LexerTest {
     assertEquals(expectedToken, tokens);
   }
 
-  @Test
-  public void statementWithACompoundKeyboard() {
-    List<String> str = new ArrayList<>();
-    str.add("const booleanResult: boolean = 5 <= 3;");
-
-    List<Token> tokens = lexer.lex(str);
-
-    List<Token> expectedToken =
-        Arrays.asList(
-            Token.builder().type(TokenType.CONST).value("const").index(0).line(0).build(),
-            Token.builder()
-                .type(TokenType.IDENTIFIER)
-                .value("booleanResult")
-                .index(1)
-                .line(0)
-                .build(),
-            Token.builder().type(TokenType.COLON).value(":").index(2).line(0).build(),
-            Token.builder().type(TokenType.TYPE).value("boolean").index(3).line(0).build(),
-            Token.builder().type(TokenType.EQUALS).value("=").index(4).line(0).build(),
-            Token.builder().type(TokenType.LITERAL).value("5").index(5).line(0).build(),
-            Token.builder().type(TokenType.LESS_THAN_EQUALS).value("<=").index(6).line(0).build(),
-            Token.builder().type(TokenType.LITERAL).value("3").index(7).line(0).build(),
-            Token.builder().type(TokenType.SEMICOLON).value(";").index(8).line(0).build());
-
-    assertEquals(expectedToken, tokens);
-  }
-
-  @Test
-  public void statementWithIfElse() {
-    List<String> str = new ArrayList<>();
-    str.add("let a: boolean = 2 > 1;");
-    str.add("if(a) {");
-    str.add("println(\"if should not be supported in version 1.0\");");
-    str.add("}");
-
-    List<Token> tokens = lexer.lex(str);
-    List<Token> expectedToken =
-        Arrays.asList(
-            Token.builder().type(TokenType.LET).value("let").index(0).line(0).build(),
-            Token.builder().type(TokenType.IDENTIFIER).value("a").index(1).line(0).build(),
-            Token.builder().type(TokenType.COLON).value(":").index(2).line(0).build(),
-            Token.builder().type(TokenType.TYPE).value("boolean").index(3).line(0).build(),
-            Token.builder().type(TokenType.EQUALS).value("=").index(4).line(0).build(),
-            Token.builder().type(TokenType.LITERAL).value("2").index(5).line(0).build(),
-            Token.builder().type(TokenType.GREATER_THAN).value(">").index(6).line(0).build(),
-            Token.builder().type(TokenType.LITERAL).value("1").index(7).line(0).build(),
-            Token.builder().type(TokenType.SEMICOLON).value(";").index(8).line(0).build(),
-            Token.builder().type(TokenType.IF).value("if").index(0).line(1).build(),
-            Token.builder().type(TokenType.L_PARENTHESES).value("(").index(1).line(1).build(),
-            Token.builder().type(TokenType.IDENTIFIER).value("a").index(2).line(1).build(),
-            Token.builder().type(TokenType.R_PARENTHESES).value(")").index(3).line(1).build(),
-            Token.builder().type(TokenType.L_CURLY_BRACE).value("{").index(4).line(1).build(),
-            Token.builder().type(TokenType.PRINTLN).value("println").index(0).line(2).build(),
-            Token.builder().type(TokenType.L_PARENTHESES).value("(").index(1).line(2).build(),
-            Token.builder()
-                .type(TokenType.LITERAL)
-                .value("\"if should not be supported in version 1.0\"")
-                .index(2)
-                .line(2)
-                .build(),
-            Token.builder().type(TokenType.R_PARENTHESES).value(")").index(3).line(2).build(),
-            Token.builder().type(TokenType.SEMICOLON).value(";").index(4).line(2).build(),
-            Token.builder().type(TokenType.R_CURLY_BRACE).value("}").index(0).line(3).build());
-    assertEquals(expectedToken, tokens);
-  }
 
   @Test
   public void statementWithMathOperators() {
@@ -327,25 +262,4 @@ class LexerTest {
     assertEquals(expectedToken, tokens);
   }
 
-  @Test
-  public void statementWithBooleansOperators() {
-    List<String> str = new ArrayList<>();
-    str.add("let cuenta: boolean = 1==2;");
-
-    List<Token> tokens = lexer.lex(str);
-
-    List<Token> expectedToken =
-        Arrays.asList(
-            Token.builder().type(TokenType.LET).value("let").index(0).line(0).build(),
-            Token.builder().type(TokenType.IDENTIFIER).value("cuenta").index(1).line(0).build(),
-            Token.builder().type(TokenType.COLON).value(":").index(2).line(0).build(),
-            Token.builder().type(TokenType.TYPE).value("boolean").index(3).line(0).build(),
-            Token.builder().type(TokenType.EQUALS).value("=").index(4).line(0).build(),
-            Token.builder().type(TokenType.LITERAL).value("1").index(5).line(0).build(),
-            Token.builder().type(TokenType.DOUBLE_EQUALS).value("==").index(6).line(0).build(),
-            Token.builder().type(TokenType.LITERAL).value("2").index(7).line(0).build(),
-            Token.builder().type(TokenType.SEMICOLON).value(";").index(8).line(0).build());
-
-    assertEquals(expectedToken, tokens);
-  }
 }
