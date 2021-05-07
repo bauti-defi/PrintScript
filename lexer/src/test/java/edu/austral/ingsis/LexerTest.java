@@ -233,6 +233,27 @@ class LexerTest {
     assertEquals(expectedToken, tokens);
   }
 
+  @Test
+  public void statementConcatNumberAndString() {
+    List<String> str = new ArrayList<>();
+    str.add("let name : string = \"Bautista\" + 12345 ;");
+
+    List<Token> tokens = lexer.lex(str);
+
+    List<Token> expectedToken =
+        Arrays.asList(
+            Token.builder().type(TokenType.LET).value("let").index(0).line(0).build(),
+            Token.builder().type(TokenType.IDENTIFIER).value("name").index(1).line(0).build(),
+            Token.builder().type(TokenType.COLON).value(":").index(2).line(0).build(),
+            Token.builder().type(TokenType.TYPE).value("string").index(3).line(0).build(),
+            Token.builder().type(TokenType.EQUALS).value("=").index(4).line(0).build(),
+            Token.builder().type(TokenType.LITERAL).value("\"Bautista\"").index(5).line(0).build(),
+            Token.builder().type(TokenType.PLUS_SYMBOL).value("+").index(6).line(0).build(),
+            Token.builder().type(TokenType.LITERAL).value("12345").index(7).line(0).build(),
+            Token.builder().type(TokenType.SEMICOLON).value(";").index(8).line(0).build());
+
+    assertEquals(expectedToken, tokens);
+  }
 
   @Test
   public void statementWithMathOperators() {
@@ -261,5 +282,4 @@ class LexerTest {
 
     assertEquals(expectedToken, tokens);
   }
-
 }
