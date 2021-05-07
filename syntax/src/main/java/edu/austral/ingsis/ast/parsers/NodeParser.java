@@ -1,5 +1,6 @@
 package edu.austral.ingsis.ast.parsers;
 
+import edu.austral.ingsis.ast.TokenPattern;
 import edu.austral.ingsis.ast.nodes.AbstractNode;
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
@@ -10,6 +11,17 @@ public interface NodeParser<T extends AbstractNode> {
   boolean predicate(List<Token> tokens);
 
   T parse(List<Token> tokens);
+
+  default List<Token> trimSemicolon(List<Token> line) {
+    if (endsWithSemicolon(line)) {
+      return line.subList(0, line.size() - 1);
+    }
+    return line;
+  }
+
+  default boolean endsWithSemicolon(List<Token> tokens) {
+    return TokenPattern.Builder.of(TokenType.SEMICOLON).build().endsWith(tokens);
+  }
 
   default boolean isTokenType(Token token, TokenType type) {
     return token.getType() == type;

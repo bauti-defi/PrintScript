@@ -13,14 +13,15 @@ public class ReferenceAssignationParser implements NodeParser<ReferenceAssignati
   private final ExpressionParser expressionParser = new ExpressionParser();
 
   public boolean predicate(List<Token> tokens) {
-    return TokenPattern.Builder.of(TokenType.IDENTIFIER).equals().build().startWith(tokens);
+    return TokenPattern.Builder.of(TokenType.IDENTIFIER).equals().build().startWith(tokens)
+        && endsWithSemicolon(tokens);
   }
 
   public ReferenceAssignationNode parse(List<Token> tokens) {
     int index = getIndexOfToken(tokens, TokenType.EQUALS);
 
     final List<Token> declaration = tokens.subList(0, index);
-    final List<Token> value = tokens.subList(index + 1, tokens.size());
+    final List<Token> value = trimSemicolon(tokens.subList(index + 1, tokens.size()));
 
     final ReferenceAssignationNode referenceAssignationNode =
         new ReferenceAssignationNode(tokens.get(index));

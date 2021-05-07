@@ -1,0 +1,5 @@
+if(x){
+const x:number;
+}else{
+println("this statement");
+}

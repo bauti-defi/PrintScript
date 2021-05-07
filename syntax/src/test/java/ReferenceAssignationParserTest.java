@@ -18,7 +18,8 @@ public class ReferenceAssignationParserTest implements TokenHelper {
         Arrays.asList(
             createMockToken("x", TokenType.IDENTIFIER),
             createMockToken("=", TokenType.EQUALS),
-            createMockToken("5", TokenType.LITERAL));
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken(";", TokenType.SEMICOLON));
 
     final ReferenceAssignationParser parser = new ReferenceAssignationParser();
 

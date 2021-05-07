@@ -40,7 +40,7 @@ public class DeclarationParser implements NodeParser<DeclarationNode> {
     }
 
     // Check we have a type
-    if (!TokenPattern.Builder.of(this.type).identifier().colon().type().build().matches(tokens)) {
+    if (!TokenPattern.Builder.of(this.type).identifier().colon().type().build().startWith(tokens)) {
       throw new SyntaxException(tokens.get(colonIndex + 1));
     }
 
