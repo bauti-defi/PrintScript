@@ -4,6 +4,8 @@ import edu.austral.ingsis.ast.nodes.*;
 
 public interface Visitor {
 
+  void visit(CodeBlock codeBlock);
+
   void visit(ReferenceAssignationNode node);
 
   void visit(DeclarationAssignationNode node);

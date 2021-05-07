@@ -35,7 +35,7 @@ public class TokenGrouper {
         }
       } else if (tokens.get(start).getType() == TokenType.IF) {
         if (tokens.get(i).getType() == TokenType.R_CURLY_BRACE) {
-          if (tokens.size() >= i + 1 && tokens.get(i + 1).getType() == TokenType.ELSE) {
+          if (tokens.size() > i + 1 && tokens.get(i + 1).getType() == TokenType.ELSE) {
             continue;
           } else {
             return tokens.subList(start, i + 1);

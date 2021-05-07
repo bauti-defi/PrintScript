@@ -14,7 +14,7 @@ public class PrintlnNode extends AbstractNode implements Visitable {
 
   @Override
   public String getNodeType() {
-    return "PRINT";
+    return "PRINTLN";
   }
 
   public void setArgs(ExpressionNode args) {

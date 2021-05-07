@@ -84,7 +84,7 @@ public class ExpressionEvaluator implements Evaluator<String> {
   @SneakyThrows
   @Override
   public String visit(ReferenceNode node) {
-    return this.context.getVariables().getValue(node.getIdentifier());
+    return this.context.getValue(node.getIdentifier());
   }
 
   @SneakyThrows
