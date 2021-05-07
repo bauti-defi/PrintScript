@@ -10,11 +10,11 @@ public class VariableTable {
       new HashMap<>(); // identifier, type, immutable
   private final HashMap<String, String> values = new HashMap<>(); // value
 
-  public Set<Map.Entry<String, Declaration>> getAllDeclaration(){
+  public Set<Map.Entry<String, Declaration>> getAllDeclaration() {
     return declarations.entrySet();
   }
 
-  public Set<Map.Entry<String, String>> getAllValues(){
+  public Set<Map.Entry<String, String>> getAllValues() {
     return values.entrySet();
   }
 

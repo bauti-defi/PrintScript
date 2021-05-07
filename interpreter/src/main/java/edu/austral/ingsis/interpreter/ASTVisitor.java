@@ -13,10 +13,9 @@ public class ASTVisitor implements Visitor {
     this.context = context;
   }
 
-  public void visit(CodeBlock codeBlock){
+  public void visit(CodeBlock codeBlock) {
     codeBlock.getNodes().forEach(node -> execute(node));
   }
-
 
   private void execute(AbstractNode node) {
     switch (node.getNodeType()) {
@@ -39,7 +38,8 @@ public class ASTVisitor implements Visitor {
   @Override
   public void visit(ReferenceAssignationNode node) {
     try {
-      context.setValue(node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
+      context.setValue(
+          node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -50,7 +50,8 @@ public class ASTVisitor implements Visitor {
     this.visit(node.getLeft());
 
     try {
-      context.setValue(node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
+      context.setValue(
+          node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -85,9 +86,7 @@ public class ASTVisitor implements Visitor {
   public void visit(ExpressionNode node) {}
 
   @Override
-  public void visit(CompoundExpressionNode node) {
-
-  }
+  public void visit(CompoundExpressionNode node) {}
 
   @Override
   public void visit(PrintlnNode node) {
@@ -96,10 +95,11 @@ public class ASTVisitor implements Visitor {
 
   @Override
   public void visit(IfStatementNode node) {
-    boolean predicate = Boolean.valueOf(ExpressionEvaluator.evaluate(node.getExpression(), context));
-    if(predicate && node.getIfBlock() != null){
+    boolean predicate =
+        Boolean.valueOf(ExpressionEvaluator.evaluate(node.getExpression(), context));
+    if (predicate && node.getIfBlock() != null) {
       Interpreter.interpret(node.getIfBlock(), context);
-    }else if(node.getElseBlock() != null){
+    } else if (node.getElseBlock() != null) {
       Interpreter.interpret(node.getElseBlock(), context);
     }
   }

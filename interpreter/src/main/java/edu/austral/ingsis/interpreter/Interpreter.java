@@ -14,5 +14,4 @@ public class Interpreter {
     final Context context = new Context(parentContext);
     ASTVisitor.create(context).visit(ast.getBlock());
   }
-
 }

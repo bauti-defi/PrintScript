@@ -6,9 +6,8 @@ import edu.austral.ingsis.ast.nodes.PrintlnNode;
 import edu.austral.ingsis.interpreter.ASTVisitor;
 import edu.austral.ingsis.interpreter.Context;
 import edu.austral.ingsis.tokens.Token;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class InterpretPrintTest {
 
@@ -26,7 +25,5 @@ public class InterpretPrintTest {
     final Context context = new Context();
 
     ASTVisitor.create(context).visit((PrintlnNode) ast.getBlock().getNodes().get(0));
-
-
   }
 }

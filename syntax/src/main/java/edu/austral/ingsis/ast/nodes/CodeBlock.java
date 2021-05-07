@@ -2,7 +2,6 @@ package edu.austral.ingsis.ast.nodes;
 
 import edu.austral.ingsis.ast.visitor.Visitable;
 import edu.austral.ingsis.ast.visitor.Visitor;
-
 import java.util.List;
 
 public class CodeBlock implements Visitable {
