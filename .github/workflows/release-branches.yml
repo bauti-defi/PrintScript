@@ -5,7 +5,9 @@ name: Realese Branches CI
 
 on:
   push:
-    branches: ''
+    branches: 
+    - ''
+    - '/*'
 
 
 jobs:
