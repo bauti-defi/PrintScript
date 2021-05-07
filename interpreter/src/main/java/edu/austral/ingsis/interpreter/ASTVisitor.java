@@ -70,7 +70,7 @@ public class ASTVisitor implements Visitor {
   public void visit(CompoundExpressionNode node) {}
 
   @Override
-  public void visit(PrintNode node) {
+  public void visit(PrintlnNode node) {
     System.out.println(ExpressionEvaluator.evaluate(node.getArgs(), context));
   }
 

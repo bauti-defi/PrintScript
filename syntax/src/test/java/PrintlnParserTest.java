@@ -1,7 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import edu.austral.ingsis.ast.nodes.BinaryOpNode;
-import edu.austral.ingsis.ast.nodes.PrintNode;
+import edu.austral.ingsis.ast.nodes.PrintlnNode;
 import edu.austral.ingsis.ast.parsers.PrintlnParser;
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-public class PrintParserTest implements TokenHelper {
+public class PrintlnParserTest implements TokenHelper {
 
   @Test
   public void testParse01() {
@@ -24,7 +24,7 @@ public class PrintParserTest implements TokenHelper {
     final PrintlnParser parser = new PrintlnParser();
 
     if (parser.predicate(tokens)) {
-      final PrintNode node = parser.parse(tokens);
+      final PrintlnNode node = parser.parse(tokens);
       assertEquals(TokenType.PRINTLN, node.getToken().getType());
       assertEquals(TokenType.IDENTIFIER, node.getArgs().getToken().getType());
     } else {
@@ -47,7 +47,7 @@ public class PrintParserTest implements TokenHelper {
     final PrintlnParser parser = new PrintlnParser();
 
     if (parser.predicate(tokens)) {
-      final PrintNode node = parser.parse(tokens);
+      final PrintlnNode node = parser.parse(tokens);
       assertEquals(TokenType.PRINTLN, node.getToken().getType());
       assertEquals(TokenType.PLUS_SYMBOL, node.getArgs().getToken().getType());
       final BinaryOpNode expression = (BinaryOpNode) node.getArgs();
@@ -73,7 +73,7 @@ public class PrintParserTest implements TokenHelper {
     final PrintlnParser parser = new PrintlnParser();
 
     if (parser.predicate(tokens)) {
-      final PrintNode node = parser.parse(tokens);
+      final PrintlnNode node = parser.parse(tokens);
       assertEquals(TokenType.PRINTLN, node.getToken().getType());
       assertEquals(TokenType.PLUS_SYMBOL, node.getArgs().getToken().getType());
       final BinaryOpNode expression = (BinaryOpNode) node.getArgs();

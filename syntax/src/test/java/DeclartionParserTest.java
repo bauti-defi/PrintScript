@@ -64,7 +64,8 @@ public class DeclartionParserTest implements TokenHelper {
             createMockToken("const", TokenType.CONST),
             createMockToken("x", TokenType.IDENTIFIER),
             createMockToken(":", TokenType.COLON),
-            createMockToken("boolean", TokenType.TYPE));
+            createMockToken("boolean", TokenType.TYPE),
+                createMockToken(";", TokenType.SEMICOLON));
 
     final DeclarationParser parser = new DeclarationParser(TokenType.CONST);
 

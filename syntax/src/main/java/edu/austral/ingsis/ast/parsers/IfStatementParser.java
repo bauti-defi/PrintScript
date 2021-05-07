@@ -2,6 +2,7 @@ package edu.austral.ingsis.ast.parsers;
 
 import edu.austral.ingsis.ast.AST;
 import edu.austral.ingsis.ast.GlobalASTConfig;
+import edu.austral.ingsis.ast.TokenPattern;
 import edu.austral.ingsis.ast.exceptions.SyntaxException;
 import edu.austral.ingsis.ast.nodes.ExpressionNode;
 import edu.austral.ingsis.ast.nodes.IfStatementNode;
@@ -15,7 +16,9 @@ public class IfStatementParser implements NodeParser<IfStatementNode> {
 
   @Override
   public boolean predicate(List<Token> tokens) {
-    return true;
+    return TokenPattern.Builder.of(TokenType.IF).leftParantheses().build().startWith(tokens)
+            && containsToken(tokens, TokenType.L_CURLY_BRACE)
+            && endsWith(tokens,TokenType.R_CURLY_BRACE);
   }
 
   @Override
@@ -48,14 +51,19 @@ public class IfStatementParser implements NodeParser<IfStatementNode> {
 
     if (elseIndex == -1) {
       return ifStatementNode;
-    } else if (elseIndex != closingCurlyBrace + 1) {
+    }else if (elseIndex != closingCurlyBrace + 1) {
       throw new SyntaxException();
     }
 
-    List<Token> elseBlock = tokens.subList(elseIndex + 1, tokens.size() - 1);
+    List<Token> elseBlock = tokens.subList(elseIndex + 1, tokens.size());
 
     openingCurlyBrace = getIndexOfToken(elseBlock, TokenType.L_CURLY_BRACE);
     closingCurlyBrace = getIndexOfToken(elseBlock, TokenType.R_CURLY_BRACE);
+
+    if(openingCurlyBrace == -1 ||  closingCurlyBrace == -1){
+      throw new SyntaxException();
+    }
+
     AST elseBody =
         AST.create(
             elseBlock.subList(openingCurlyBrace + 1, closingCurlyBrace),

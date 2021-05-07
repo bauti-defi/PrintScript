@@ -20,7 +20,7 @@ public class IfStatementNode extends AbstractNode implements Visitable {
     return "IF";
   }
 
-  public ExpressionNode getLeft() {
+  public ExpressionNode getExpression() {
     return left;
   }
 

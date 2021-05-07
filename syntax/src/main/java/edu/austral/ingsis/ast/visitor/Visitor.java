@@ -22,7 +22,7 @@ public interface Visitor {
 
   void visit(CompoundExpressionNode node);
 
-  void visit(PrintNode node);
+  void visit(PrintlnNode node);
 
   void visit(IfStatementNode node);
 

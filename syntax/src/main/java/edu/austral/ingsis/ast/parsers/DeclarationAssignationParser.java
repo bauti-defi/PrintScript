@@ -17,7 +17,7 @@ public class DeclarationAssignationParser implements NodeParser<DeclarationAssig
   }
 
   public boolean predicate(List<Token> tokens) {
-    return containsToken(tokens, TokenType.EQUALS)
+    return containsToken(tokens, TokenType.EQUALS) && endsWithSemicolon(tokens)
         && declarationParsers.stream().anyMatch(parser -> parser.predicate(tokens));
   }
 
@@ -25,7 +25,7 @@ public class DeclarationAssignationParser implements NodeParser<DeclarationAssig
     int index = getIndexOfToken(tokens, TokenType.EQUALS);
 
     final List<Token> declaration = tokens.subList(0, index);
-    final List<Token> value = tokens.subList(index + 1, tokens.size());
+    final List<Token> value = trimSemicolon(tokens.subList(index + 1, tokens.size()));
 
     final DeclarationAssignationNode declarationAssignationNode =
         new DeclarationAssignationNode(tokens.get(index));

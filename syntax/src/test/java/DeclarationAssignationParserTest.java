@@ -22,7 +22,8 @@ public class DeclarationAssignationParserTest implements TokenHelper {
             createMockToken(":", TokenType.COLON),
             createMockToken("number", TokenType.TYPE),
             createMockToken("=", TokenType.EQUALS),
-            createMockToken("5", TokenType.LITERAL));
+            createMockToken("5", TokenType.LITERAL),
+                createMockToken(";", TokenType.SEMICOLON));
 
     final DeclarationAssignationParser parser =
         new DeclarationAssignationParser(new DeclarationParser(TokenType.LET));
@@ -48,7 +49,8 @@ public class DeclarationAssignationParserTest implements TokenHelper {
             createMockToken(":", TokenType.COLON),
             createMockToken("number", TokenType.TYPE),
             createMockToken("=", TokenType.EQUALS),
-            createMockToken("5", TokenType.LITERAL));
+            createMockToken("5", TokenType.LITERAL),
+                createMockToken(";", TokenType.SEMICOLON));
 
     final DeclarationAssignationParser parser =
         new DeclarationAssignationParser(new DeclarationParser(TokenType.CONST));

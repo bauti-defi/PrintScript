@@ -4,11 +4,11 @@ import edu.austral.ingsis.ast.visitor.Visitable;
 import edu.austral.ingsis.ast.visitor.Visitor;
 import edu.austral.ingsis.tokens.Token;
 
-public class PrintNode extends AbstractNode implements Visitable {
+public class PrintlnNode extends AbstractNode implements Visitable {
 
   private ExpressionNode args;
 
-  public PrintNode(Token token) {
+  public PrintlnNode(Token token) {
     super(token);
   }
 

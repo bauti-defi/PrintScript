@@ -16,9 +16,10 @@ public class ReferenceAssignationParserTest implements TokenHelper {
     // let x:number
     List<Token> tokens =
         Arrays.asList(
-            createMockToken("x", TokenType.IDENTIFIER),
-            createMockToken("=", TokenType.EQUALS),
-            createMockToken("5", TokenType.LITERAL));
+                createMockToken("x", TokenType.IDENTIFIER),
+                createMockToken("=", TokenType.EQUALS),
+                createMockToken("5", TokenType.LITERAL),
+                createMockToken(";", TokenType.SEMICOLON));
 
     final ReferenceAssignationParser parser = new ReferenceAssignationParser();
 
