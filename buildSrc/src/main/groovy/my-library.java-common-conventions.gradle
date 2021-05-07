@@ -104,8 +104,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/EliasLeonov/PrintScript")
             credentials {
-                username = project.findProperty("gpr.user") ?: "EliasLeonov"
-                password = project.findProperty("gpr.key") ?: "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"
+                username = project.findProperty("gpr.user") ?: "USERNAME"
+                password = project.findProperty("gpr.key") ?: "TOKEN"
             }
         }
     }
