@@ -13,6 +13,7 @@ public class WordsToken {
     keywords.put("number", TokenType.TYPE);
     keywords.put("string", TokenType.TYPE);
     keywords.put("println", TokenType.PRINTLN);
+    keywords.put("=", TokenType.EQUALS);
 
     return keywords;
   }
