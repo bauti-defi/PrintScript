@@ -64,7 +64,7 @@ public class ASTVisitor implements Visitor {
   public void visit(DeclarationNode node) {
     boolean immutable = node.getToken().getType() == TokenType.CONST;
     String identifier = node.getLeft().getToken().getValue();
-    String type = node.getRight().getToken().getValue();
+    String type = node.getRight().getToken().getValue().toLowerCase();
 
     try {
       context.insertDeclaration(new Declaration(identifier, immutable, type));

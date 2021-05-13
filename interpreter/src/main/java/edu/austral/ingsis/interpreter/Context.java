@@ -36,7 +36,13 @@ public class Context {
         this.parent.setValue(identifier, value);
         return;
       }
-      throw new Exception("Variable" + identifier + " is undefined.");
+      throw new Exception("Variable " + identifier + " is undefined.");
+    } else if(declarations.get(identifier).isImmutable() && values.containsKey(identifier)){
+      throw new Exception("Variable " + identifier + " is immutable.");
+    } else if(declarations.get(identifier).getType().equals("number") && !isNumeric(value)){
+      throw new Exception("Variable " + identifier + " is of type number.");
+    }else if(declarations.get(identifier).getType().equals("boolean") && !isBoolean(value)){
+      throw new Exception("Variable " + identifier + " is of type boolean.");
     }
     values.put(identifier, value);
   }
@@ -46,12 +52,27 @@ public class Context {
       if (parent != null) {
         return this.parent.getValue(identifier);
       }
-      throw new Exception("Variable" + identifier + " is undefined.");
+      throw new Exception("Variable " + identifier + " is undefined.");
     }
     return values.get(identifier);
   }
 
-  public boolean isNull(String identifier) {
-    return !values.containsKey(identifier);
+  public static boolean isNumeric(String str) {
+    try {
+      Double.parseDouble(str);
+      return true;
+    } catch(NumberFormatException e){
+      return false;
+    }
   }
+
+  public static boolean isBoolean(String str) {
+    try {
+      Boolean.parseBoolean(str);
+      return true;
+    } catch(NumberFormatException e){
+      return false;
+    }
+  }
+
 }

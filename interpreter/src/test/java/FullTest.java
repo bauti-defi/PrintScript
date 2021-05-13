@@ -107,4 +107,126 @@ public class FullTest {
     System.out.println(baos.toString());
     assertEquals("Worked!\n", baos.toString());
   }
+
+  @Test
+  public void text05(){
+    final AST ast = createAST("fullTest05.txt");
+
+    try{
+      Interpreter.interpret(ast);
+    }catch (Exception e){
+      assertEquals("Variable name is immutable.", e.getMessage());
+    }
+  }
+
+  @Test
+  public void text06(){
+    final AST ast = createAST("fullTest06.txt");
+
+// Create a stream to hold the output
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(baos);
+    // IMPORTANT: Save the old System.out!
+    PrintStream old = System.out;
+    // Tell Java to use your special stream
+    System.setOut(ps);
+
+    Interpreter.interpret(ast);
+
+    // Put things back
+    System.out.flush();
+    System.setOut(old);
+    // Show what happened
+    System.out.println(baos.toString());
+    assertEquals("no\n", baos.toString());
+  }
+
+  @Test
+  public void text07(){
+    final AST ast = createAST("fullTest07.txt");
+
+    try{
+      Interpreter.interpret(ast);
+    }catch (Exception e){
+      assertEquals("Variable state is of type boolean.", e.getMessage());
+    }
+  }
+
+  @Test
+  public void text08(){
+    final AST ast = createAST("fullTest08.txt");
+
+    try{
+      Interpreter.interpret(ast);
+    }catch (Exception e){
+      assertEquals("Variable count is of type number.", e.getMessage());
+    }
+  }
+
+  @Test
+  public void text09(){
+    final AST ast = createAST("fullTest09.txt");
+
+    try{
+      Interpreter.interpret(ast);
+    }catch (Exception e){
+      assertEquals("Variable count is of type number.", e.getMessage());
+    }
+  }
+
+  @Test
+  public void text10(){
+    final AST ast = createAST("fullTest10.txt");
+
+    try{
+      Interpreter.interpret(ast);
+    }catch (Exception e){
+      assertEquals("Variable state is of type boolean.", e.getMessage());
+    }
+  }
+
+  @Test
+  public void text11(){
+    final AST ast = createAST("fullTest11.txt");
+
+    try{
+      Interpreter.interpret(ast);
+    }catch (Exception e){
+      assertEquals("Variable bool is undefined.", e.getMessage());
+    }
+  }
+
+  @Test
+  public void text12(){
+    final AST ast = createAST("fullTest12.txt");
+
+    try{
+      Interpreter.interpret(ast);
+    }catch (Exception e){
+      assertEquals("Variable bool is undefined.", e.getMessage());
+    }
+  }
+
+
+  @Test
+  public void text13(){
+    final AST ast = createAST("fullTest13.txt");
+
+// Create a stream to hold the output
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(baos);
+    // IMPORTANT: Save the old System.out!
+    PrintStream old = System.out;
+    // Tell Java to use your special stream
+    System.setOut(ps);
+
+    Interpreter.interpret(ast);
+
+    // Put things back
+    System.out.flush();
+    System.setOut(old);
+    // Show what happened
+    System.out.println(baos.toString());
+    assertEquals("no\n", baos.toString());
+  }
 }
