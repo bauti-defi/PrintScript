@@ -37,11 +37,11 @@ public class Context {
         return;
       }
       throw new Exception("Variable " + identifier + " is undefined.");
-    } else if(declarations.get(identifier).isImmutable() && values.containsKey(identifier)){
+    } else if (declarations.get(identifier).isImmutable() && values.containsKey(identifier)) {
       throw new Exception("Variable " + identifier + " is immutable.");
-    } else if(declarations.get(identifier).getType().equals("number") && !isNumeric(value)){
+    } else if (declarations.get(identifier).getType().equals("number") && !isNumeric(value)) {
       throw new Exception("Variable " + identifier + " is of type number.");
-    }else if(declarations.get(identifier).getType().equals("boolean") && !isBoolean(value)){
+    } else if (declarations.get(identifier).getType().equals("boolean") && !isBoolean(value)) {
       throw new Exception("Variable " + identifier + " is of type boolean.");
     }
     values.put(identifier, value);
@@ -61,7 +61,7 @@ public class Context {
     try {
       Double.parseDouble(str);
       return true;
-    } catch(NumberFormatException e){
+    } catch (NumberFormatException e) {
       return false;
     }
   }
@@ -70,9 +70,8 @@ public class Context {
     try {
       Boolean.parseBoolean(str);
       return true;
-    } catch(NumberFormatException e){
+    } catch (NumberFormatException e) {
       return false;
     }
   }
-
 }

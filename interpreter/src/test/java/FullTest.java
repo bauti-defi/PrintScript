@@ -109,21 +109,21 @@ public class FullTest {
   }
 
   @Test
-  public void text05(){
+  public void text05() {
     final AST ast = createAST("fullTest05.txt");
 
-    try{
+    try {
       Interpreter.interpret(ast);
-    }catch (Exception e){
+    } catch (Exception e) {
       assertEquals("Variable name is immutable.", e.getMessage());
     }
   }
 
   @Test
-  public void text06(){
+  public void text06() {
     final AST ast = createAST("fullTest06.txt");
 
-// Create a stream to hold the output
+    // Create a stream to hold the output
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     PrintStream ps = new PrintStream(baos);
     // IMPORTANT: Save the old System.out!
@@ -142,77 +142,76 @@ public class FullTest {
   }
 
   @Test
-  public void text07(){
+  public void text07() {
     final AST ast = createAST("fullTest07.txt");
 
-    try{
+    try {
       Interpreter.interpret(ast);
-    }catch (Exception e){
+    } catch (Exception e) {
       assertEquals("Variable state is of type boolean.", e.getMessage());
     }
   }
 
   @Test
-  public void text08(){
+  public void text08() {
     final AST ast = createAST("fullTest08.txt");
 
-    try{
+    try {
       Interpreter.interpret(ast);
-    }catch (Exception e){
+    } catch (Exception e) {
       assertEquals("Variable count is of type number.", e.getMessage());
     }
   }
 
   @Test
-  public void text09(){
+  public void text09() {
     final AST ast = createAST("fullTest09.txt");
 
-    try{
+    try {
       Interpreter.interpret(ast);
-    }catch (Exception e){
+    } catch (Exception e) {
       assertEquals("Variable count is of type number.", e.getMessage());
     }
   }
 
   @Test
-  public void text10(){
+  public void text10() {
     final AST ast = createAST("fullTest10.txt");
 
-    try{
+    try {
       Interpreter.interpret(ast);
-    }catch (Exception e){
+    } catch (Exception e) {
       assertEquals("Variable state is of type boolean.", e.getMessage());
     }
   }
 
   @Test
-  public void text11(){
+  public void text11() {
     final AST ast = createAST("fullTest11.txt");
 
-    try{
+    try {
       Interpreter.interpret(ast);
-    }catch (Exception e){
+    } catch (Exception e) {
       assertEquals("Variable bool is undefined.", e.getMessage());
     }
   }
 
   @Test
-  public void text12(){
+  public void text12() {
     final AST ast = createAST("fullTest12.txt");
 
-    try{
+    try {
       Interpreter.interpret(ast);
-    }catch (Exception e){
+    } catch (Exception e) {
       assertEquals("Variable bool is undefined.", e.getMessage());
     }
   }
 
-
   @Test
-  public void text13(){
+  public void text13() {
     final AST ast = createAST("fullTest13.txt");
 
-// Create a stream to hold the output
+    // Create a stream to hold the output
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     PrintStream ps = new PrintStream(baos);
     // IMPORTANT: Save the old System.out!
