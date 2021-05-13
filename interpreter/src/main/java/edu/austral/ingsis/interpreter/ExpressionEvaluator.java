@@ -17,10 +17,6 @@ public class ExpressionEvaluator implements Evaluator<String> {
     return visitor.visit(node);
   }
 
-  private final boolean isString(String value) {
-    return value.contains("\"");
-  }
-
   private boolean isNumber(String s) {
     try {
       Integer.parseInt(s);

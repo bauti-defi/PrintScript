@@ -1,0 +1,7 @@
+const bool:boolean = true;
+let name:string = "bauti";
+if(bool){
+name = "no";
+}
+
+println(name);

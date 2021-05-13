@@ -6,9 +6,7 @@ import edu.austral.ingsis.ast.parsers.NodeParser;
 import edu.austral.ingsis.tokens.Token;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.Builder;
 
-@Builder
 public class ASTBuilder {
 
   private final List<NodeParser<?>> builders;
