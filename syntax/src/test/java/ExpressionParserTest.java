@@ -25,6 +25,7 @@ public class ExpressionParserTest implements TokenHelper {
 
     if (parser.predicate(tokens)) {
       final AbstractNode node = parser.parse(tokens);
+      assertEquals("VALUE_LITERAL", node.getNodeType());
       assertEquals(TokenType.LITERAL, node.getToken().getType());
     } else {
       throw new Error();
@@ -94,7 +95,9 @@ public class ExpressionParserTest implements TokenHelper {
 
     if (expressionParser.predicate(tokens)) {
       final LogicalOpNode logicalOpParser = (LogicalOpNode) expressionParser.parse(tokens);
+      assertEquals("LOGICAL_EXPRESSION", logicalOpParser.getNodeType());
       assertEquals(TokenType.GREATER_THAN_EQUALS, logicalOpParser.getToken().getType());
+      assertEquals("VALUE_LITERAL", logicalOpParser.getLeft().getNodeType());
       assertEquals(TokenType.LITERAL, logicalOpParser.getLeft().getToken().getType());
       assertEquals(TokenType.PLUS_SYMBOL, logicalOpParser.getRight().getToken().getType());
     } else {
