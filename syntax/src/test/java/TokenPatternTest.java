@@ -13,19 +13,26 @@ public class TokenPatternTest implements TokenHelper {
   public void testNormal() {
     // 5+5-5*5
     List<Token> tokens =
-            Arrays.asList(
-                    createMockToken("5", TokenType.LITERAL),
-                    createMockToken("+", TokenType.PLUS_SYMBOL),
-                    createMockToken("5", TokenType.LITERAL),
-                    createMockToken("-", TokenType.MINUS_SYMBOL),
-                    createMockToken("5", TokenType.LITERAL),
-                    createMockToken("*", TokenType.STAR_SYMBOL),
-                    createMockToken("5", TokenType.LITERAL));
+        Arrays.asList(
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken("+", TokenType.PLUS_SYMBOL),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken("-", TokenType.MINUS_SYMBOL),
+            createMockToken("5", TokenType.LITERAL),
+            createMockToken("*", TokenType.STAR_SYMBOL),
+            createMockToken("5", TokenType.LITERAL));
 
-    final TokenPattern pattern = TokenPattern.Builder.of(TokenType.LITERAL).plus().literal().minus().literal().star().literal().build();
+    final TokenPattern pattern =
+        TokenPattern.Builder.of(TokenType.LITERAL)
+            .plus()
+            .literal()
+            .minus()
+            .literal()
+            .star()
+            .literal()
+            .build();
 
     assertEquals(true, pattern.endsWith(tokens));
-
   }
 
   @Test

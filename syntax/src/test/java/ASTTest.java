@@ -41,7 +41,7 @@ public class ASTTest implements TokenHelper {
   }
 
   @Test
-  public void test01(){
+  public void test01() {
     Lexer lexer = new Lexer();
     List<Token> tokens = lexer.lex(FileReaderPS.read("src/test/java/resources/test4.txt"));
 
@@ -50,7 +50,7 @@ public class ASTTest implements TokenHelper {
   }
 
   @Test
-  public void test02(){
+  public void test02() {
     Lexer lexer = new Lexer();
     List<Token> tokens = lexer.lex(FileReaderPS.read("src/test/java/resources/test2.txt"));
 
