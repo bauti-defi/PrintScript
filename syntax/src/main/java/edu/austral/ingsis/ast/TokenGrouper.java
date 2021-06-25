@@ -43,6 +43,6 @@ public class TokenGrouper {
         }
       }
     }
-    throw new SyntaxException();
+    throw new SyntaxException("token grouper");
   }
 }

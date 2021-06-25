@@ -26,7 +26,7 @@ public class ASTBuilder {
               .filter(builder -> builder.predicate(group))
               .findFirst()
               .map(builder -> builder.parse(group))
-              .orElseThrow(() -> new SyntaxException());
+              .orElseThrow(() -> new SyntaxException("ast builder"));
 
       nodes.add(node);
     }

@@ -35,11 +35,11 @@ public class ExpressionEvaluator implements Evaluator<String> {
     }
   }
 
-  private String numberToString(double i){
+  private String numberToString(double i) {
     String val = String.valueOf(i);
-    if(val.contains(".0")){
+    if (val.contains(".0")) {
       return String.valueOf(Integer.parseInt(val.split("\\.")[0]));
-    }else if(isDouble(val)){
+    } else if (isDouble(val)) {
       return String.valueOf(Double.valueOf(val));
     }
     return val;
