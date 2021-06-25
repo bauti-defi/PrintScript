@@ -1,6 +1,5 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
 import edu.austral.ingsis.ast.AST;
 import edu.austral.ingsis.ast.GlobalASTConfig;
@@ -140,7 +139,6 @@ public class FullTest {
     System.out.println(baos.toString());
     assertEquals("no\n", baos.toString());
   }
-
 
   @Test
   public void text99() {
