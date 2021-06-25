@@ -18,13 +18,23 @@ import lombok.NoArgsConstructor;
 @Data
 public class Lexer {
 
-  private final Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
-  private final Map<String, TokenType> wordsKeyWords = WordsToken.getWords1_1();
-  private final Map<String, TokenType> compoundKeywords = CompoundKeywords.getCompoundKeywords();
+  private Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
+  private Map<String, TokenType> wordsKeyWords = WordsToken.getWords1_1();
+  private Map<String, TokenType> compoundKeywords = CompoundKeywords.getCompoundKeywords();
   private String accum = "";
   private StateType state = StateType.EMPTY;
   private List<Token> tokens = new ArrayList<>();
   private Integer index = 0;
+
+  public Lexer(String version) {
+    if (version.equals("1.0")) {
+      keyWords = Keywords.getKeyword1_0();
+      wordsKeyWords = WordsToken.getWords1_0();
+    } else if (version.equals("1.1")) {
+      keyWords = Keywords.getKeyword1_1();
+      wordsKeyWords = WordsToken.getWords1_1();
+    }
+  }
 
   public List<Token> lex(List<String> text) {
     clear();

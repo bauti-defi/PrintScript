@@ -32,7 +32,7 @@ public class App implements Runnable {
   }
 
   public static void run(String filePath, String version, Consumer<String> stdOut) {
-    Lexer lexer = new Lexer();
+    Lexer lexer = new Lexer(version);
     List<String> document = FileReaderPS.read(filePath);
     List<Token> tokens = lexer.lex(document);
     if (version.equals("1.0")) {
