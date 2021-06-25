@@ -3,20 +3,18 @@ package edu.austral.ingsis.interpreter;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.ast.visitor.Visitor;
 import edu.austral.ingsis.tokens.TokenType;
-import lombok.SneakyThrows;
-
 import java.util.function.Consumer;
+import lombok.SneakyThrows;
 
 public class ASTVisitor implements Visitor {
 
-  private  Consumer<String> stdOut;
+  private Consumer<String> stdOut;
 
   private final Context context;
 
   private ASTVisitor(Context context) {
     this.context = context;
   }
-
 
   private ASTVisitor(Context context, Consumer<String> stdOut) {
     this.context = context;
@@ -100,9 +98,9 @@ public class ASTVisitor implements Visitor {
 
   @Override
   public void visit(PrintlnNode node) {
-    if(stdOut != null){
+    if (stdOut != null) {
       stdOut.accept(ExpressionEvaluator.evaluate(node.getArgs(), context));
-    }else{
+    } else {
       System.out.println(ExpressionEvaluator.evaluate(node.getArgs(), context));
     }
   }
@@ -121,12 +119,11 @@ public class ASTVisitor implements Visitor {
   @Override
   public void visit(ReferenceNode node) {}
 
-  public static ASTVisitor create(Context context ) {
+  public static ASTVisitor create(Context context) {
     return new ASTVisitor(context);
   }
 
-
-  public static ASTVisitor create(Context context , Consumer<String> stdOut) {
+  public static ASTVisitor create(Context context, Consumer<String> stdOut) {
     return new ASTVisitor(context, stdOut);
   }
 }
