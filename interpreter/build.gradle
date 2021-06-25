@@ -7,6 +7,7 @@ dependencies {
     implementation project(":lexer")
     implementation project(":syntax")
     implementation project(":filereader")
+    testImplementation 'junit:junit:4.13'
 }
 
 group 'edu.austral.ingsis'

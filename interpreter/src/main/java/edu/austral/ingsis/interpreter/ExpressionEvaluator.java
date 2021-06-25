@@ -1,5 +1,8 @@
 package edu.austral.ingsis.interpreter;
 
+import static edu.austral.ingsis.interpreter.NumberUtils.isDouble;
+import static edu.austral.ingsis.interpreter.NumberUtils.numberToString;
+
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.tokens.TokenType;
 import lombok.SneakyThrows;
@@ -15,34 +18,6 @@ public class ExpressionEvaluator implements Evaluator<String> {
   public static String evaluate(ExpressionNode node, Context context) {
     final ExpressionEvaluator visitor = new ExpressionEvaluator(context);
     return visitor.visit(node);
-  }
-
-  private boolean isInteger(String s) {
-    try {
-      Integer.parseInt(s);
-      return true;
-    } catch (Exception e) {
-      return false;
-    }
-  }
-
-  private boolean isDouble(String s) {
-    try {
-      Double.parseDouble(s);
-      return true;
-    } catch (Exception e) {
-      return false;
-    }
-  }
-
-  private String numberToString(double i) {
-    String val = String.valueOf(i);
-    if (val.contains(".0")) {
-      return String.valueOf(Integer.parseInt(val.split("\\.")[0]));
-    } else if (isDouble(val)) {
-      return String.valueOf(Double.valueOf(val));
-    }
-    return val;
   }
 
   private boolean isBoolean(String s) {
