@@ -1,5 +1,6 @@
 package edu.austral.ingsis.interpreter;
 
+import edu.austral.ingsis.ast.exceptions.SyntaxException;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.ast.visitor.Visitor;
 import edu.austral.ingsis.tokens.TokenType;
@@ -101,30 +102,26 @@ public class ASTVisitor implements Visitor {
 
   @Override
   public void visit(PrintlnNode node) {
-    if (stdOut != null) {
-      stdOut.accept(ExpressionEvaluator.evaluate(node.getArgs(), context));
-    } else {
-      System.out.println(ExpressionEvaluator.evaluate(node.getArgs(), context));
-    }
+    stdOut.accept(ExpressionEvaluator.evaluate(node.getArgs(), context));
   }
 
   @Override
   public void visit(IfStatementNode node) {
-    boolean predicate =
-        Boolean.valueOf(ExpressionEvaluator.evaluate(node.getExpression(), context));
-    if (predicate && node.getIfBlock() != null) {
-      Interpreter.interpret(node.getIfBlock(), context);
-    } else if (node.getElseBlock() != null) {
-      Interpreter.interpret(node.getElseBlock(), context);
+    String result = ExpressionEvaluator.evaluate(node.getExpression(), context);
+    if (result.equals("true") || result.equals("false")) {
+      boolean predicate = Boolean.parseBoolean(result);
+      if (predicate && node.getIfBlock() != null) {
+        Interpreter.interpret(node.getIfBlock(), context, stdOut);
+      } else if (node.getElseBlock() != null) {
+        Interpreter.interpret(node.getElseBlock(), context, stdOut);
+      }
+    } else {
+      throw new SyntaxException("only booleans allowed in if statements");
     }
   }
 
   @Override
   public void visit(ReferenceNode node) {}
-
-  public static ASTVisitor create(Context context) {
-    return new ASTVisitor(context);
-  }
 
   public static ASTVisitor create(Context context, Consumer<String> stdOut) {
     return new ASTVisitor(context, stdOut);

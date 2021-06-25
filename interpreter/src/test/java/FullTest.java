@@ -6,177 +6,116 @@ import edu.austral.ingsis.ast.AST;
 import edu.austral.ingsis.ast.GlobalASTConfig;
 import edu.austral.ingsis.interpreter.Interpreter;
 import edu.austral.ingsis.tokens.Token;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class FullTest {
 
-  private AST createAST(String filename) {
-    Lexer lexer = new Lexer("1.1");
+  private AST createAST(String filename, String version) {
+    Lexer lexer = new Lexer(version);
     List<Token> tokens = lexer.lex(FileReaderPS.read("src/test/java/scripts/" + filename));
-    return AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_1);
+    return AST.create(
+        tokens,
+        version.equals("1.1")
+            ? GlobalASTConfig.NODE_PARSERS_V_1_1
+            : GlobalASTConfig.NODE_PARSERS_V_1_0);
   }
 
   @Test
   public void test01() {
-    final AST ast = createAST("fullTest01.txt");
+    final AST ast = createAST("fullTest01.txt", "1.1");
 
-    // Create a stream to hold the output
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(baos);
-    // IMPORTANT: Save the old System.out!
-    PrintStream old = System.out;
-    // Tell Java to use your special stream
-    System.setOut(ps);
+    final StdOutTester out = new StdOutTester();
 
-    Interpreter.interpret(ast);
+    Interpreter.interpret(ast, out);
 
-    // Put things back
-    System.out.flush();
-    System.setOut(old);
-    // Show what happened
-    System.out.println(baos.toString());
-    assertEquals(
-        "else statement working correctly\n" + "outside of conditional\n", baos.toString());
+    List<String> expected =
+        Arrays.asList("else statement working correctly", "outside of conditional");
+    assertList(expected, out.out);
+  }
+
+  public void assertList(List<String> expected, List<String> actual) {
+    assertTrue(expected.size() == actual.size());
+    for (int i = 0; i < actual.size(); i++) {
+      assertEquals(expected.get(i), actual.get(i));
+    }
   }
 
   @Test
   public void test02() {
-    final AST ast = createAST("fullTest02.txt");
+    final AST ast = createAST("fullTest02.txt", "1.0"); // error
 
-    // Create a stream to hold the output
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(baos);
-    // IMPORTANT: Save the old System.out!
-    PrintStream old = System.out;
-    // Tell Java to use your special stream
-    System.setOut(ps);
+    final StdOutTester out = new StdOutTester();
 
-    Interpreter.interpret(ast);
+    Interpreter.interpret(ast, out);
 
-    // Put things back
-    System.out.flush();
-    System.setOut(old);
-    // Show what happened
-    System.out.println(baos.toString());
-    assertEquals("hello world 1\n", baos.toString());
-  }
-
-  @Test
-  public void test000() {
-    final AST ast = createAST("finaltest69.txt");
-
-    // Create a stream to hold the output
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(baos);
-    // IMPORTANT: Save the old System.out!
-    PrintStream old = System.out;
-    // Tell Java to use your special stream
-    System.setOut(ps);
-
-    Interpreter.interpret(ast);
-
-    // Put things back
-    System.out.flush();
-    System.setOut(old);
-    // Show what happened
-    System.out.println(baos.toString());
-    assertEquals("if statement working correctly\noutside of conditional\n", baos.toString());
+    List<String> expected = Arrays.asList("hello world 1");
+    assertList(expected, out.out);
   }
 
   @Test
   public void test03() {
-    final AST ast = createAST("fullTest03.txt");
+    final AST ast = createAST("fullTest03.txt", "1.1");
 
-    // Create a stream to hold the output
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(baos);
-    // IMPORTANT: Save the old System.out!
-    PrintStream old = System.out;
-    // Tell Java to use your special stream
-    System.setOut(ps);
+    final StdOutTester out = new StdOutTester();
 
-    Interpreter.interpret(ast);
+    Interpreter.interpret(ast, out);
 
-    // Put things back
-    System.out.flush();
-    System.setOut(old);
-    // Show what happened
-    System.out.println(baos.toString());
-    assertEquals("if statement working correctly\n" + "outside of conditional\n", baos.toString());
+    List<String> expected =
+        Arrays.asList("if statement working correctly", "outside of conditional");
+    assertList(expected, out.out);
   }
 
   @Test
   public void test04() {
-    final AST ast = createAST("fullTest04.txt");
+    final AST ast = createAST("fullTest04.txt", "1.1");
 
-    // Create a stream to hold the output
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(baos);
-    // IMPORTANT: Save the old System.out!
-    PrintStream old = System.out;
-    // Tell Java to use your special stream
-    System.setOut(ps);
+    final StdOutTester out = new StdOutTester();
 
-    Interpreter.interpret(ast);
+    Interpreter.interpret(ast, out);
 
-    // Put things back
-    System.out.flush();
-    System.setOut(old);
-    // Show what happened
-    System.out.println(baos.toString());
-    assertEquals("Worked!\n", baos.toString());
+    List<String> expected = Arrays.asList("Worked!");
+    assertList(expected, out.out);
   }
 
   @Test
   public void test44() {
-    final AST ast = createAST("valid-const.txt");
+    final AST ast = createAST("valid-const.txt", "1.1");
 
-    // Create a stream to hold the output
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(baos);
-    // IMPORTANT: Save the old System.out!
-    PrintStream old = System.out;
-    // Tell Java to use your special stream
-    System.setOut(ps);
+    final StdOutTester out = new StdOutTester();
 
-    Interpreter.interpret(ast);
+    Interpreter.interpret(ast, out);
 
-    // Put things back
-    System.out.flush();
-    System.setOut(old);
-    // Show what happened
-    System.out.println(baos.toString());
-    assertEquals("", baos.toString());
+    assertTrue(out.out.size() == 0);
   }
 
   @Test
-  public void test445() {
-    final AST ast = createAST("finaltest5.txt");
+  public void testFinal5() {
+    final AST ast = createAST("finaltest5.txt", "1.0");
 
-    // Create a stream to hold the output
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(baos);
-    // IMPORTANT: Save the old System.out!
-    PrintStream old = System.out;
-    // Tell Java to use your special stream
-    System.setOut(ps);
+    final StdOutTester out = new StdOutTester();
 
-    Interpreter.interpret(ast);
+    Interpreter.interpret(ast, out);
 
-    // Put things back
-    System.out.flush();
-    System.setOut(old);
-    // Show what happened
-    System.out.println(baos.toString());
-    assertEquals("17\n", baos.toString());
+    List<String> expected = Arrays.asList("17");
+    assertList(expected, out.out);
   }
 
   @Test
-  public void text05() {
-    final AST ast = createAST("fullTest05.txt");
+  public void test023() {
+    final AST ast = createAST("finaltest23.txt", "1.1");
+
+    try {
+      Interpreter.interpret(ast);
+    } catch (Exception e) {
+      assertEquals("Unknown Syntax error only booleans allowed in if statements", e.getMessage());
+    }
+  }
+
+  @Test
+  public void test05() {
+    final AST ast = createAST("fullTest05.txt", "1.1");
 
     try {
       Interpreter.interpret(ast);
@@ -186,8 +125,19 @@ public class FullTest {
   }
 
   @Test
-  public void text55() {
-    final AST ast = createAST("finaltest3.txt");
+  public void test099() {
+    final AST ast = createAST("finaltest99.txt", "1.1");
+
+    try {
+      Interpreter.interpret(ast);
+    } catch (Exception e) {
+      assertEquals("Variable b is immutable.", e.getMessage());
+    }
+  }
+
+  @Test
+  public void testFinal3() {
+    final AST ast = createAST("finaltest3.txt", "1.0");
 
     try {
       Interpreter.interpret(ast);
@@ -197,8 +147,8 @@ public class FullTest {
   }
 
   @Test
-  public void text555() {
-    final AST ast = createAST("invalid-exp-for-type.txt");
+  public void testInvalidExp() {
+    final AST ast = createAST("invalid-exp-for-type.txt", "1.0");
 
     try {
       Interpreter.interpret(ast);
@@ -208,74 +158,44 @@ public class FullTest {
   }
 
   @Test
-  public void text06() {
-    final AST ast = createAST("fullTest06.txt");
+  public void test06() {
+    final AST ast = createAST("fullTest06.txt", "1.0");
 
-    // Create a stream to hold the output
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(baos);
-    // IMPORTANT: Save the old System.out!
-    PrintStream old = System.out;
-    // Tell Java to use your special stream
-    System.setOut(ps);
+    final StdOutTester out = new StdOutTester();
 
-    Interpreter.interpret(ast);
+    Interpreter.interpret(ast, out);
 
-    // Put things back
-    System.out.flush();
-    System.setOut(old);
-    // Show what happened
-    System.out.println(baos.toString());
-    assertEquals("no\n", baos.toString());
+    List<String> expected = Arrays.asList("no");
+    assertList(expected, out.out);
   }
 
   @Test
-  public void text99() {
-    final AST ast = createAST("finaltest1.txt");
+  public void testFinal1() {
+    final AST ast = createAST("finaltest1.txt", "1.0");
 
-    // Create a stream to hold the output
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(baos);
-    // IMPORTANT: Save the old System.out!
-    PrintStream old = System.out;
-    // Tell Java to use your special stream
-    System.setOut(ps);
+    final StdOutTester out = new StdOutTester();
 
-    Interpreter.interpret(ast);
+    Interpreter.interpret(ast, out);
 
-    // Put things back
-    System.out.flush();
-    System.setOut(old);
-    // Show what happened
-    System.out.println(baos.toString());
-    assertEquals("1.57\n", baos.toString());
+    List<String> expected = Arrays.asList("1.57");
+    assertList(expected, out.out);
   }
 
   @Test
-  public void text999() {
-    final AST ast = createAST("finaltest2.txt");
+  public void testFinal2() {
+    final AST ast = createAST("finaltest2.txt", "1.0");
 
-    // Create a stream to hold the output
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(baos);
-    // IMPORTANT: Save the old System.out!
-    PrintStream old = System.out;
-    // Tell Java to use your special stream
-    System.setOut(ps);
+    final StdOutTester out = new StdOutTester();
 
-    Interpreter.interpret(ast);
+    Interpreter.interpret(ast, out);
 
-    // Put things back
-    System.out.flush();
-    System.setOut(old);
-    // Show what happened
-    System.out.println(baos.toString());
-    assertEquals("5\n", baos.toString());
+    List<String> expected = Arrays.asList("5");
+    assertList(expected, out.out);
   }
 
   @Test
-  public void text07() {
-    final AST ast = createAST("fullTest07.txt");
+  public void test07() {
+    final AST ast = createAST("fullTest07.txt", "1.1");
 
     try {
       Interpreter.interpret(ast);
@@ -285,8 +205,8 @@ public class FullTest {
   }
 
   @Test
-  public void text08() {
-    final AST ast = createAST("fullTest08.txt");
+  public void test08() {
+    final AST ast = createAST("fullTest08.txt", "1.0");
 
     try {
       Interpreter.interpret(ast);
@@ -296,8 +216,8 @@ public class FullTest {
   }
 
   @Test
-  public void text09() {
-    final AST ast = createAST("fullTest09.txt");
+  public void test09() {
+    final AST ast = createAST("fullTest09.txt", "1.1");
 
     try {
       Interpreter.interpret(ast);
@@ -307,8 +227,8 @@ public class FullTest {
   }
 
   @Test
-  public void text10() {
-    final AST ast = createAST("fullTest10.txt");
+  public void test10() {
+    final AST ast = createAST("fullTest10.txt", "1.1");
 
     try {
       Interpreter.interpret(ast);
@@ -318,8 +238,8 @@ public class FullTest {
   }
 
   @Test
-  public void text11() {
-    final AST ast = createAST("fullTest11.txt");
+  public void test11() {
+    final AST ast = createAST("fullTest11.txt", "1.1");
 
     try {
       Interpreter.interpret(ast);
@@ -329,8 +249,8 @@ public class FullTest {
   }
 
   @Test
-  public void text12() {
-    final AST ast = createAST("fullTest12.txt");
+  public void test12() {
+    final AST ast = createAST("fullTest12.txt", "1.1");
 
     try {
       Interpreter.interpret(ast);
@@ -340,24 +260,14 @@ public class FullTest {
   }
 
   @Test
-  public void text13() {
-    final AST ast = createAST("fullTest13.txt");
+  public void test13() {
+    final AST ast = createAST("fullTest13.txt", "1.1");
 
-    // Create a stream to hold the output
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(baos);
-    // IMPORTANT: Save the old System.out!
-    PrintStream old = System.out;
-    // Tell Java to use your special stream
-    System.setOut(ps);
+    final StdOutTester out = new StdOutTester();
 
-    Interpreter.interpret(ast);
+    Interpreter.interpret(ast, out);
 
-    // Put things back
-    System.out.flush();
-    System.setOut(old);
-    // Show what happened
-    System.out.println(baos.toString());
-    assertEquals("no\n", baos.toString());
+    List<String> expected = Arrays.asList("no");
+    assertList(expected, out.out);
   }
 }
