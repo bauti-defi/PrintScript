@@ -65,6 +65,4 @@ public class ASTTest implements TokenHelper {
 
     final AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_1);
   }
-
-
 }
