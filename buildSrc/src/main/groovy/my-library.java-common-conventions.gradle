@@ -134,7 +134,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/MaximilianoAdaro/printscript")
+            url = uri("https://maven.pkg.github.com/Bautista-Baiocchi-lora/PrintScript")
         }
     }
     publications {
