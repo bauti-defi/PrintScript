@@ -8,7 +8,7 @@ plugins {
 }
 
 group 'edu.austral.ingsis'
-version "2.0.1-SNAPSHOT"
+version "2.0.3"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
