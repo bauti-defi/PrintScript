@@ -19,7 +19,7 @@ public class ExpressionEvaluator implements Evaluator<String> {
 
   private boolean isNumber(String s) {
     try {
-      Integer.parseInt(s);
+      Double.parseDouble(s);
       return true;
     } catch (Exception e) {
       return false;
@@ -36,8 +36,8 @@ public class ExpressionEvaluator implements Evaluator<String> {
     String left = this.visit(node.getLeft());
     String right = this.visit(node.getRight());
     if (isNumber(left) && isNumber(right)) {
-      int leftInt = Integer.parseInt(left);
-      int rightInt = Integer.parseInt(right);
+      double leftInt = Double.parseDouble(left);
+      double rightInt = Double.parseDouble(right);
       switch (node.getToken().getType()) {
         case PLUS_SYMBOL:
           return String.valueOf(leftInt + rightInt);

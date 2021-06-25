@@ -141,6 +141,51 @@ public class FullTest {
     assertEquals("no\n", baos.toString());
   }
 
+
+  @Test
+  public void text99() {
+    final AST ast = createAST("finaltest1.txt");
+
+    // Create a stream to hold the output
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(baos);
+    // IMPORTANT: Save the old System.out!
+    PrintStream old = System.out;
+    // Tell Java to use your special stream
+    System.setOut(ps);
+
+    Interpreter.interpret(ast);
+
+    // Put things back
+    System.out.flush();
+    System.setOut(old);
+    // Show what happened
+    System.out.println(baos.toString());
+    assertEquals("1.57\n", baos.toString());
+  }
+
+  @Test
+  public void text999() {
+    final AST ast = createAST("finaltest2.txt");
+
+    // Create a stream to hold the output
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(baos);
+    // IMPORTANT: Save the old System.out!
+    PrintStream old = System.out;
+    // Tell Java to use your special stream
+    System.setOut(ps);
+
+    Interpreter.interpret(ast);
+
+    // Put things back
+    System.out.flush();
+    System.setOut(old);
+    // Show what happened
+    System.out.println(baos.toString());
+    assertEquals("5\n", baos.toString());
+  }
+
   @Test
   public void text07() {
     final AST ast = createAST("fullTest07.txt");

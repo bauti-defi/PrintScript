@@ -6,8 +6,8 @@ import edu.austral.ingsis.tokens.Token;
 public abstract class AssignationNode<K extends AbstractNode> extends AbstractNode
     implements Visitable {
 
-  private K left;
-  private ExpressionNode value;
+  protected K left;
+  protected ExpressionNode value;
 
   public AssignationNode(Token token) {
     super(token);

@@ -6,9 +6,6 @@ import edu.austral.ingsis.tokens.Token;
 
 public class ReferenceAssignationNode extends AssignationNode<ReferenceNode> implements Visitable {
 
-  private ReferenceNode reference;
-  private ExpressionNode value;
-
   public ReferenceAssignationNode(Token token) {
     super(token);
   }
@@ -18,17 +15,13 @@ public class ReferenceAssignationNode extends AssignationNode<ReferenceNode> imp
     return "REFERENCE_ASSIGNATION";
   }
 
-  public void setLeft(ReferenceNode node) {
-    this.reference = node;
-  }
-
   public ReferenceNode getLeft() {
-    return this.reference;
+    return this.left;
   }
 
   @Override
   public String getIdentifier() {
-    return this.reference.getIdentifier();
+    return this.left.getIdentifier();
   }
 
   public void setRight(ExpressionNode node) {

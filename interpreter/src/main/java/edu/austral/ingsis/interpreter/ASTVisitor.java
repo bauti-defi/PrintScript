@@ -33,6 +33,9 @@ public class ASTVisitor implements Visitor {
       case "REFERENCE_ASSIGNATION":
         this.visit((ReferenceAssignationNode) node);
         break;
+      case "DECLARATION":
+        this.visit((DeclarationNode) node);
+        break;
       case "PRINTLN":
         this.visit((PrintlnNode) node);
         break;
