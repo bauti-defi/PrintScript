@@ -9,7 +9,6 @@ public class WordsToken {
   public static Map<String, TokenType> getWords1_0() {
     Map<String, TokenType> keywords = new HashMap<>();
     keywords.put("let", TokenType.LET);
-    keywords.put("const", TokenType.CONST);
     keywords.put("number", TokenType.TYPE);
     keywords.put("string", TokenType.TYPE);
     keywords.put("println", TokenType.PRINTLN);

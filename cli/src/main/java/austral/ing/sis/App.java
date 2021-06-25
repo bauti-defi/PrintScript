@@ -40,7 +40,7 @@ public class App implements Runnable {
       Interpreter.interpret(ast, stdOut);
     }
     if (version.equals("1.1")) {
-      AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_0);
+      AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_1);
       Interpreter.interpret(ast, stdOut);
     }
   }
