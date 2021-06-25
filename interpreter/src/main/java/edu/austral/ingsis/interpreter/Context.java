@@ -18,7 +18,7 @@ public class Context {
     this(null);
   }
 
-  public void insertDeclaration(Declaration declaration) throws Exception {
+  public void insertDeclaration(Declaration declaration) {
     declarations.put(declaration.getIdentifier(), declaration);
   }
 
@@ -30,29 +30,29 @@ public class Context {
     return !declarations.containsKey(identifier);
   }
 
-  public void setValue(String identifier, String value) throws Exception {
+  public void setValue(String identifier, String value) {
     if (isUndefined(identifier)) {
       if (parent != null) {
         this.parent.setValue(identifier, value);
         return;
       }
-      throw new Exception("Variable " + identifier + " is undefined.");
+      throw new RuntimeException("Variable " + identifier + " is undefined.");
     } else if (declarations.get(identifier).isImmutable() && values.containsKey(identifier)) {
-      throw new Exception("Variable " + identifier + " is immutable.");
+      throw new RuntimeException("Variable " + identifier + " is immutable.");
     } else if (declarations.get(identifier).getType().equals("number") && !isNumeric(value)) {
-      throw new Exception("Variable " + identifier + " is of type number.");
+      throw new RuntimeException("Variable " + identifier + " is of type number.");
     } else if (declarations.get(identifier).getType().equals("boolean") && !isBoolean(value)) {
-      throw new Exception("Variable " + identifier + " is of type boolean.");
+      throw new RuntimeException("Variable " + identifier + " is of type boolean.");
     }
     values.put(identifier, value);
   }
 
-  public String getValue(String identifier) throws Exception {
+  public String getValue(String identifier) {
     if (isUndefined(identifier)) {
       if (parent != null) {
         return this.parent.getValue(identifier);
       }
-      throw new Exception("Variable " + identifier + " is undefined.");
+      throw new RuntimeException("Variable " + identifier + " is undefined.");
     }
     return values.get(identifier);
   }

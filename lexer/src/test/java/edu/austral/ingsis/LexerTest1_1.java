@@ -7,9 +7,9 @@ import edu.austral.ingsis.tokens.TokenType;
 import java.util.*;
 import org.junit.jupiter.api.Test;
 
-class LexerTest {
+class LexerTest1_1 {
 
-  static Lexer lexer = new Lexer();
+  static Lexer lexer = new Lexer("1.1");
 
   @Test
   public void simpleStatementTest() {

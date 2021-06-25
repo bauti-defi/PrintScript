@@ -19,16 +19,17 @@ public class ASTBuilder {
   public void process(List<Token> tokens) {
     List<List<Token>> tokenGroups = TokenGrouper.group(tokens);
 
-    for (List<Token> group : tokenGroups) {
-      // process without semicolon
-      final AbstractNode node =
-          builders.stream()
-              .filter(builder -> builder.predicate(group))
-              .findFirst()
-              .map(builder -> builder.parse(group))
-              .orElseThrow(() -> new SyntaxException());
-
-      nodes.add(node);
+    outter:
+    for (int i = 0; i < tokenGroups.size(); i++) {
+      for (NodeParser parser : builders) {
+        if (parser.predicate(tokenGroups.get(i))) {
+          nodes.add(parser.parse(tokenGroups.get(i)));
+          continue outter;
+        }
+      }
+      if (i < tokenGroups.size()) {
+        throw new SyntaxException("AST builder");
+      }
     }
   }
 }

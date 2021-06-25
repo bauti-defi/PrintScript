@@ -27,7 +27,7 @@ public class IfStatementParser implements NodeParser<IfStatementNode> {
     int rightParenthesesIndex = getIndexOfToken(tokens, TokenType.R_PARENTHESES);
 
     if (leftParenthesesIndex == -1 || rightParenthesesIndex == -1) {
-      throw new SyntaxException();
+      throw new SyntaxException("if1");
     }
 
     final IfStatementNode ifStatementNode = new IfStatementNode(tokens.get(0));
@@ -39,7 +39,7 @@ public class IfStatementParser implements NodeParser<IfStatementNode> {
     int closingCurlyBrace = getIndexOfToken(tokens, TokenType.R_CURLY_BRACE);
 
     if (openingCurlyBrace == -1 || closingCurlyBrace == -1) {
-      throw new SyntaxException();
+      throw new SyntaxException("if2");
     }
 
     List<Token> ifBlock = tokens.subList(openingCurlyBrace + 1, closingCurlyBrace);
@@ -52,7 +52,7 @@ public class IfStatementParser implements NodeParser<IfStatementNode> {
     if (elseIndex == -1) {
       return ifStatementNode;
     } else if (elseIndex != closingCurlyBrace + 1) {
-      throw new SyntaxException();
+      throw new SyntaxException("if3");
     }
 
     List<Token> elseBlock = tokens.subList(elseIndex + 1, tokens.size());
@@ -61,7 +61,7 @@ public class IfStatementParser implements NodeParser<IfStatementNode> {
     closingCurlyBrace = getIndexOfToken(elseBlock, TokenType.R_CURLY_BRACE);
 
     if (openingCurlyBrace == -1 || closingCurlyBrace == -1) {
-      throw new SyntaxException();
+      throw new SyntaxException("if4");
     }
 
     AST elseBody =

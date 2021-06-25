@@ -7,9 +7,6 @@ import edu.austral.ingsis.tokens.Token;
 public class DeclarationAssignationNode extends AssignationNode<DeclarationNode>
     implements Visitable {
 
-  private DeclarationNode declaration;
-  private ExpressionNode value;
-
   public DeclarationAssignationNode(Token token) {
     super(token);
   }
@@ -19,17 +16,9 @@ public class DeclarationAssignationNode extends AssignationNode<DeclarationNode>
     return "DECLARATION_ASSIGNATION";
   }
 
-  public void setLeft(DeclarationNode node) {
-    this.declaration = node;
-  }
-
-  public DeclarationNode getLeft() {
-    return this.declaration;
-  }
-
   @Override
   public String getIdentifier() {
-    return this.declaration.getLeft().getToken().getValue();
+    return this.left.getLeft().getToken().getValue();
   }
 
   public void setRight(ExpressionNode node) {

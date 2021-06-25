@@ -8,7 +8,7 @@ public class SyntaxException extends RuntimeException {
     super("Syntax error at: " + token.toString());
   }
 
-  public SyntaxException() {
-    super("Unknown Syntax error ");
+  public SyntaxException(String i) {
+    super("Unknown Syntax error " + i);
   }
 }

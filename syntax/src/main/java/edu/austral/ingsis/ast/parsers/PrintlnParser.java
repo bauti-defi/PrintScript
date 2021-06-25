@@ -22,7 +22,7 @@ public class PrintlnParser implements NodeParser<PrintlnNode> {
     int leftParenthesesIndex = getIndexOfToken(tokens, TokenType.L_PARENTHESES);
     int rightParenthesesIndex = getIndexOfToken(tokens, TokenType.R_PARENTHESES);
     if (leftParenthesesIndex == -1 || rightParenthesesIndex == -1) {
-      throw new SyntaxException();
+      throw new SyntaxException("prnt");
     }
 
     final PrintlnNode printLnNode = new PrintlnNode(tokens.get(0));

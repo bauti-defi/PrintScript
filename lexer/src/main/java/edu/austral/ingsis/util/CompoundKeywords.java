@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CompoundKeywords {
-  public static Map<String, TokenType> getCompoundKeywords() {
+  public static Map<String, TokenType> getCompoundKeywords1_1() {
     Map<String, TokenType> keywords = new HashMap<>();
     keywords.put("<", TokenType.LESS_THAN);
     keywords.put(">", TokenType.GREATER_THAN);
@@ -15,6 +15,12 @@ public class CompoundKeywords {
     keywords.put("==", TokenType.DOUBLE_EQUALS);
     keywords.put("!=", TokenType.NOT_EQUALS);
 
+    return keywords;
+  }
+
+  public static Map<String, TokenType> getCompoundKeywords1_0() {
+    Map<String, TokenType> keywords = new HashMap<>();
+    keywords.put("=", TokenType.EQUALS);
     return keywords;
   }
 }
