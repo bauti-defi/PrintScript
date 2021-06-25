@@ -20,14 +20,16 @@ public class ASTBuilder {
     List<List<Token>> tokenGroups = TokenGrouper.group(tokens);
 
     outter:
-    for (List<Token> group : tokenGroups) {
+    for (int i = 0; i < tokenGroups.size(); i++) {
       for (NodeParser parser : builders) {
-        if (parser.predicate(group)) {
-          nodes.add(parser.parse(group));
+        if (parser.predicate(tokenGroups.get(i))) {
+          nodes.add(parser.parse(tokenGroups.get(i)));
           continue outter;
         }
       }
-      throw new SyntaxException("AST builder");
+      if (i < tokenGroups.size()) {
+        throw new SyntaxException("AST builder");
+      }
     }
   }
 }
