@@ -17,13 +17,32 @@ public class ExpressionEvaluator implements Evaluator<String> {
     return visitor.visit(node);
   }
 
-  private boolean isNumber(String s) {
+  private boolean isInteger(String s) {
+    try {
+      Integer.parseInt(s);
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
+  }
+
+  private boolean isDouble(String s) {
     try {
       Double.parseDouble(s);
       return true;
     } catch (Exception e) {
       return false;
     }
+  }
+
+  private String numberToString(double i){
+    String val = String.valueOf(i);
+    if(val.contains(".0")){
+      return String.valueOf(Integer.parseInt(val.split("\\.")[0]));
+    }else if(isDouble(val)){
+      return String.valueOf(Double.valueOf(val));
+    }
+    return val;
   }
 
   private boolean isBoolean(String s) {
@@ -35,18 +54,18 @@ public class ExpressionEvaluator implements Evaluator<String> {
   public String visit(BinaryOpNode node) {
     String left = this.visit(node.getLeft());
     String right = this.visit(node.getRight());
-    if (isNumber(left) && isNumber(right)) {
+    if (isDouble(left) && isDouble(right)) {
       double leftInt = Double.parseDouble(left);
       double rightInt = Double.parseDouble(right);
       switch (node.getToken().getType()) {
         case PLUS_SYMBOL:
-          return String.valueOf(leftInt + rightInt);
+          return numberToString(leftInt + rightInt);
         case MINUS_SYMBOL:
-          return String.valueOf(leftInt - rightInt);
+          return numberToString(leftInt - rightInt);
         case STAR_SYMBOL:
-          return String.valueOf(leftInt * rightInt);
+          return numberToString(leftInt * rightInt);
         case SLASH_SYMBOL:
-          return String.valueOf(leftInt / rightInt);
+          return numberToString(leftInt / rightInt);
       }
     } else if (node.getToken().getType() == TokenType.PLUS_SYMBOL
         && !isBoolean(left)

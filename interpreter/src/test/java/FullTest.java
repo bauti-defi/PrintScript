@@ -108,6 +108,51 @@ public class FullTest {
     assertEquals("Worked!\n", baos.toString());
   }
 
+
+  @Test
+  public void test44() {
+    final AST ast = createAST("valid-const.txt");
+
+    // Create a stream to hold the output
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(baos);
+    // IMPORTANT: Save the old System.out!
+    PrintStream old = System.out;
+    // Tell Java to use your special stream
+    System.setOut(ps);
+
+    Interpreter.interpret(ast);
+
+    // Put things back
+    System.out.flush();
+    System.setOut(old);
+    // Show what happened
+    System.out.println(baos.toString());
+    assertEquals("", baos.toString());
+  }
+
+  @Test
+  public void test445() {
+    final AST ast = createAST("finaltest5.txt");
+
+    // Create a stream to hold the output
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(baos);
+    // IMPORTANT: Save the old System.out!
+    PrintStream old = System.out;
+    // Tell Java to use your special stream
+    System.setOut(ps);
+
+    Interpreter.interpret(ast);
+
+    // Put things back
+    System.out.flush();
+    System.setOut(old);
+    // Show what happened
+    System.out.println(baos.toString());
+    assertEquals("17\n", baos.toString());
+  }
+
   @Test
   public void text05() {
     final AST ast = createAST("fullTest05.txt");
@@ -116,6 +161,30 @@ public class FullTest {
       Interpreter.interpret(ast);
     } catch (Exception e) {
       assertEquals("Variable name is immutable.", e.getMessage());
+    }
+  }
+
+
+  @Test
+  public void text55() {
+    final AST ast = createAST("finaltest3.txt");
+
+    try {
+      Interpreter.interpret(ast);
+    } catch (Exception e) {
+      assertEquals("Unsupported binary operation: STAR_SYMBOL", e.getMessage());
+    }
+  }
+
+
+  @Test
+  public void text555() {
+    final AST ast = createAST("invalid-exp-for-type.txt");
+
+    try {
+      Interpreter.interpret(ast);
+    } catch (Exception e) {
+      assertEquals("Unsupported binary operation: STAR_SYMBOL", e.getMessage());
     }
   }
 

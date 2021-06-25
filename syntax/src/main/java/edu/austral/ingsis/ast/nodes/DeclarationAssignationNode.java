@@ -16,7 +16,6 @@ public class DeclarationAssignationNode extends AssignationNode<DeclarationNode>
     return "DECLARATION_ASSIGNATION";
   }
 
-
   @Override
   public String getIdentifier() {
     return this.left.getLeft().getToken().getValue();

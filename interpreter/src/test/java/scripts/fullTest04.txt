@@ -1,4 +1,4 @@
 let cuenta: number = 5*5-8/4+2;
-if(cuenta==25.0){
+if(cuenta==25){
 println("Worked!");
 }

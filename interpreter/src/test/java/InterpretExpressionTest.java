@@ -86,7 +86,7 @@ public class InterpretExpressionTest {
     assertEquals("number", context.getDeclaration("x").getType());
 
     try {
-      assertEquals("34.0", context.getValue("x"));
+      assertEquals("34", context.getValue("x"));
     } catch (Exception e) {
       e.printStackTrace();
     }
