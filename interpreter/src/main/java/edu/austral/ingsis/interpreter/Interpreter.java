@@ -18,11 +18,11 @@ public class Interpreter {
 
   public static void interpret(AST ast, Consumer<String> stdOut) {
     final Context context = new Context();
-    ASTVisitor.create(context).visit(ast.getBlock());
+    ASTVisitor.create(context, stdOut).visit(ast.getBlock());
   }
 
   public static void interpret(AST ast, Context parentContext, Consumer<String> stdOut) {
     final Context context = new Context(parentContext);
-    ASTVisitor.create(context).visit(ast.getBlock());
+    ASTVisitor.create(context, stdOut).visit(ast.getBlock());
   }
 }
