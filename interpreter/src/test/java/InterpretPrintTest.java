@@ -26,4 +26,9 @@ public class InterpretPrintTest {
 
     ASTVisitor.create(context).visit((PrintlnNode) ast.getBlock().getNodes().get(0));
   }
+
+  @Test
+  public void test02() {
+    ASTVisitor.create(null, null);
+  }
 }

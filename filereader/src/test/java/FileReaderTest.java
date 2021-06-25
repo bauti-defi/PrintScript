@@ -1,4 +1,4 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import austral.ingsis.FileReaderPS;
 import java.util.ArrayList;
@@ -16,5 +16,12 @@ public class FileReaderTest {
         new ArrayList<>(
             Arrays.asList("let x: number = 5;", "let y: string = \"solo una prueba\";"));
     assertEquals(document, expectedList);
+  }
+
+  @Test
+  public void fileTestError() {
+    String filePath = "";
+    List<String> document = FileReaderPS.read(filePath);
+    assertTrue(document.isEmpty());
   }
 }
