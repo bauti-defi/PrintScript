@@ -66,8 +66,7 @@ public class Lexer {
         else if (isKeyword(c)) {
           accum += c.toString();
           createToken(keyWords.get(c.toString()), line);
-        }
-
+        } else if (!c.toString().equals(" ")) throw new RuntimeException("Character not found");
         break;
       case NUMBER:
         if (isCompound(c)) {
@@ -79,7 +78,7 @@ public class Lexer {
           accum += c.toString();
           createToken(keyWords.get(accum), line);
         } else if (c.toString().equals(".")) accum += c.toString();
-
+        else if (!c.toString().equals(" ")) throw new RuntimeException("Character not found");
         break;
       case IS_LETTER:
         if (isCompound(c)) {
@@ -98,6 +97,9 @@ public class Lexer {
           createToken(keyWords.get(c.toString()), line);
 
         } else if (accumIsWordKeyword()) createToken(wordsKeyWords.get(accum), line);
+        else if (c.toString().equals(" ") && !accumIsWordKeyword() && isNotSupportedType())
+          throw new RuntimeException("Character not found");
+        else if (!c.toString().equals(" ")) throw new RuntimeException("Character not found");
 
         break;
       case COMPOUND_KEYWORD:
@@ -107,11 +109,19 @@ public class Lexer {
           state = StateType.NUMBER;
           accum += c.toString();
         } else if (c.toString().equals("\"")) {
-          createToken(wordsKeyWords.get(accum), line);
+          if (accumIsWordKeyword()) createToken(wordsKeyWords.get(accum), line);
+          if (accumIsCompoundKeyword()) createToken(compoundKeywords.get(accum), line);
           state = StateType.STRING;
           accum += c.toString();
-        } else if (c.toString().equals(" ")) createToken(wordsKeyWords.get(accum), line);
+        } else if (c.toString().equals(" ")) {
+          if (accumIsWordKeyword()) createToken(wordsKeyWords.get(accum), line);
+          if (accumIsCompoundKeyword()) createToken(compoundKeywords.get(accum), line);
+        } else throw new RuntimeException("Character not found");
     }
+  }
+
+  private boolean isNotSupportedType() {
+    return accum.equals("boolean");
   }
 
   private void createToken(TokenType tokenType, Integer line) {
@@ -144,6 +154,10 @@ public class Lexer {
 
   private boolean accumIsWordKeyword() {
     return wordsKeyWords.containsKey(accum);
+  }
+
+  private boolean accumIsCompoundKeyword() {
+    return compoundKeywords.containsKey(accum);
   }
 
   private void changeToCompoundStateAndAddToAccum(Character c) {
