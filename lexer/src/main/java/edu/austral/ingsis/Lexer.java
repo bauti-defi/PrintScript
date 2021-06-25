@@ -2,6 +2,7 @@ package edu.austral.ingsis;
 
 import edu.austral.ingsis.tokens.Token;
 import edu.austral.ingsis.tokens.TokenType;
+import edu.austral.ingsis.util.CompoundKeywords;
 import edu.austral.ingsis.util.Keywords;
 import edu.austral.ingsis.util.StateType;
 import edu.austral.ingsis.util.WordsToken;
@@ -19,6 +20,7 @@ public class Lexer {
 
   private final Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
   private final Map<String, TokenType> wordsKeyWords = WordsToken.getWords1_1();
+  private final Map<String, TokenType> compoundKeywords = CompoundKeywords.getCompoundKeywords();
   private String accum = "";
   private StateType state = StateType.EMPTY;
   private List<Token> tokens = new ArrayList<>();
@@ -113,7 +115,8 @@ public class Lexer {
   }
 
   private boolean isCompound(Character c) {
-    return c.toString().equals("=") || c.toString().equals("<") || c.toString().equals(">");
+    //    return c.toString().equals("=") || c.toString().equals("<") || c.toString().equals(">");
+    return compoundKeywords.containsKey(c.toString());
   }
 
   private boolean accumIsKeyboard() {

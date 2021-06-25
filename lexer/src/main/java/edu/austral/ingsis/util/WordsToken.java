@@ -36,13 +36,6 @@ public class WordsToken {
     keywords.put(">=", TokenType.GREATER_THAN_EQUALS);
     keywords.put("<=", TokenType.LESS_THAN_EQUALS);
 
-    //    keywords.put("<", TokenType.GREATER_THAN);
-    //    keywords.put(">", TokenType.LESS_THAN);
-    //    keywords.put("=", TokenType.EQUALS);
-    //    keywords.put("<=", TokenType.GREATER_THAN_EQUALS);
-    //    keywords.put("==", TokenType.DOUBLE_EQUALS);
-    //    keywords.put("!=", TokenType.NOT_EQUALS);
-
     return keywords;
   }
 }

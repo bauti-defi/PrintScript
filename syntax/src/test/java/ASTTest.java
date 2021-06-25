@@ -1,5 +1,8 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import austral.ingsis.FileReaderPS;
+import edu.austral.ingsis.Lexer;
 import edu.austral.ingsis.ast.AST;
 import edu.austral.ingsis.ast.GlobalASTConfig;
 import edu.austral.ingsis.ast.nodes.DeclarationAssignationNode;
@@ -35,5 +38,23 @@ public class ASTTest implements TokenHelper {
     assertEquals(TokenType.EQUALS, declarationAssignationNode.getToken().getType());
     assertEquals(TokenType.LET, declarationAssignationNode.getLeft().getToken().getType());
     assertEquals(TokenType.LITERAL, declarationAssignationNode.getRight().getToken().getType());
+  }
+
+  @Test
+  public void test01() {
+    Lexer lexer = new Lexer();
+    List<Token> tokens = lexer.lex(FileReaderPS.read("src/test/java/resources/test4.txt"));
+
+    final AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_1);
+    assertTrue(ast.getBlock().getNodes().size() > 0);
+  }
+
+  @Test
+  public void test02() {
+    Lexer lexer = new Lexer();
+    List<Token> tokens = lexer.lex(FileReaderPS.read("src/test/java/resources/test2.txt"));
+
+    final AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_1);
+    assertTrue(ast.getBlock().getNodes().size() > 0);
   }
 }
