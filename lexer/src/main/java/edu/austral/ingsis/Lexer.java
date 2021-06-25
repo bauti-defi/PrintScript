@@ -136,7 +136,6 @@ public class Lexer {
   }
 
   private boolean isCompound(Character c) {
-    //    return c.toString().equals("=") || c.toString().equals("<") || c.toString().equals(">");
     return compoundKeywords.containsKey(c.toString());
   }
 

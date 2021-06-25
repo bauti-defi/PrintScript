@@ -142,7 +142,8 @@ public class FullTest {
     try {
       Interpreter.interpret(ast);
     } catch (Exception e) {
-      assertEquals("Unknown Syntax error Unsupported binary operation: STAR_SYMBOL", e.getMessage());
+      assertEquals(
+          "Unknown Syntax error Unsupported binary operation: STAR_SYMBOL", e.getMessage());
     }
   }
 
