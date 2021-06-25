@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import austral.ingsis.FileReaderPS;
 import edu.austral.ingsis.Lexer;
 import edu.austral.ingsis.ast.AST;
 import edu.austral.ingsis.ast.GlobalASTConfig;
