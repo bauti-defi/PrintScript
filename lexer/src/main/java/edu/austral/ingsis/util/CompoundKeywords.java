@@ -17,9 +17,10 @@ public class CompoundKeywords {
 
     return keywords;
   }
-    public static Map<String, TokenType> getCompoundKeywords1_0() {
-        Map<String, TokenType> keywords = new HashMap<>();
-        keywords.put("=", TokenType.EQUALS);
-        return keywords;
-    }
+
+  public static Map<String, TokenType> getCompoundKeywords1_0() {
+    Map<String, TokenType> keywords = new HashMap<>();
+    keywords.put("=", TokenType.EQUALS);
+    return keywords;
+  }
 }
