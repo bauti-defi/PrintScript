@@ -57,4 +57,12 @@ public class ASTTest implements TokenHelper {
     final AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_1);
     assertTrue(ast.getBlock().getNodes().size() > 0);
   }
+
+  @Test
+  public void test03() {
+    Lexer lexer = new Lexer();
+    List<Token> tokens = lexer.lex(FileReaderPS.read("src/test/java/resources/test2.txt"));
+
+    final AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_1);
+  }
 }
