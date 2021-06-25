@@ -30,6 +30,11 @@ class LexerTest1_1 {
   }
 
   @Test
+  public void simpleTest() {
+    lexer.lex(Collections.singletonList("hola"));
+  }
+
+  @Test
   public void simpleStatementTestWithoutSpaceBetweenEqualAndNumber() {
     List<String> str = new ArrayList<>();
     str.add("let x :number= 5;");

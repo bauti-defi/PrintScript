@@ -13,10 +13,10 @@ public class Interpreter {
     ASTVisitor.create(context, DEFAULT_OUT).visit(ast.getBlock());
   }
 
-  public static void interpret(AST ast, Context parentContext) {
-    final Context context = new Context(parentContext);
-    ASTVisitor.create(context, DEFAULT_OUT).visit(ast.getBlock());
-  }
+  //  public static void interpret(AST ast, Context parentContext) {
+  //    final Context context = new Context(parentContext);
+  //    ASTVisitor.create(context, DEFAULT_OUT).visit(ast.getBlock());
+  //  }
 
   public static void interpret(AST ast, Consumer<String> stdOut) {
     final Context context = new Context();
