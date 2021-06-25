@@ -1,5 +1,6 @@
 package edu.austral.ingsis.ast;
 
+import edu.austral.ingsis.ast.exceptions.SyntaxException;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.ast.parsers.NodeParser;
 import edu.austral.ingsis.tokens.Token;
@@ -26,6 +27,7 @@ public class ASTBuilder {
           continue outter;
         }
       }
+      throw new SyntaxException("AST builder");
     }
   }
 }
