@@ -6,7 +6,7 @@ public class NumberUtils {
     try {
       Integer.parseInt(s);
       return true;
-    } catch (Exception e) {
+    } catch (RuntimeException e) {
       return false;
     }
   }
@@ -15,7 +15,7 @@ public class NumberUtils {
     try {
       Double.parseDouble(s);
       return true;
-    } catch (Exception e) {
+    } catch (RuntimeException e) {
       return false;
     }
   }

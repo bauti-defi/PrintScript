@@ -103,7 +103,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/Bautista-Baiocchi-lora/PrintScript")
             credentials {
                 username = "Bautista-Baiocchi-lora"//project.findProperty("gpr.user") ?: "USERNAME"
-                password = ""//project.findProperty("gpr.key") ?: "TOKEN"
+                password = "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"//project.findProperty("gpr.key") ?: "TOKEN"
             }
         }
     }

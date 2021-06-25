@@ -23,7 +23,9 @@ public class ASTVisitor implements Visitor {
   }
 
   public void visit(CodeBlock codeBlock) {
-    codeBlock.getNodes().forEach(node -> execute(node));
+    for (AbstractNode node: codeBlock.getNodes()) {
+      execute(node);
+    }
   }
 
   private void execute(AbstractNode node) {
@@ -46,27 +48,19 @@ public class ASTVisitor implements Visitor {
     }
   }
 
-  @SneakyThrows
   @Override
   public void visit(ReferenceAssignationNode node) {
-    try {
       context.setValue(
           node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
   }
 
   @Override
   public void visit(DeclarationAssignationNode node) {
     this.visit(node.getLeft());
 
-    try {
       context.setValue(
           node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+
   }
 
   @Override
@@ -78,11 +72,8 @@ public class ASTVisitor implements Visitor {
     String identifier = node.getLeft().getToken().getValue();
     String type = node.getRight().getToken().getValue().toLowerCase();
 
-    try {
-      context.insertDeclaration(new Declaration(identifier, immutable, type));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    context.insertDeclaration(new Declaration(identifier, immutable, type));
+
   }
 
   @Override

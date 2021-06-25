@@ -3,6 +3,7 @@ package edu.austral.ingsis.interpreter;
 import static edu.austral.ingsis.interpreter.NumberUtils.isDouble;
 import static edu.austral.ingsis.interpreter.NumberUtils.numberToString;
 
+import edu.austral.ingsis.ast.exceptions.SyntaxException;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.tokens.TokenType;
 import lombok.SneakyThrows;
@@ -24,7 +25,7 @@ public class ExpressionEvaluator implements Evaluator<String> {
     return s.equals("true") || s.equals("false");
   }
 
-  @SneakyThrows
+
   @Override
   public String visit(BinaryOpNode node) {
     String left = this.visit(node.getLeft());
@@ -47,7 +48,7 @@ public class ExpressionEvaluator implements Evaluator<String> {
         && !isBoolean(right)) {
       return left + right;
     }
-    throw new Exception("Unsupported binary operation: " + node.getToken().getType());
+    throw new SyntaxException("Unsupported binary operation: " + node.getToken().getType());
   }
 
   @Override
@@ -55,7 +56,6 @@ public class ExpressionEvaluator implements Evaluator<String> {
     return node.getToken().getValue().replaceAll("\"", "");
   }
 
-  @SneakyThrows
   @Override
   public String visit(ExpressionNode node) {
     switch (node.getNodeType()) {
@@ -68,16 +68,14 @@ public class ExpressionEvaluator implements Evaluator<String> {
       case "REFERENCE":
         return this.visit((ReferenceNode) node);
     }
-    throw new Exception("Unknown symbol: " + node.getToken().getValue());
+    throw new SyntaxException("Unknown symbol: " + node.getToken().getValue());
   }
 
-  @SneakyThrows
   @Override
   public String visit(ReferenceNode node) {
     return this.context.getValue(node.getIdentifier());
   }
 
-  @SneakyThrows
   @Override
   public String visit(LogicalOpNode node) {
     String left = this.visit(node.getLeft());
@@ -94,10 +92,10 @@ public class ExpressionEvaluator implements Evaluator<String> {
       case GREATER_THAN_EQUALS:
         return evaluateIntegerComparison(node.getToken().getType(), left, right);
     }
-    throw new Exception("Unsupported logical operation: " + node.getToken().getType());
+    throw new SyntaxException("Unsupported logical operation: " + node.getToken().getType());
   }
 
-  @SneakyThrows
+
   private String evaluateIntegerComparison(TokenType operation, String left, String right) {
     int leftInt = Integer.parseInt(left);
     int rightInt = Integer.parseInt(right);
@@ -111,6 +109,6 @@ public class ExpressionEvaluator implements Evaluator<String> {
       case GREATER_THAN_EQUALS:
         return String.valueOf(leftInt >= rightInt);
     }
-    throw new Exception("Unsupported logical operation: " + operation);
+    throw new SyntaxException("Unsupported logical operation: " + operation);
   }
 }
