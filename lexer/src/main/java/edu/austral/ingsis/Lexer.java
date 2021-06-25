@@ -20,7 +20,7 @@ public class Lexer {
 
   private Map<String, TokenType> keyWords = Keywords.getKeyword1_1();
   private Map<String, TokenType> wordsKeyWords = WordsToken.getWords1_1();
-  private Map<String, TokenType> compoundKeywords = CompoundKeywords.getCompoundKeywords();
+  private Map<String, TokenType> compoundKeywords = CompoundKeywords.getCompoundKeywords1_1();
   private String accum = "";
   private StateType state = StateType.EMPTY;
   private List<Token> tokens = new ArrayList<>();
@@ -30,6 +30,7 @@ public class Lexer {
     if (version.equals("1.0")) {
       keyWords = Keywords.getKeyword1_0();
       wordsKeyWords = WordsToken.getWords1_0();
+      compoundKeywords = CompoundKeywords.getCompoundKeywords1_0();
     } else if (version.equals("1.1")) {
       keyWords = Keywords.getKeyword1_1();
       wordsKeyWords = WordsToken.getWords1_1();

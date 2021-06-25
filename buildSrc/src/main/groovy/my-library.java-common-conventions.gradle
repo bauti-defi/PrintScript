@@ -96,23 +96,23 @@ checkstyleTest {
     source = 'src/test/java'
 }
 
-//publishing {
-//    repositories {
-//        maven {
-//            name = "GitHubPackages"
-//            url = uri("https://maven.pkg.github.com/Bautista-Baiocchi-lora/PrintScript")
-//            credentials {
-//                username = "Bautista-Baiocchi-lora"//project.findProperty("gpr.user") ?: "USERNAME"
-//                password = //project.findProperty("gpr.key") ?: "TOKEN"
-//            }
-//        }
-//    }
-//    publications {
-//        gpr(MavenPublication) {
-//            from(components.java)
-//        }
-//    }
-//}
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Bautista-Baiocchi-lora/PrintScript")
+            credentials {
+                username = "Bautista-Baiocchi-lora"//project.findProperty("gpr.user") ?: "USERNAME"
+                password = "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"//project.findProperty("gpr.key") ?: "TOKEN"
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
 
 task installGitHooks(type: Copy) {
     from file("$rootDir/config/hooks")
