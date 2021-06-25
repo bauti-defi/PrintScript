@@ -9,6 +9,6 @@ public class SyntaxException extends RuntimeException {
   }
 
   public SyntaxException(String i) {
-      super("Unknown Syntax error " + i);
+    super("Unknown Syntax error " + i);
   }
 }

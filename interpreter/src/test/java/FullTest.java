@@ -64,7 +64,6 @@ public class FullTest {
     assertEquals("hello world 1\n", baos.toString());
   }
 
-
   @Test
   public void test000() {
     final AST ast = createAST("finaltest69.txt");
