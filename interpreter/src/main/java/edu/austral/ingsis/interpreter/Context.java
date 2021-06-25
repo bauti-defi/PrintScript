@@ -18,7 +18,7 @@ public class Context {
     this(null);
   }
 
-  public void insertDeclaration(Declaration declaration)  {
+  public void insertDeclaration(Declaration declaration) {
     declarations.put(declaration.getIdentifier(), declaration);
   }
 
@@ -30,7 +30,7 @@ public class Context {
     return !declarations.containsKey(identifier);
   }
 
-  public void setValue(String identifier, String value)  {
+  public void setValue(String identifier, String value) {
     if (isUndefined(identifier)) {
       if (parent != null) {
         this.parent.setValue(identifier, value);

@@ -10,5 +10,5 @@ dependencies {
     testImplementation 'junit:junit:4.13'
 }
 
-group 'edu.austral.ingsis'
-version '1.1.23-SNAPSHOT'
+//group 'edu.austral.ingsis'
+//version '1.1.23-SNAPSHOT'

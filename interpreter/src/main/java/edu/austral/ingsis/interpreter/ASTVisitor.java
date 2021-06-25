@@ -5,7 +5,6 @@ import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.ast.visitor.Visitor;
 import edu.austral.ingsis.tokens.TokenType;
 import java.util.function.Consumer;
-import lombok.SneakyThrows;
 
 public class ASTVisitor implements Visitor {
 
@@ -23,7 +22,7 @@ public class ASTVisitor implements Visitor {
   }
 
   public void visit(CodeBlock codeBlock) {
-    for (AbstractNode node: codeBlock.getNodes()) {
+    for (AbstractNode node : codeBlock.getNodes()) {
       execute(node);
     }
   }
@@ -50,17 +49,14 @@ public class ASTVisitor implements Visitor {
 
   @Override
   public void visit(ReferenceAssignationNode node) {
-      context.setValue(
-          node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
+    context.setValue(node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
   }
 
   @Override
   public void visit(DeclarationAssignationNode node) {
     this.visit(node.getLeft());
 
-      context.setValue(
-          node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
-
+    context.setValue(node.getIdentifier(), ExpressionEvaluator.evaluate(node.getRight(), context));
   }
 
   @Override
@@ -73,7 +69,6 @@ public class ASTVisitor implements Visitor {
     String type = node.getRight().getToken().getValue().toLowerCase();
 
     context.insertDeclaration(new Declaration(identifier, immutable, type));
-
   }
 
   @Override

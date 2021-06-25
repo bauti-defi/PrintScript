@@ -6,7 +6,6 @@ import static edu.austral.ingsis.interpreter.NumberUtils.numberToString;
 import edu.austral.ingsis.ast.exceptions.SyntaxException;
 import edu.austral.ingsis.ast.nodes.*;
 import edu.austral.ingsis.tokens.TokenType;
-import lombok.SneakyThrows;
 
 public class ExpressionEvaluator implements Evaluator<String> {
 
@@ -24,7 +23,6 @@ public class ExpressionEvaluator implements Evaluator<String> {
   private boolean isBoolean(String s) {
     return s.equals("true") || s.equals("false");
   }
-
 
   @Override
   public String visit(BinaryOpNode node) {
@@ -94,7 +92,6 @@ public class ExpressionEvaluator implements Evaluator<String> {
     }
     throw new SyntaxException("Unsupported logical operation: " + node.getToken().getType());
   }
-
 
   private String evaluateIntegerComparison(TokenType operation, String left, String right) {
     int leftInt = Integer.parseInt(left);

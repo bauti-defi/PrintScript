@@ -5,8 +5,8 @@ plugins {
     id 'com.palantir.graal' version '0.6.0'
 }
 
-group 'org.example'
-version '1.1.23-SNAPSHOT'
+//group 'org.example'
+//version '1.1.23-SNAPSHOT'
 
 repositories {
     mavenCentral()

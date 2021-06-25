@@ -7,6 +7,9 @@ plugins {
     id 'com.github.sherter.google-java-format'
 }
 
+group 'edu.austral.ingsis'
+version "2.0.0-SNAPSHOT"
+
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11

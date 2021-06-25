@@ -7,7 +7,6 @@ import edu.austral.ingsis.ast.GlobalASTConfig;
 import edu.austral.ingsis.interpreter.Interpreter;
 import edu.austral.ingsis.tokens.Token;
 import java.util.List;
-import java.util.function.Consumer;
 import picocli.CommandLine;
 import picocli.CommandLine.*;
 
