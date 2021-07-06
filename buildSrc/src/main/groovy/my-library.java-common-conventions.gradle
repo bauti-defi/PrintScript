@@ -8,7 +8,7 @@ plugins {
 }
 
 group 'edu.austral.ingsis'
-version "2.0.3"
+version "2.0.4"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -105,8 +105,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/Bautista-Baiocchi-lora/PrintScript")
             credentials {
-                username = project.findProperty("gpr.user") ?: "USERNAME"
-                password = project.findProperty("gpr.key") ?: "TOKEN"
+                username = System.getenv("GITHUB_USER") ?: "USERNAME"
+                password = System.getenv("GITHUB_KEY") ?: "TOKEN"
             }
         }
     }
