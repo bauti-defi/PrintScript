@@ -105,8 +105,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/Bautista-Baiocchi-lora/PrintScript")
             credentials {
-                username = System.getenv("GITHUB_USER") ?: "USERNAME"
-                password = System.getenv("GITHUB_KEY") ?: "TOKEN"
+                username = System.getenv("USERNAME") ?: "USERNAME"
+                password = System.getenv("TOKEN") ?: "TOKEN"
             }
         }
     }
