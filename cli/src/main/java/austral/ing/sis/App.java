@@ -24,10 +24,10 @@ public class App implements Runnable {
   private final Interpreter interpreter = new Interpreter();
 
   public void run() {
-    List<String> document = FileReaderPS.read(filePath);
-    List<Token> tokens = lexer.lex(document);
-    AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_0);
-    interpreter.interpret(ast);
+    List<String> document = FileReaderPS.read(filePath); // leo archivo, paso a lineas de texto
+    List<Token> tokens = lexer.lex(document); // paso las lineas de texto a una lista de tokens usando la "tabla"
+    AST ast = AST.create(tokens, GlobalASTConfig.NODE_PARSERS_V_1_1); // armo el arbol (AST)
+    interpreter.interpret(ast); // Interpreto el Arbol
   }
 
   public static void main(String[] args) {
